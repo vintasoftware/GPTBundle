@@ -44,4 +44,23 @@ Both are stored at `packages/` directory.
 
 ## Contributing
 
-For building locally, run `npm run build` or `npm run build:watch` for each project in `packages/` directory.
+### Pre-commit
+
+Set up Husky in your local git repository:
+
+```bash
+npm run prepare
+```
+
+### Building
+
+For building locally, run `npm run build` or `npm run build:watch` for each project in `packages/` directory. For example:
+
+```bash
+cd packages/server/
+npm run build:watch
+
+# in another terminal
+cd packages/client/
+npm run build:watch
+```
