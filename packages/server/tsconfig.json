@@ -1,12 +1,11 @@
 {
   "extends": "../../tsconfig.base.json",
-  "files": [],
-  "references": [
-    {
-      "path": "./src"
-    }
-  ],
+  "include": ["./src"],
   "compilerOptions": {
-    "isolatedModules": false
+    "rootDir": "src",
+    "outDir": "dist",
+    "baseUrl": ".",
+    "noEmit": false,
+    "emitDeclarationOnly": true
   }
 }

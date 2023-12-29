@@ -16,7 +16,7 @@ export default defineConfig({
   sourcemap: false,
   // dts: true,
   // Cannot use dts, see: https://github.com/egoist/tsup/issues/647
-  onSuccess: 'tsc --p src/tsconfig.json',
+  onSuccess: 'rm tsconfig.tsbuildinfo && tsc --p tsconfig.json',
   clean: true,
   format: ['esm', 'cjs'],
   target: 'node20',
