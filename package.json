@@ -13,7 +13,7 @@
       "npx prettier -w",
       "npx eslint --fix"
     ],
-    "*.{css, json}": [
+    "*.{css,json}": [
       "npx prettier -w"
     ]
   },
