@@ -1,4 +1,4 @@
-import imageSize from "rehype-img-size";
+import imageSize from 'rehype-img-size';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 import bundleAnalyzer from '@next/bundle-analyzer';
@@ -12,7 +12,7 @@ const withMDX = createMdx({
   options: {
     providerImportSource: '@mdx-js/react',
     remarkPlugins: [],
-    rehypePlugins: [[imageSize, { dir: "public" }], [rehypePrettyCode, rehypePrettyCodeOptions], rehypeSlug],
+    rehypePlugins: [[imageSize, { dir: 'public' }], [rehypePrettyCode, rehypePrettyCodeOptions], rehypeSlug],
   },
 });
 
@@ -31,7 +31,7 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
     mdxRs: false,
-  }
-}
+  },
+};
 
 export default withBundleAnalyzer(withMDX(nextConfig));

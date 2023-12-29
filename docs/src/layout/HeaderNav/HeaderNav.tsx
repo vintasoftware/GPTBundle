@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   Box,
@@ -28,20 +28,18 @@ import { ExampleDataType, assistantLinksData, generationLinksData } from '@/app/
 
 const makeLinks = (theme: MantineTheme, links: ExampleDataType[], closeMenu: () => void) =>
   links.map((item) => (
-    <UnstyledButton
-      className={classes.subLink}
-      key={item.title}
-      component={Link}
-      href={item.href}
-      onClick={closeMenu}
-    >
+    <UnstyledButton className={classes.subLink} key={item.title} component={Link} href={item.href} onClick={closeMenu}>
       <Group wrap="nowrap" align="flex-start">
         <ThemeIcon size={34} variant="default" radius="md">
           <item.icon style={{ width: rem(22), height: rem(22) }} color={theme.colors.blue[6]} />
         </ThemeIcon>
         <div>
-          <Text size="sm" fw={500}>{item.title}</Text>
-          <Text size="xs" c="dimmed">{item.description}</Text>
+          <Text size="sm" fw={500}>
+            {item.title}
+          </Text>
+          <Text size="xs" c="dimmed">
+            {item.description}
+          </Text>
         </div>
       </Group>
     </UnstyledButton>
@@ -49,113 +47,129 @@ const makeLinks = (theme: MantineTheme, links: ExampleDataType[], closeMenu: () 
 
 type MenuType = 'tutorial' | 'assistant' | 'generation';
 
-const HeaderWebMenu = ({ openedMenu, setOpenedMenu, name, title, tutorialLink, theme, children }: {
-  openedMenu: MenuType | null,
-  setOpenedMenu: (menu: MenuType | null) => void,
-  name: MenuType,
-  title: string,
-  tutorialLink: string,
-  theme: MantineTheme,
-  children: any
+const HeaderWebMenu = ({
+  openedMenu,
+  setOpenedMenu,
+  name,
+  title,
+  tutorialLink,
+  theme,
+  children,
+}: {
+  openedMenu: MenuType | null;
+  setOpenedMenu: (menu: MenuType | null) => void;
+  name: MenuType;
+  title: string;
+  tutorialLink: string;
+  theme: MantineTheme;
+  children: any;
 }) => {
   const ref = useClickOutside(() => setOpenedMenu(null));
 
-  return <Popover
-    opened={openedMenu === name}
-    width={600}
-    position="bottom"
-    radius="md"
-    shadow="md"
-    withinPortal
-    zIndex={1000000}
-  >
-    <Popover.Target>
-      <a
-        href="#"
-        className={classes.link}
-        onClick={(e) => {
-          setOpenedMenu(name);
-          e.preventDefault();
-        }}
-      >
+  return (
+    <Popover
+      opened={openedMenu === name}
+      width={600}
+      position="bottom"
+      radius="md"
+      shadow="md"
+      withinPortal
+      zIndex={1000000}
+    >
+      <Popover.Target>
+        <a
+          href="#"
+          className={classes.link}
+          onClick={(e) => {
+            setOpenedMenu(name);
+            e.preventDefault();
+          }}
+        >
+          <Center inline>
+            <Box component="span" mr={5}>
+              {title}
+            </Box>
+            <IconChevronDown style={{ width: rem(16), height: rem(16) }} color={theme.colors.blue[6]} />
+          </Center>
+        </a>
+      </Popover.Target>
+
+      <Popover.Dropdown style={{ overflow: 'hidden' }} ref={ref}>
+        <Group justify="space-between" px="md">
+          <Text fw={500}>{title} Examples</Text>
+        </Group>
+
+        <Divider my="sm" />
+
+        <SimpleGrid cols={2} spacing={0}>
+          {children}
+        </SimpleGrid>
+
+        <div className={classes.dropdownFooter}>
+          <Group justify="space-between">
+            <div>
+              <Text fw={500} fz="sm">
+                Tutorial
+              </Text>
+              <Text size="xs" c="dimmed">
+                Learn how to add {title} to your React app!
+              </Text>
+            </div>
+            <Button component={Link} href={tutorialLink} variant="default" onClick={() => setOpenedMenu(null)}>
+              Read the docs
+            </Button>
+          </Group>
+        </div>
+      </Popover.Dropdown>
+    </Popover>
+  );
+};
+
+const HeaderMobileMenu = ({
+  closeDrawer,
+  title,
+  tutorialLink,
+  theme,
+  children,
+}: {
+  closeDrawer: () => void;
+  title: string;
+  tutorialLink: string;
+  theme: MantineTheme;
+  children: any;
+}) => {
+  const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
+
+  return (
+    <>
+      <UnstyledButton className={classes.link} onClick={toggleLinks}>
         <Center inline>
           <Box component="span" mr={5}>
             {title}
           </Box>
-          <IconChevronDown
-            style={{ width: rem(16), height: rem(16) }}
-            color={theme.colors.blue[6]}
-          />
+          <IconChevronDown style={{ width: rem(16), height: rem(16) }} color={theme.colors.blue[6]} />
         </Center>
-      </a>
-    </Popover.Target>
-
-    <Popover.Dropdown style={{ overflow: 'hidden' }} ref={ref}>
-      <Group justify="space-between" px="md">
-        <Text fw={500}>{title} Examples</Text>
-      </Group>
-
-      <Divider my="sm" />
-
-      <SimpleGrid cols={2} spacing={0}>
-        {children}
-      </SimpleGrid>
-
-      <div className={classes.dropdownFooter}>
-        <Group justify="space-between">
-          <div>
-            <Text fw={500} fz="sm">Tutorial</Text>
-            <Text size="xs" c="dimmed">Learn how to add {title} to your React app!</Text>
-          </div>
-          <Button component={Link} href={tutorialLink} variant="default" onClick={() => setOpenedMenu(null)}>Read the docs</Button>
-        </Group>
-      </div>
-    </Popover.Dropdown>
-  </Popover>
-};
-
-const HeaderMobileMenu = ({ closeDrawer, title, tutorialLink, theme, children }: {
-  closeDrawer: () => void,
-  title: string,
-  tutorialLink: string,
-  theme: MantineTheme,
-  children: any
-}) => {
-  const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
-
-  return (<>
-    <UnstyledButton className={classes.link} onClick={toggleLinks}>
-      <Center inline>
-        <Box component="span" mr={5}>
-          {title}
-        </Box>
-        <IconChevronDown
-          style={{ width: rem(16), height: rem(16) }}
-          color={theme.colors.blue[6]}
-        />
-      </Center>
-    </UnstyledButton>
-    <Collapse in={linksOpened}>
-      <UnstyledButton
-        className={classes.subLink}
-        component={Link}
-        href={tutorialLink}
-        onClick={closeDrawer}
-      >
-        <Group wrap="nowrap" align="flex-start">
-          <ThemeIcon size={34} variant="default" radius="md">
-            <IconHelpSquare style={{ width: rem(22), height: rem(22) }} color={theme.colors.blue[6]} />
-          </ThemeIcon>
-          <div>
-            <Text size="sm" fw={500}>Tutorial</Text>
-            <Text size="xs" c="dimmed">Learn how to add {title} to your React app!</Text>
-          </div>
-        </Group>
       </UnstyledButton>
-      {children}
-    </Collapse>
-  </>
-  )
+      <Collapse in={linksOpened}>
+        <UnstyledButton className={classes.subLink} component={Link} href={tutorialLink} onClick={closeDrawer}>
+          <Group wrap="nowrap" align="flex-start">
+            <ThemeIcon size={34} variant="default" radius="md">
+              <IconHelpSquare style={{ width: rem(22), height: rem(22) }} color={theme.colors.blue[6]} />
+            </ThemeIcon>
+            <div>
+              <Text size="sm" fw={500}>
+                Tutorial
+              </Text>
+              <Text size="xs" c="dimmed">
+                Learn how to add {title} to your React app!
+              </Text>
+            </div>
+          </Group>
+        </UnstyledButton>
+        {children}
+      </Collapse>
+    </>
+  );
 };
 
 const HeaderNav = () => {
@@ -214,7 +228,9 @@ const HeaderNav = () => {
         </Group>
 
         <Group visibleFrom="sm">
-          <Button component={Link} href="/tutorial/getting-started/">Install</Button>
+          <Button component={Link} href="/tutorial/getting-started/">
+            Install
+          </Button>
         </Group>
 
         <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" />
@@ -240,18 +256,30 @@ const HeaderNav = () => {
             Getting Started
           </Link>
 
-          <HeaderMobileMenu closeDrawer={closeDrawer} title="AI Form Generation" tutorialLink="/tutorial/form-generation/" theme={theme}>
+          <HeaderMobileMenu
+            closeDrawer={closeDrawer}
+            title="AI Form Generation"
+            tutorialLink="/tutorial/form-generation/"
+            theme={theme}
+          >
             {generationLinks}
           </HeaderMobileMenu>
 
-          <HeaderMobileMenu closeDrawer={closeDrawer} title="AI Form Assistant" tutorialLink="/tutorial/form-assistant/" theme={theme}>
+          <HeaderMobileMenu
+            closeDrawer={closeDrawer}
+            title="AI Form Assistant"
+            tutorialLink="/tutorial/form-assistant/"
+            theme={theme}
+          >
             {assistantLinks}
           </HeaderMobileMenu>
 
           <Divider my="sm" />
 
           <Group justify="center" grow pb="xl" px="md">
-            <Button component={Link} href="/tutorial/getting-started/" onClick={closeAllMenus}>Install</Button>
+            <Button component={Link} href="/tutorial/getting-started/" onClick={closeAllMenus}>
+              Install
+            </Button>
           </Group>
         </ScrollArea>
       </Drawer>

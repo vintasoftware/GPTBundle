@@ -4,16 +4,16 @@ import dedent from 'dedent';
 import { openai } from './common';
 
 export interface GeneratorArgsType {
-  prompt: string,
-  content: string,
+  prompt: string;
+  content: string;
 }
 
 export interface GeneratorSettingsType {
-  model?: string,
-  getPromptMessage?: ((args: GeneratorArgsType) => string),
-  getResponseFormatMessage?: ((args: GeneratorArgsType) => string),
-  getSystemMessage?: ((args: GeneratorArgsType) => string),
-};
+  model?: string;
+  getPromptMessage?: (args: GeneratorArgsType) => string;
+  getResponseFormatMessage?: (args: GeneratorArgsType) => string;
+  getSystemMessage?: (args: GeneratorArgsType) => string;
+}
 
 const JSON_SCHEMA_EXAMPLE = {
   title: 'Replace with useful name',
@@ -92,7 +92,7 @@ function getResponseFormatMessage() {
     \`\`\`${JSON.stringify(UI_SCHEMA_EXAMPLE)}\`\`\`
     Use only the ui:widget values from the UISchema example above.
     Output both JSON Schema and UISchema as JSON objects like this:
-    \`\`\`{"json_schema": ..., "ui_schema": ...}\`\`\``
+    \`\`\`{"json_schema": ..., "ui_schema": ...}\`\`\``;
 }
 
 function getPromptMessage({ content, prompt }: GeneratorArgsType) {

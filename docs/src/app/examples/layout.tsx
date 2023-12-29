@@ -7,8 +7,10 @@ type Props = {
 };
 
 export default function ExamplesLayout({ children }: Props) {
-  return <DocsLayout>
-    <OpenAIKeyWarning/>
-    {children}
-  </DocsLayout>;
+  return (
+    <DocsLayout>
+      <OpenAIKeyWarning />
+      {children}
+    </DocsLayout>
+  );
 }

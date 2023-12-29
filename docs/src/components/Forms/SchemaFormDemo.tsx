@@ -23,13 +23,7 @@ export default function SchemaFormDemo({
           <Title order={3} mb="xs">
             Generated Form:
           </Title>
-          <SchemaForm
-            schema={formSchema}
-            uiSchema={uiSchema}
-            validator={validator}
-            onSubmit={onSubmit}
-            {...props}
-          />
+          <SchemaForm schema={formSchema} uiSchema={uiSchema} validator={validator} onSubmit={onSubmit} {...props} />
         </Box>
         <Box mb="md">
           <Title order={3} mb="xs">

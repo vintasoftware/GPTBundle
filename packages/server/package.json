@@ -27,8 +27,7 @@
     "test:cov": "vitest run --coverage"
   },
   "peerDependencies": {
-    "openai": ">=4.24.1",
-    "react-jsonschema-form": ">=1.8.1"
+    "openai": ">=4.24.1"
   },
   "dependencies": {
     "dedent": ">=1.5.1"

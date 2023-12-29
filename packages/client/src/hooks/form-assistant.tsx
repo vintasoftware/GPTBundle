@@ -13,13 +13,13 @@ export function useFormAssistant({
   fieldLabels = {},
   fieldChoices = {},
 }: {
-  formTitle?: string,
-  pageTitle?: string,
-  formGetValues: () => Record<string, string>,
-  formSetValues: (values: Record<string, string>) => unknown,
-  fieldsToFill?: string[] | null | '__all__',
-  fieldLabels?: Record<string, string[]>,
-  fieldChoices?: Record<string, string[]>,
+  formTitle?: string;
+  pageTitle?: string;
+  formGetValues: () => Record<string, string>;
+  formSetValues: (values: Record<string, string>) => unknown;
+  fieldsToFill?: string[] | null | '__all__';
+  fieldLabels?: Record<string, string[]>;
+  fieldChoices?: Record<string, string[]>;
 }) {
   async function fillSingleField(field: string) {
     if (!settings.generateFormAutofillFn) {
@@ -33,7 +33,7 @@ export function useFormAssistant({
       fieldsToFill: [field],
       fields: formValues,
       fieldLabels,
-      fieldChoices
+      fieldChoices,
     });
     formSetValues(asFormValues(gptAutofillData));
   }
@@ -46,8 +46,8 @@ export function useFormAssistant({
     const formValues = formGetValues();
     if (!fieldsToFill) {
       fieldsToFill = Object.entries(formValues)
-      .filter(([_, value]) => !value)
-      .map(([field, _]) => field);
+        .filter(([_, value]) => !value)
+        .map(([field, _]) => field);
     }
     if (fieldsToFill === '__all__') fieldsToFill = Object.keys(formGetValues());
 
@@ -57,7 +57,7 @@ export function useFormAssistant({
       fieldsToFill,
       fields: formValues,
       fieldLabels,
-      fieldChoices
+      fieldChoices,
     });
     formSetValues(asFormValues(gptAutofillData));
   }

@@ -13,7 +13,7 @@ import { AIFormToolkitConfig } from '@ai-form-toolkit/client';
 import { customGenerateGPTFormSchema, GeneratorArgsType } from '@ai-form-toolkit/server';
 
 async function myGenerateGPTFormSchema(args: GeneratorArgsType) {
-  "use server";  // necessary!
+  'use server'; // necessary!
 
   const settings = {
     // override model here:
@@ -30,9 +30,7 @@ export default function RootLayout({ children }: { children: any }) {
   return (
     <html lang="en">
       <body>
-        <AIFormToolkitConfig
-          generateFormSchemaFn={myGenerateGPTFormSchema}
-        />
+        <AIFormToolkitConfig generateFormSchemaFn={myGenerateGPTFormSchema} />
       </body>
     </html>
   );
@@ -43,8 +41,8 @@ export default function RootLayout({ children }: { children: any }) {
 
 ```ts
 export interface GeneratorArgsType {
-  prompt: string,
-  content: string,
+  prompt: string;
+  content: string;
 }
 ```
 
@@ -57,7 +55,7 @@ import { AIFormToolkitConfig } from '@ai-form-toolkit/client';
 import { customGenerateGPTFormAutofill, AssistantArgsType } from '@ai-form-toolkit/server';
 
 async function myGenerateGPTFormAutofill(args: AssistantArgsType) {
-  "use server";  // necessary!
+  'use server'; // necessary!
 
   const settings = {
     // override model here:
@@ -74,9 +72,7 @@ export default function RootLayout({ children }: { children: any }) {
   return (
     <html lang="en">
       <body>
-        <AIFormToolkitConfig
-          generateFormAutofillFn={myGenerateGPTFormAutofill}
-        />
+        <AIFormToolkitConfig generateFormAutofillFn={myGenerateGPTFormAutofill} />
       </body>
     </html>
   );
@@ -87,12 +83,12 @@ export default function RootLayout({ children }: { children: any }) {
 
 ```ts
 export interface AssistantArgsType {
-  pageTitle: string,
-  formTitle: string,
-  fieldsToFill: string[],
-  fields: Record<string, string>,
-  fieldLabels: Record<string, string[]>,
-  fieldChoices: Record<string, string[]>,
+  pageTitle: string;
+  formTitle: string;
+  fieldsToFill: string[];
+  fields: Record<string, string>;
+  fieldLabels: Record<string, string[]>;
+  fieldChoices: Record<string, string[]>;
 }
 ```
 

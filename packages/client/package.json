@@ -5,6 +5,9 @@
   "files": [
     "dist"
   ],
+  "module": "./dist/client.js",
+  "main": "./dist/client.umd.cjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/client.js",

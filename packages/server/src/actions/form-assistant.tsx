@@ -4,19 +4,19 @@ import dedent from 'dedent';
 import { openai } from './common';
 
 export interface AssistantSettingsType {
-  model?: string,
-  getPromptMessage?: ((args: AssistantArgsType) => string),
-  getResponseFormatMessage?: ((args: AssistantArgsType) => string),
-  getSystemMessage?: ((args: AssistantArgsType) => string),
-};
+  model?: string;
+  getPromptMessage?: (args: AssistantArgsType) => string;
+  getResponseFormatMessage?: (args: AssistantArgsType) => string;
+  getSystemMessage?: (args: AssistantArgsType) => string;
+}
 
 export interface AssistantArgsType {
-  pageTitle: string,
-  formTitle: string,
-  fieldsToFill: string[],
-  fields: Record<string, string>,
-  fieldLabels: Record<string, string[]>,
-  fieldChoices: Record<string, string[]>,
+  pageTitle: string;
+  formTitle: string;
+  fieldsToFill: string[];
+  fields: Record<string, string>;
+  fieldLabels: Record<string, string[]>;
+  fieldChoices: Record<string, string[]>;
 }
 
 function getPromptMessage({
@@ -26,7 +26,7 @@ function getPromptMessage({
   fields,
   fieldLabels,
   fieldChoices,
-} : AssistantArgsType) {
+}: AssistantArgsType) {
   const fieldNames = Object.keys(fields);
   const hasLabels = Object.keys(fieldLabels).length > 0;
   const fieldsToFillOptions = fieldsToFill
@@ -58,22 +58,25 @@ function getSystemMessage() {
     You will be given a description of a web page form with fields and values.
     You will be asked to fill the form fields with useful information, not placeholders.
     Description fields must be filled with detailed how and why.
-    Today is ${today}.`
+    Today is ${today}.`;
 }
 
 function getResponseFormatMessage() {
   return 'The JSON response format must be like this: {"fields": [{"name": "foo", "value": "bar"}]}';
 }
 
-export async function customGenerateGPTFormAutofill(args : {
-  pageTitle?: string,
-  formTitle?: string,
-  fieldsToFill: Array<string>,
-  fields: Record<string, string>,
-  fieldLabels?: Record<string, string[]>,
-  fieldChoices?: Record<string, string[]>,
-}, settings: AssistantSettingsType): Promise<Record<string, string>[]> {
-  const argsWithDefaults : AssistantArgsType = {
+export async function customGenerateGPTFormAutofill(
+  args: {
+    pageTitle?: string;
+    formTitle?: string;
+    fieldsToFill: Array<string>;
+    fields: Record<string, string>;
+    fieldLabels?: Record<string, string[]>;
+    fieldChoices?: Record<string, string[]>;
+  },
+  settings: AssistantSettingsType,
+): Promise<Record<string, string>[]> {
+  const argsWithDefaults: AssistantArgsType = {
     ...args,
     pageTitle: args.pageTitle ?? '',
     formTitle: args.formTitle ?? '',

@@ -44,58 +44,60 @@ export default function ERSchemaGenExample() {
 
   return (
     <>
-        <Box pos="relative" mb="md">
-          <LoadingOverlay
-            visible={isLoading}
-            loaderProps={{
-              children: (
-                <>
-                  <Center>
-                    <Loader size={16} mr={8} />
-                    <Text inherit>Loading (may take up to 2 minutes)...</Text>
-                  </Center>
-                </>
-              ),
-            }}
-          />
-          <Title order={2} mb="xs">
-            Generate forms from{' '}
-            <a href="https://mermaid.js.org/syntax/entityRelationshipDiagram.html" target="_blank">
-              Mermaid ER diagrams
-            </a>
-            :
-          </Title>
-          <Text mb="xs">Code at <Code>docs/src/app/examples/generation/entity-relationship/page.tsx</Code></Text>
-          <Textarea
-            label="Mermaid diagram for Entity-Relationship Model:"
-            placeholder="Put Mermaid text here..."
-            value={content}
-            autosize
-            minRows={6}
-            onChange={(event) => setContent(event.currentTarget.value)}
-            mb="md"
-          />
-          <Textarea
-            label="Prompt:"
-            placeholder={`e.g. ${defaultPrompt}`}
-            value={prompt}
-            onChange={(event) => setPrompt(event.currentTarget.value)}
-            mb="md"
-          />
-        </Box>
-        <Button
-          leftSection={isLoading ? <Loader color="blue" size={14} /> : <IconForms size={14} />}
-          variant="outline"
-          onClick={() => {
-            setIsLoading(true);
-            generateFormSchema(content, prompt).finally(() => setIsLoading(false));
+      <Box pos="relative" mb="md">
+        <LoadingOverlay
+          visible={isLoading}
+          loaderProps={{
+            children: (
+              <>
+                <Center>
+                  <Loader size={16} mr={8} />
+                  <Text inherit>Loading (may take up to 2 minutes)...</Text>
+                </Center>
+              </>
+            ),
           }}
-          disabled={isLoading}
+        />
+        <Title order={2} mb="xs">
+          Generate forms from{' '}
+          <a href="https://mermaid.js.org/syntax/entityRelationshipDiagram.html" target="_blank">
+            Mermaid ER diagrams
+          </a>
+          :
+        </Title>
+        <Text mb="xs">
+          Code at <Code>docs/src/app/examples/generation/entity-relationship/page.tsx</Code>
+        </Text>
+        <Textarea
+          label="Mermaid diagram for Entity-Relationship Model:"
+          placeholder="Put Mermaid text here..."
+          value={content}
+          autosize
+          minRows={6}
+          onChange={(event) => setContent(event.currentTarget.value)}
           mb="md"
-        >
-          Generate Form
-        </Button>
-        <SchemaFormDemo formSchema={formSchema} uiSchema={uiSchema} onSubmit={onSubmit} />
+        />
+        <Textarea
+          label="Prompt:"
+          placeholder={`e.g. ${defaultPrompt}`}
+          value={prompt}
+          onChange={(event) => setPrompt(event.currentTarget.value)}
+          mb="md"
+        />
+      </Box>
+      <Button
+        leftSection={isLoading ? <Loader color="blue" size={14} /> : <IconForms size={14} />}
+        variant="outline"
+        onClick={() => {
+          setIsLoading(true);
+          generateFormSchema(content, prompt).finally(() => setIsLoading(false));
+        }}
+        disabled={isLoading}
+        mb="md"
+      >
+        Generate Form
+      </Button>
+      <SchemaFormDemo formSchema={formSchema} uiSchema={uiSchema} onSubmit={onSubmit} />
     </>
   );
 }

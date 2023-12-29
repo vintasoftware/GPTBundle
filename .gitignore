@@ -1,6 +1,6 @@
 ## JS lib .gitignore
-dist
-dist-ssr
+dist/
+dist-ssr/
 *.local
 
 # Editor directories and files
@@ -22,21 +22,21 @@ coverage
 
 ## Next.js .gitignore
 # dependencies
-/node_modules
-/.pnp
+node_modules/
+.pnp/
 .pnp.js
 .yarn/install-state.gz
 
 # testing
-/coverage
+coverage/
 
 # next.js
-/.next/
-/out/
+.next/
+out/
 next-env.d.ts
 
 # production
-/build
+build/
 
 # misc
 .DS_Store

@@ -12,12 +12,9 @@ Suppose you have a form like this:
 
 ```jsx
 function Form() {
-  const [formValues, setFormValues] = useState({recipe: 'Hummus quick recipe: ...'});
+  const [formValues, setFormValues] = useState({ recipe: 'Hummus quick recipe: ...' });
   return (
-    <textarea
-      value={formValues.recipe}
-      onChange={e => setFormValues({...formValues, recipe: e.target.value})}
-    />
+    <textarea value={formValues.recipe} onChange={(e) => setFormValues({ ...formValues, recipe: e.target.value })} />
   );
 }
 ```
@@ -27,7 +24,7 @@ You can create a button to autofill the recipe field with the `useFormAssistant`
 ```jsx {5-9,16}
 function FormWithAssistant() {
   const [formValues, setFormValues] = useState({
-    recipe: 'Hummus quick recipe:\nIngredients: ...\nDirections: ...'
+    recipe: 'Hummus quick recipe:\nIngredients: ...\nDirections: ...',
   });
   const { fillSingleField } = useFormAssistant({
     formTitle: 'Create Recipe',
@@ -36,11 +33,10 @@ function FormWithAssistant() {
   });
   return (
     <>
-      <textarea
-        value={formValues.recipe}
-        onChange={e => setFormValues({...formValues, recipe: e.target.value})}
-      />
-      <button type="button" onClick={() => fillSingleField('recipe')}>Autofill with AI</button>
+      <textarea value={formValues.recipe} onChange={(e) => setFormValues({ ...formValues, recipe: e.target.value })} />
+      <button type="button" onClick={() => fillSingleField('recipe')}>
+        Autofill with AI
+      </button>
     </>
   );
 }
@@ -49,7 +45,7 @@ function FormWithAssistant() {
 Note the current value of the field is passed to the AI assistant, so it can enhance it.
 After autofilling, the form will look like this:
 
-<BasicSingleFieldForm/>
+<BasicSingleFieldForm />
 
 ## Fill multiple fields
 
@@ -78,23 +74,16 @@ function FormWithAssistant() {
 
   return (
     <>
-      <textarea
-        value={formValues.recipe}
-        onChange={e => setFormValues({...formValues, recipe: e.target.value})}
-      />
-      <input
-        value={formValues.duration}
-        onChange={e => setFormValues({...formValues, duration: e.target.value})}
-      />
-      <select
-        value={formValues.cost}
-        onChange={e => setFormValues({...formValues, cost: e.target.value})}
-      >
+      <textarea value={formValues.recipe} onChange={(e) => setFormValues({ ...formValues, recipe: e.target.value })} />
+      <input value={formValues.duration} onChange={(e) => setFormValues({ ...formValues, duration: e.target.value })} />
+      <select value={formValues.cost} onChange={(e) => setFormValues({ ...formValues, cost: e.target.value })}>
         <option value={COST_CHOICES[0]}>{COST_CHOICES[0]}</option>
         <option value={COST_CHOICES[1]}>{COST_CHOICES[1]}</option>
         <option value={COST_CHOICES[2]}>{COST_CHOICES[2]}</option>
       </select>
-      <button type="button" onClick={() => fillFields()}>Autofill with AI</button>
+      <button type="button" onClick={() => fillFields()}>
+        Autofill with AI
+      </button>
     </>
   );
 }
@@ -102,7 +91,7 @@ function FormWithAssistant() {
 
 After autofilling, the form will look like this:
 
-<BasicMultiFieldForm/>
+<BasicMultiFieldForm />
 
 ### Force filling non-empty fields
 
@@ -164,6 +153,14 @@ Check [the examples](/examples/#form-assistant-examples) for some ideas.
 Use the [advanced settings](/reference/settings/) to override prompts, AI models, etc.
 
 <Grid>
-  <Grid.Col span={6}><Button fullWidth variant="outline" component={Link} href="/tutorial/form-generation/">« Form Generation</Button></Grid.Col>
-  <Grid.Col span={6}><Button fullWidth variant="outline" component={Link} href="/examples/">All Examples »</Button></Grid.Col>
+  <Grid.Col span={6}>
+    <Button fullWidth variant="outline" component={Link} href="/tutorial/form-generation/">
+      « Form Generation
+    </Button>
+  </Grid.Col>
+  <Grid.Col span={6}>
+    <Button fullWidth variant="outline" component={Link} href="/examples/">
+      All Examples »
+    </Button>
+  </Grid.Col>
 </Grid>

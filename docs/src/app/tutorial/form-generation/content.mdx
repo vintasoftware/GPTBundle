@@ -20,55 +20,46 @@ import { useState } from 'react';
 import validator from '@rjsf/validator-ajv8';
 import Form from '@rjsf/core';
 
-import {
-  useGeneratedFormSchema
-} from 'ai-form/hooks/form-gen';
+import { useGeneratedFormSchema } from 'ai-form/hooks/form-gen';
 
 export default function BasicExample() {
   const [content, setContent] = useState('Name: ...\nAge: ...');
   const [prompt, setPrompt] = useState('Form to fill the missing values');
-  const {
-    formSchema,
-    uiSchema,
-    generateFormSchema
-  } = useGeneratedFormSchema();
+  const { formSchema, uiSchema, generateFormSchema } = useGeneratedFormSchema();
 
-  const onSubmit = ({ formData }) => { };
+  const onSubmit = ({ formData }) => {};
 
   return (
     <>
-      <label>Content:
-        <textarea value={content} onChange={e => setContent(e.target.value)} />
+      <label>
+        Content:
+        <textarea value={content} onChange={(e) => setContent(e.target.value)} />
       </label>
-      <label>Prompt:
-        <textarea value={prompt} onChange={e => setPrompt(e.target.value)} />
+      <label>
+        Prompt:
+        <textarea value={prompt} onChange={(e) => setPrompt(e.target.value)} />
       </label>
       <button type="button" onClick={() => generateFormSchema(content, prompt)}>
         Generate Form
       </button>
-      {formSchema && <Form
-        schema={formSchema}
-        uiSchema={uiSchema}
-        validator={validator}
-        onSubmit={onSubmit}
-      />}
+      {formSchema && <Form schema={formSchema} uiSchema={uiSchema} validator={validator} onSubmit={onSubmit} />}
     </>
   );
 }
 ```
 
-The code above renders an *input form* that looks like this:
+The code above renders an _input form_ that looks like this:
 
-<BasicInputForm/>
+<BasicInputForm />
 
-After the user clicks the the *Generate Form* button, the AI generates this form based on the *input form*:
+After the user clicks the the _Generate Form_ button, the AI generates this form based on the _input form_:
 
-<BasicGeneratedForm/>
+<BasicGeneratedForm />
 
 The AI generated form is built by [react-jsonschema-form](https://rjsf-team.github.io/react-jsonschema-form/docs/) library
 from the schemas below. In other words, the AI generated the following schemas to build the form above based on user's input:
 
-<BasicGeneratedSchemas/>
+<BasicGeneratedSchemas />
 
 Note the AI produces a schema for the form logic, and another schema for the form UI, compatible with each other.
 
@@ -78,11 +69,7 @@ Note the AI produces a schema for the form logic, and another schema for the for
 The hook returns a function `generateFormSchema` and references to the `formSchema` and `uiSchema`:
 
 ```tsx
-const {
-  formSchema,
-  uiSchema,
-  generateFormSchema
-} = useGeneratedFormSchema();
+const { formSchema, uiSchema, generateFormSchema } = useGeneratedFormSchema();
 ```
 
 `formSchema` and `uiSchema` are generated when the `generateFormSchema` is called.
@@ -116,6 +103,14 @@ Check [the examples](/examples/#form-generation-examples) for some ideas.
 Use the [advanced settings](/reference/settings/) to override prompts, AI models, etc.
 
 <Grid>
-  <Grid.Col span={6}><Button fullWidth variant="outline" component={Link} href="/tutorial/getting-started/">« Getting Started</Button></Grid.Col>
-  <Grid.Col span={6}><Button fullWidth variant="outline" component={Link} href="/tutorial/form-assistant/">Form Assistant »</Button></Grid.Col>
+  <Grid.Col span={6}>
+    <Button fullWidth variant="outline" component={Link} href="/tutorial/getting-started/">
+      « Getting Started
+    </Button>
+  </Grid.Col>
+  <Grid.Col span={6}>
+    <Button fullWidth variant="outline" component={Link} href="/tutorial/form-assistant/">
+      Form Assistant »
+    </Button>
+  </Grid.Col>
 </Grid>

@@ -1,11 +1,10 @@
-import react from '@vitejs/plugin-react'
-import path from 'node:path'
-import { defineConfig } from 'vitest/config'
-import dts from 'vite-plugin-dts'
-import { type UserConfigExport } from 'vite'
-import { name } from './package.json'
-import { configDefaults } from 'vitest/config'
-
+import react from '@vitejs/plugin-react';
+import path from 'node:path';
+import { defineConfig } from 'vitest/config';
+import dts from 'vite-plugin-dts';
+import { type UserConfigExport } from 'vite';
+import { name } from './package.json';
+import { configDefaults } from 'vitest/config';
 
 const app = async (): Promise<UserConfigExport> => {
   /**
@@ -13,7 +12,7 @@ const app = async (): Promise<UserConfigExport> => {
    * @octocat/library-repo -> library-repo
    * vite-component-library-template -> vite-component-library-template
    */
-  const formattedName = name.match(/[^/]+$/)?.[0] ?? name
+  const formattedName = name.match(/[^/]+$/)?.[0] ?? name;
 
   return defineConfig({
     plugins: [
@@ -26,7 +25,7 @@ const app = async (): Promise<UserConfigExport> => {
     build: {
       lib: {
         entry: path.resolve(__dirname, 'src/index.ts'),
-        name: formattedName
+        name: formattedName,
       },
       rollupOptions: {
         external: ['react', 'react/jsx-runtime', 'react-dom'],
@@ -36,12 +35,12 @@ const app = async (): Promise<UserConfigExport> => {
             'react/jsx-runtime': 'react/jsx-runtime',
             'react-dom': 'ReactDOM',
           },
-          intro: `"use client"`
+          intro: `"use client"`,
         },
         // Fix for https://github.com/vitejs/vite/issues/15012:
         onLog: (level, log, handler) => {
           if (log.cause && log.cause.message === `Can't resolve original location of error.`) {
-            return
+            return;
           }
           handler(level, log);
         },
@@ -51,14 +50,14 @@ const app = async (): Promise<UserConfigExport> => {
       alias: {
         '@': path.resolve(__dirname, 'src/'),
         '#root': path.resolve(__dirname, 'src/'),
-      }
+      },
     },
     test: {
       globals: true,
       environment: 'jsdom',
-      exclude: [...configDefaults.exclude, '**/node_modules/**', 'docs/**']
+      exclude: [...configDefaults.exclude, '**/node_modules/**', 'docs/**'],
     },
-  })
-}
+  });
+};
 // https://vitejs.dev/config/
-export default app
+export default app;

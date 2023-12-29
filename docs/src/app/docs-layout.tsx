@@ -12,5 +12,11 @@ type Props = {
 };
 
 export default function DocsLayout({ children }: Props) {
-  return <Layout><Box maw={600} mx="auto" pb={rem(30)}>{children}</Box></Layout>;
+  return (
+    <Layout>
+      <Box maw={600} mx="auto" pb={rem(30)}>
+        {children}
+      </Box>
+    </Layout>
+  );
 }

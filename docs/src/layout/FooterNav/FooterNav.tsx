@@ -9,8 +9,11 @@ const FooterNav = () => (
           © 2024{' '}
           <a href="https://www.vinta.com.br" target="_blank">
             Vinta Software
-          </a>{' – '}
-          <a href="https://www.vinta.com.br" target="_blank">meet the creators!</a>
+          </a>
+          {' – '}
+          <a href="https://www.vinta.com.br" target="_blank">
+            meet the creators!
+          </a>
         </p>
       </Container>
     </footer>

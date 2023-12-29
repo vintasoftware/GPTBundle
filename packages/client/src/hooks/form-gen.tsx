@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useCallback, useState } from 'react';
 import { RJSFSchema, UiSchema } from '@rjsf/utils';
@@ -19,7 +19,7 @@ export function useGeneratedFormSchema() {
 
     if (!content || !prompt) return;
 
-    const schemaResponse = await settings.generateFormSchemaFn({content, prompt});
+    const schemaResponse = await settings.generateFormSchemaFn({ content, prompt });
     setFormSchema(schemaResponse.json_schema);
     setUiSchema(schemaResponse.ui_schema);
   }, []);

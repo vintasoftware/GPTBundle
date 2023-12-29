@@ -23,56 +23,58 @@ export default function GenericSchemaGenExample() {
 
   return (
     <>
-        <Box pos="relative" mb="md">
-          <LoadingOverlay
-            visible={isLoading}
-            loaderProps={{
-              children: (
-                <>
-                  <Center>
-                    <Loader size={16} mr={8} />
-                    <Text inherit>Loading (may take up to 2 minutes)...</Text>
-                  </Center>
-                </>
-              ),
-            }}
-          />
-          <Title order={2} mb="xs">
-            Generate checklists from content:
-          </Title>
-          <Text mb="xs">Code at <Code>docs/src/app/examples/generation/generic/page.tsx</Code></Text>
-          <Textarea
-            label="Content"
-            description="Content to use for generating the form"
-            placeholder="Put text or HTML content here..."
-            autosize
-            minRows={6}
-            value={content}
-            onChange={(event) => setContent(event.currentTarget.value)}
-            mb="md"
-          />
-          <Textarea
-            label="Prompt"
-            description="Prompt to use for generating the form"
-            placeholder="e.g. generate a 5 question exam to ensure the reader learned this content"
-            value={prompt}
-            onChange={(event) => setPrompt(event.currentTarget.value)}
-            mb="md"
-          />
-        </Box>
-        <Button
-          leftSection={isLoading ? <Loader color="blue" size={14} /> : <IconForms size={14} />}
-          variant="outline"
-          onClick={() => {
-            setIsLoading(true);
-            generateFormSchema(content, prompt).finally(() => setIsLoading(false));
+      <Box pos="relative" mb="md">
+        <LoadingOverlay
+          visible={isLoading}
+          loaderProps={{
+            children: (
+              <>
+                <Center>
+                  <Loader size={16} mr={8} />
+                  <Text inherit>Loading (may take up to 2 minutes)...</Text>
+                </Center>
+              </>
+            ),
           }}
-          disabled={isLoading}
+        />
+        <Title order={2} mb="xs">
+          Generate checklists from content:
+        </Title>
+        <Text mb="xs">
+          Code at <Code>docs/src/app/examples/generation/generic/page.tsx</Code>
+        </Text>
+        <Textarea
+          label="Content"
+          description="Content to use for generating the form"
+          placeholder="Put text or HTML content here..."
+          autosize
+          minRows={6}
+          value={content}
+          onChange={(event) => setContent(event.currentTarget.value)}
           mb="md"
-        >
-          Generate Form
-        </Button>
-        <SchemaFormDemo formSchema={formSchema} uiSchema={uiSchema} onSubmit={onSubmit} />
+        />
+        <Textarea
+          label="Prompt"
+          description="Prompt to use for generating the form"
+          placeholder="e.g. generate a 5 question exam to ensure the reader learned this content"
+          value={prompt}
+          onChange={(event) => setPrompt(event.currentTarget.value)}
+          mb="md"
+        />
+      </Box>
+      <Button
+        leftSection={isLoading ? <Loader color="blue" size={14} /> : <IconForms size={14} />}
+        variant="outline"
+        onClick={() => {
+          setIsLoading(true);
+          generateFormSchema(content, prompt).finally(() => setIsLoading(false));
+        }}
+        disabled={isLoading}
+        mb="md"
+      >
+        Generate Form
+      </Button>
+      <SchemaFormDemo formSchema={formSchema} uiSchema={uiSchema} onSubmit={onSubmit} />
     </>
   );
 }

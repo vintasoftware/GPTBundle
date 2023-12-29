@@ -1,17 +1,6 @@
 'use client';
 
-import {
-  Text,
-  Box,
-  Button,
-  Textarea,
-  Title,
-  LoadingOverlay,
-  Loader,
-  Center,
-  Anchor,
-  Code,
-} from '@mantine/core';
+import { Text, Box, Button, Textarea, Title, LoadingOverlay, Loader, Center, Anchor, Code } from '@mantine/core';
 import { RJSFSchema } from '@rjsf/utils';
 import { IChangeEvent } from '@rjsf/core';
 import { useState } from 'react';
@@ -36,66 +25,68 @@ export default function ChecklistSchemaGenExample() {
 
   return (
     <>
-        <Box pos="relative" mb="md">
-          <LoadingOverlay
-            visible={isLoading}
-            loaderProps={{
-              children: (
-                <>
-                  <Center>
-                    <Loader size={16} mr={8} />
-                    <Text inherit>Loading (may take up to 2 minutes)...</Text>
-                  </Center>
-                </>
-              ),
-            }}
-          />
-          <Title order={2} mb="xs">
-            Generate checklists from content:
-          </Title>
-          <Text mb="xs">Code at <Code>docs/src/app/examples/generation/checklist/page.tsx</Code></Text>
-          <Textarea
-            label="Full content text:"
-            placeholder="Put text or HTML content here..."
-            description={
+      <Box pos="relative" mb="md">
+        <LoadingOverlay
+          visible={isLoading}
+          loaderProps={{
+            children: (
               <>
-                If you don&apos;t have one, copy this{' '}
-                <Anchor
-                  inherit
-                  href="https://www.vinta.com.br/blog/celery-wild-tips-and-tricks-run-async-tasks-real-world"
-                >
-                  blog post
-                </Anchor>{' '}
-                and paste below
+                <Center>
+                  <Loader size={16} mr={8} />
+                  <Text inherit>Loading (may take up to 2 minutes)...</Text>
+                </Center>
               </>
-            }
-            autosize
-            minRows={6}
-            value={content}
-            onChange={(event) => setContent(event.currentTarget.value)}
-            mb="md"
-          />
-          <Textarea
-            label="Prompt:"
-            placeholder={`e.g. ${defaultPrompt}`}
-            value={prompt}
-            onChange={(event) => setPrompt(event.currentTarget.value)}
-            mb="md"
-          />
-        </Box>
-        <Button
-          leftSection={isLoading ? <Loader color="blue" size={14} /> : <IconForms size={14} />}
-          variant="outline"
-          onClick={() => {
-            setIsLoading(true);
-            generateFormSchema(content, prompt).finally(() => setIsLoading(false));
+            ),
           }}
-          disabled={isLoading}
+        />
+        <Title order={2} mb="xs">
+          Generate checklists from content:
+        </Title>
+        <Text mb="xs">
+          Code at <Code>docs/src/app/examples/generation/checklist/page.tsx</Code>
+        </Text>
+        <Textarea
+          label="Full content text:"
+          placeholder="Put text or HTML content here..."
+          description={
+            <>
+              If you don&apos;t have one, copy this{' '}
+              <Anchor
+                inherit
+                href="https://www.vinta.com.br/blog/celery-wild-tips-and-tricks-run-async-tasks-real-world"
+              >
+                blog post
+              </Anchor>{' '}
+              and paste below
+            </>
+          }
+          autosize
+          minRows={6}
+          value={content}
+          onChange={(event) => setContent(event.currentTarget.value)}
           mb="md"
-        >
-          Generate Form
-        </Button>
-        <SchemaFormDemo formSchema={formSchema} uiSchema={uiSchema} onSubmit={onSubmit} />
+        />
+        <Textarea
+          label="Prompt:"
+          placeholder={`e.g. ${defaultPrompt}`}
+          value={prompt}
+          onChange={(event) => setPrompt(event.currentTarget.value)}
+          mb="md"
+        />
+      </Box>
+      <Button
+        leftSection={isLoading ? <Loader color="blue" size={14} /> : <IconForms size={14} />}
+        variant="outline"
+        onClick={() => {
+          setIsLoading(true);
+          generateFormSchema(content, prompt).finally(() => setIsLoading(false));
+        }}
+        disabled={isLoading}
+        mb="md"
+      >
+        Generate Form
+      </Button>
+      <SchemaFormDemo formSchema={formSchema} uiSchema={uiSchema} onSubmit={onSubmit} />
     </>
   );
 }

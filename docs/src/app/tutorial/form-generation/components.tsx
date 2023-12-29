@@ -14,21 +14,9 @@ export function BasicInputForm() {
   return (
     <>
       <Box mb="md" className="doc-form-example">
-        <Textarea
-          label="Content"
-          value={content}
-          onChange={(event) => setContent(event.currentTarget.value)}
-          mb="md"
-        />
-        <Textarea
-          label="Prompt"
-          value={prompt}
-          onChange={(event) => setPrompt(event.currentTarget.value)}
-          mb="md"
-        />
-        <Button variant="outline">
-          Generate Form
-        </Button>
+        <Textarea label="Content" value={content} onChange={(event) => setContent(event.currentTarget.value)} mb="md" />
+        <Textarea label="Prompt" value={prompt} onChange={(event) => setPrompt(event.currentTarget.value)} mb="md" />
+        <Button variant="outline">Generate Form</Button>
       </Box>
     </>
   );
@@ -38,10 +26,7 @@ const formSchema: RJSFSchema = {
   title: 'Personal Information Form',
   description: 'Form to collect name and age',
   type: 'object',
-  required: [
-    'name',
-    'age',
-  ],
+  required: ['name', 'age'],
   properties: {
     name: {
       type: 'string',
@@ -64,18 +49,21 @@ const uiSchema = {
 };
 
 export function BasicGeneratedForm() {
-  return <SchemaForm
-    schema={formSchema}
-    uiSchema={uiSchema}
-    validator={validator}
-    onSubmit={() => null}
-    className="doc-form-example"
-  />;
+  return (
+    <SchemaForm
+      schema={formSchema}
+      uiSchema={uiSchema}
+      validator={validator}
+      onSubmit={() => null}
+      className="doc-form-example"
+    />
+  );
 }
 
 export function BasicGeneratedSchemas() {
-  return <CodeHighlightTabs
-    code={[
+  return (
+    <CodeHighlightTabs
+      code={[
         {
           fileName: 'JSONSchema.json',
           code: JSON.stringify(formSchema || {}, null, 2),
@@ -87,6 +75,7 @@ export function BasicGeneratedSchemas() {
           language: 'json',
         },
       ]}
-    mb="md"
-    />;
+      mb="md"
+    />
+  );
 }

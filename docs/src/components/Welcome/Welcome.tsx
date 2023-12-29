@@ -1,15 +1,4 @@
-import {
-  Title,
-  Text,
-  Container,
-  List,
-  ThemeIcon,
-  rem,
-  Group,
-  Button,
-  Image,
-  Anchor,
-} from '@mantine/core';
+import { Title, Text, Container, List, ThemeIcon, rem, Group, Button, Image, Anchor } from '@mantine/core';
 import { IconCheck } from '@tabler/icons-react';
 
 import image from './image.svg';
@@ -47,17 +36,22 @@ export function Welcome() {
             }
           >
             <List.Item>
-              <b>For your Product</b> – autogenerate forms from existing content: checklists,
-              surveys, exams, data collection, you name it!
+              <b>For your Product</b> – autogenerate forms from existing content: checklists, surveys, exams, data
+              collection, you name it!
             </List.Item>
             <List.Item>
-              <b>For your Users</b> – help them fill your product forms with AI-powered autofill
-              capabilities.
+              <b>For your Users</b> – help them fill your product forms with AI-powered autofill capabilities.
             </List.Item>
           </List>
 
           <Group mt={30}>
-            <Button component={Link} href="/tutorial/getting-started/" radius="xl" size="md" className={classes.control}>
+            <Button
+              component={Link}
+              href="/tutorial/getting-started/"
+              radius="xl"
+              size="md"
+              className={classes.control}
+            >
               Get started
             </Button>
           </Group>
