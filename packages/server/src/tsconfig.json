@@ -6,6 +6,7 @@
     "outDir": "../dist",
     "baseUrl": "../",
     "jsx": "react-jsx",
+    "noEmit": false,
     "emitDeclarationOnly": true
   }
 }
