@@ -1,0 +1,169 @@
+import { Button, Grid } from '@mantine/core';
+import Link from 'next/link';
+import { BasicSingleFieldForm, BasicMultiFieldForm } from './components';
+
+# Form Assistant Tutorial
+
+**AI Form Toolkit** has tools to enhance your application's forms with an AI assistant that autofills form fields.
+
+## Autofill a single field
+
+Suppose you have a form like this:
+
+```jsx
+function Form() {
+  const [formValues, setFormValues] = useState({recipe: 'Hummus quick recipe: ...'});
+  return (
+    <textarea
+      value={formValues.recipe}
+      onChange={e => setFormValues({...formValues, recipe: e.target.value})}
+    />
+  );
+}
+```
+
+You can create a button to autofill the recipe field with the `useFormAssistant` hook:
+
+```jsx {5-9,16}
+function FormWithAssistant() {
+  const [formValues, setFormValues] = useState({
+    recipe: 'Hummus quick recipe:\nIngredients: ...\nDirections: ...'
+  });
+  const { fillSingleField } = useFormAssistant({
+    formTitle: 'Create Recipe',
+    formGetValues: () => formValues,
+    formSetValues: setFormValues,
+  });
+  return (
+    <>
+      <textarea
+        value={formValues.recipe}
+        onChange={e => setFormValues({...formValues, recipe: e.target.value})}
+      />
+      <button type="button" onClick={() => fillSingleField('recipe')}>Autofill with AI</button>
+    </>
+  );
+}
+```
+
+Note the current value of the field is passed to the AI assistant, so it can enhance it.
+After autofilling, the form will look like this:
+
+<BasicSingleFieldForm/>
+
+## Fill multiple fields
+
+You can also fill multiple fields based on the field names and values,
+and context about the form like page title and form title.
+By default, the AI will fill the form's empty fields when the `fillFields` function is called:
+
+```jsx {9-17,37}
+const COST_CHOICES = ['$', '$$', '$$$'];
+
+function FormWithAssistant() {
+  const [formValues, setFormValues] = useState({
+    recipe: 'Hummus quick recipe:\nIngredients: ...\nDirections: ...',
+    duration: '',
+    cost: '',
+  });
+  const { fillFields } = useFormAssistant({
+    pageTitle: 'Quick and Easy Recipes',
+    formTitle: 'Create Recipe',
+    formGetValues: () => formValues,
+    formSetValues: setFormValues,
+    fieldChoices: {
+      cost: COST_CHOICES,
+    },
+  });
+
+  return (
+    <>
+      <textarea
+        value={formValues.recipe}
+        onChange={e => setFormValues({...formValues, recipe: e.target.value})}
+      />
+      <input
+        value={formValues.duration}
+        onChange={e => setFormValues({...formValues, duration: e.target.value})}
+      />
+      <select
+        value={formValues.cost}
+        onChange={e => setFormValues({...formValues, cost: e.target.value})}
+      >
+        <option value={COST_CHOICES[0]}>{COST_CHOICES[0]}</option>
+        <option value={COST_CHOICES[1]}>{COST_CHOICES[1]}</option>
+        <option value={COST_CHOICES[2]}>{COST_CHOICES[2]}</option>
+      </select>
+      <button type="button" onClick={() => fillFields()}>Autofill with AI</button>
+    </>
+  );
+}
+```
+
+After autofilling, the form will look like this:
+
+<BasicMultiFieldForm/>
+
+### Force filling non-empty fields
+
+In the example above, the AI didn't autofill the `recipe` field because it already had a value,
+despite the fact it was a "template" for humans to write the recipe. To force the AI to enhance
+fields that have any value in them, use the `fieldsToFill` option:
+
+```jsx {6}
+const { fillFields } = useFormAssistant({
+  pageTitle: 'Quick and Easy Recipes',
+  formTitle: 'Create Recipe',
+  formGetValues: () => formValues,
+  formSetValues: setFormValues,
+  fieldsToFill: '__all__',
+  fieldChoices: {
+    cost: COST_CHOICES,
+  },
+});
+```
+
+- `fieldsToFill == null`, the default, means only fill empty fields.
+- `fieldsToFill === '__all__'` means fill all fields, even if they have a value.
+- `fieldsToFill === ['duration', 'cost']` means fill only those specified fields.
+
+## Pass field labels to the AI assistant
+
+The more context about the form the AI can get, the better the autofilling will be.
+You can pass the field labels to the AI assistant with the `fieldLabels` option:
+
+```jsx {6-10}
+const { fillFields } = useFormAssistant({
+  pageTitle: 'Quick and Easy Recipes',
+  formTitle: 'Create Recipe',
+  formGetValues: () => formValues,
+  formSetValues: setFormValues,
+  fieldLabels: {
+    recipe: 'Recipe (ingredients and directions)',
+    duration: 'Duration (in minutes)',
+    cost: 'Cost ($, $$, $$$)',
+  },
+  fieldChoices: {
+    cost: COST_CHOICES,
+  },
+});
+```
+
+## Examples
+
+Get creative!
+
+- You can add a button next to certain fields to trigger the AI assistant to fill only that field.
+- You can add a button to autofill the whole form based on what's already filled and the form field names.
+- You can offer the autofill if the user is idle for a few seconds or moving the cursor out of the form.
+
+Check [the examples](/examples/#form-assistant-examples) for some ideas.
+
+## Advanced settings
+
+Use the [advanced settings](/reference/settings/) to override prompts, AI models, etc.
+
+<Grid>
+  <Grid.Col span={6}><Button fullWidth variant="outline" component={Link} href="/tutorial/form-generation/">« Form Generation</Button></Grid.Col>
+  <Grid.Col span={6}><Button fullWidth variant="outline" component={Link} href="/examples/">All Examples »</Button></Grid.Col>
+</Grid>

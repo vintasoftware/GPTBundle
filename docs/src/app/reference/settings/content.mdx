@@ -1,0 +1,99 @@
+# Advanced settings
+
+Use the advanced settings to override prompts, AI models, etc.
+Pass custom functions to `AIFormToolkitConfig` to override default settings.
+
+Supported models are the ones from OpenAI that support JSON input and output.
+[Check all OpenAI models](https://platform.openai.com/docs/models).
+
+## Form Generation
+
+```tsx {4}
+import { AIFormToolkitConfig } from '@ai-form-toolkit/client';
+import { customGenerateGPTFormSchema, GeneratorArgsType } from '@ai-form-toolkit/server';
+
+async function myGenerateGPTFormSchema(args: GeneratorArgsType) {
+  "use server";  // necessary!
+
+  const settings = {
+    // override model here:
+    model: 'gpt-4-1106-preview',
+    // override prompts with functions that return them:
+    // getPromptMessage: (args: AssistantArgsType) => '...',
+    // getResponseFormatMessage: (args: AssistantArgsType) => '...',
+    // getSystemMessage: (args: AssistantArgsType) => '...',
+  };
+  return customGenerateGPTFormSchema(args, settings);
+}
+
+export default function RootLayout({ children }: { children: any }) {
+  return (
+    <html lang="en">
+      <body>
+        <AIFormToolkitConfig
+          generateFormSchemaFn={myGenerateGPTFormSchema}
+        />
+      </body>
+    </html>
+  );
+}
+```
+
+`GeneratorArgsType` contains the content and the prompt provided by the frontend:
+
+```ts
+export interface GeneratorArgsType {
+  prompt: string,
+  content: string,
+}
+```
+
+Check `packages/server/src/actions/form-gen.tsx` implementation for more details.
+
+## Form Assistant
+
+```tsx {4}
+import { AIFormToolkitConfig } from '@ai-form-toolkit/client';
+import { customGenerateGPTFormAutofill, AssistantArgsType } from '@ai-form-toolkit/server';
+
+async function myGenerateGPTFormAutofill(args: AssistantArgsType) {
+  "use server";  // necessary!
+
+  const settings = {
+    // override model here:
+    model: 'gpt-4-1106-preview',
+    // override prompts with functions that return them:
+    // getPromptMessage: (args: AssistantArgsType) => '...',
+    // getResponseFormatMessage: (args: AssistantArgsType) => '...',
+    // getSystemMessage: (args: AssistantArgsType) => '...',
+  };
+  return customGenerateGPTFormAutofill(args, settings);
+}
+
+export default function RootLayout({ children }: { children: any }) {
+  return (
+    <html lang="en">
+      <body>
+        <AIFormToolkitConfig
+          generateFormAutofillFn={myGenerateGPTFormAutofill}
+        />
+      </body>
+    </html>
+  );
+}
+```
+
+`AssistantArgsType` is what the frontend provides as context to the AI:
+
+```ts
+export interface AssistantArgsType {
+  pageTitle: string,
+  formTitle: string,
+  fieldsToFill: string[],
+  fields: Record<string, string>,
+  fieldLabels: Record<string, string[]>,
+  fieldChoices: Record<string, string[]>,
+}
+```
+
+Check `packages/server/src/actions/form-assistant.tsx` implementation for more details.

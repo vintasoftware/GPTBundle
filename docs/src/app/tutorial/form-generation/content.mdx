@@ -1,0 +1,121 @@
+import { Button, Grid } from '@mantine/core';
+import Link from 'next/link';
+import { BasicInputForm, BasicGeneratedForm, BasicGeneratedSchemas } from './components';
+
+# Form Generation Tutorial
+
+**AI Form Toolkit** integrates with [OpenAI's GPT models](https://platform.openai.com/docs/guides/text-generation)
+to generate JSON schemas, which are then used to generate forms via [react-jsonschema-form](https://rjsf-team.github.io/react-jsonschema-form/docs/).
+
+**AI Form Toolkit** can generate forms from any kind of text content: an article, a task description, a legal contract, a list of topics, etc.
+Even if the text is code, like [Mermaid diagrams](https://mermaid.js.org/).
+As long as it's text, and the AI can understand it, **AI Form Toolkit** can generate a form for it.
+
+## Generating a form
+
+The best way to understand the form generation is to see it in action, the code and the generated forms:
+
+```jsx {12-16,31-36}
+import { useState } from 'react';
+import validator from '@rjsf/validator-ajv8';
+import Form from '@rjsf/core';
+
+import {
+  useGeneratedFormSchema
+} from 'ai-form/hooks/form-gen';
+
+export default function BasicExample() {
+  const [content, setContent] = useState('Name: ...\nAge: ...');
+  const [prompt, setPrompt] = useState('Form to fill the missing values');
+  const {
+    formSchema,
+    uiSchema,
+    generateFormSchema
+  } = useGeneratedFormSchema();
+
+  const onSubmit = ({ formData }) => { };
+
+  return (
+    <>
+      <label>Content:
+        <textarea value={content} onChange={e => setContent(e.target.value)} />
+      </label>
+      <label>Prompt:
+        <textarea value={prompt} onChange={e => setPrompt(e.target.value)} />
+      </label>
+      <button type="button" onClick={() => generateFormSchema(content, prompt)}>
+        Generate Form
+      </button>
+      {formSchema && <Form
+        schema={formSchema}
+        uiSchema={uiSchema}
+        validator={validator}
+        onSubmit={onSubmit}
+      />}
+    </>
+  );
+}
+```
+
+The code above renders an *input form* that looks like this:
+
+<BasicInputForm/>
+
+After the user clicks the the *Generate Form* button, the AI generates this form based on the *input form*:
+
+<BasicGeneratedForm/>
+
+The AI generated form is built by [react-jsonschema-form](https://rjsf-team.github.io/react-jsonschema-form/docs/) library
+from the schemas below. In other words, the AI generated the following schemas to build the form above based on user's input:
+
+<BasicGeneratedSchemas/>
+
+Note the AI produces a schema for the form logic, and another schema for the form UI, compatible with each other.
+
+## Usage
+
+**AI Form Toolkit** provides a React hook, `useGeneratedFormSchema`, which takes no arguments.
+The hook returns a function `generateFormSchema` and references to the `formSchema` and `uiSchema`:
+
+```tsx
+const {
+  formSchema,
+  uiSchema,
+  generateFormSchema
+} = useGeneratedFormSchema();
+```
+
+`formSchema` and `uiSchema` are generated when the `generateFormSchema` is called.
+Those schemas must passed to a `Form` from react-jsonschema-form for the form generation:
+
+```tsx
+<Form schema={formSchema} uiSchema={uiSchema} ... />
+```
+
+You must call `generateFormSchema` with the text `content` and `prompt` you want to generate the form from.
+In our example, we use the `content` and `prompt` from the user input:
+
+```tsx
+<button type="button" onClick={() => generateFormSchema(content, prompt)}>
+  Generate Form
+</button>
+```
+
+## Examples
+
+Get creative!
+
+- You can pre-fill the content and prompt and enable the user to edit only part of it.
+- Perhaps fill the content based on the application context, and let the user only set the prompt.
+- Or even set both depending on what your user is doing.
+
+Check [the examples](/examples/#form-generation-examples) for some ideas.
+
+## Advanced settings
+
+Use the [advanced settings](/reference/settings/) to override prompts, AI models, etc.
+
+<Grid>
+  <Grid.Col span={6}><Button fullWidth variant="outline" component={Link} href="/tutorial/getting-started/">« Getting Started</Button></Grid.Col>
+  <Grid.Col span={6}><Button fullWidth variant="outline" component={Link} href="/tutorial/form-assistant/">Form Assistant »</Button></Grid.Col>
+</Grid>
