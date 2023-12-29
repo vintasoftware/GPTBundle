@@ -2,7 +2,6 @@
 
 import {
   Autocomplete,
-  Box,
   Button,
   Group,
   Loader,
@@ -60,8 +59,12 @@ export default function MultiFieldFormAssistant() {
         This form uses the <Code>useFormAssistant</Code> hook to enable the GPT-4 autofill functionality in two ways:
       </Text>
       <List type="ordered" mb="xs">
-        <List.Item>The "magic wand" button on description field can enhance whatever text you put there.</List.Item>
-        <List.Item>The "Autofill missing with GPT-4" button will fill all the missing fields in the form.</List.Item>
+        <List.Item>
+          The &quot;magic wand&quot; button on description field can enhance whatever text you put there.
+        </List.Item>
+        <List.Item>
+          The &quot;Autofill missing with GPT-4&quot; button will fill all the missing fields in the form.
+        </List.Item>
       </List>
       <form onSubmit={form.onSubmit((values) => console.log(values))}>
         <TextInput

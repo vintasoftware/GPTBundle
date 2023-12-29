@@ -1,9 +1,9 @@
 'use client';
 
-import { checkOpenAIKeyExists } from '@/app/actions';
 import { Alert } from '@mantine/core';
 import { IconInfoCircle } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
+import { checkOpenAIKeyExists } from '@/app/actions';
 
 export function OpenAIKeyWarning() {
   const icon = <IconInfoCircle />;

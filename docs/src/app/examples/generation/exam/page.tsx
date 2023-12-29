@@ -1,6 +1,6 @@
 'use client';
 
-import { Text, Box, Button, Textarea, Title, LoadingOverlay, Loader, Center, Anchor, Code } from '@mantine/core';
+import { Text, Box, Button, Textarea, Title, LoadingOverlay, Loader, Center, Code } from '@mantine/core';
 import { RJSFSchema } from '@rjsf/utils';
 import { IChangeEvent } from '@rjsf/core';
 import { useState } from 'react';

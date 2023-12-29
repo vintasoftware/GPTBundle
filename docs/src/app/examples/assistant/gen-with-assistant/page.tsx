@@ -5,11 +5,10 @@ import { useState } from 'react';
 import { IconBrain, IconForms } from '@tabler/icons-react';
 import dedent from 'dedent';
 
-import { useGeneratedFormSchema } from '@ai-form-toolkit/client';
+import { useGeneratedFormSchema, useFormAssistant } from '@ai-form-toolkit/client';
 import SchemaFormDemo from '@/components/Forms/SchemaFormDemo';
 
 import './styles.css';
-import { useFormAssistant } from '@ai-form-toolkit/client';
 
 export default function ExamSchemaGenWithAssistantExample() {
   const defaultContent = dedent`

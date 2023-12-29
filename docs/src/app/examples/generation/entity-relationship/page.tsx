@@ -60,7 +60,7 @@ export default function ERSchemaGenExample() {
         />
         <Title order={2} mb="xs">
           Generate forms from{' '}
-          <a href="https://mermaid.js.org/syntax/entityRelationshipDiagram.html" target="_blank">
+          <a href="https://mermaid.js.org/syntax/entityRelationshipDiagram.html" target="_blank" rel="noreferrer">
             Mermaid ER diagrams
           </a>
           :

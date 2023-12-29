@@ -1,24 +1,30 @@
-export default {
+module.exports = {
+  extends: ['plugin:prettier/recommended', 'mantine'],
   env: {
     browser: true,
     es2021: true,
   },
-  extends: ['plugin:react/recommended', 'plugin:@next/next/recommended', 'mantine', 'prettier'],
   plugins: ['react', 'testing-library'],
   overrides: [
     {
       files: ['**/?(*.)+(spec|test).[jt]s?(x)'],
       extends: ['plugin:testing-library/react'],
     },
+    {
+      files: ['**/examples/**'],
+      rules: {
+        'no-console': 'off',
+      },
+    },
   ],
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: './tsconfig.json',
+    project: './tsconfig.eslint.json',
   },
+  ignorePatterns: ['public', 'node_modules', 'dist', '.next'],
   rules: {
+    'max-len': 'off',
+    'import/no-relative-packages': 'off',
     'react/react-in-jsx-scope': 'off',
-    'no-console': 'warn',
     '@typescript-eslint/no-unused-vars': [
       'warn',
       {

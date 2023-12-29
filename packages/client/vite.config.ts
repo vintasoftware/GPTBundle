@@ -1,10 +1,9 @@
 import react from '@vitejs/plugin-react';
 import path from 'node:path';
-import { defineConfig } from 'vitest/config';
+import { defineConfig, configDefaults } from 'vitest/config';
 import dts from 'vite-plugin-dts';
 import { type UserConfigExport } from 'vite';
 import { name } from './package.json';
-import { configDefaults } from 'vitest/config';
 
 const app = async (): Promise<UserConfigExport> => {
   /**
@@ -35,11 +34,11 @@ const app = async (): Promise<UserConfigExport> => {
             'react/jsx-runtime': 'react/jsx-runtime',
             'react-dom': 'ReactDOM',
           },
-          intro: `"use client"`,
+          intro: '"use client"',
         },
         // Fix for https://github.com/vitejs/vite/issues/15012:
         onLog: (level, log, handler) => {
-          if (log.cause && log.cause.message === `Can't resolve original location of error.`) {
+          if (log.cause && log.cause.message === "Can't resolve original location of error.") {
             return;
           }
           handler(level, log);

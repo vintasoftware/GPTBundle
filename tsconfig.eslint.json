@@ -1,4 +1,10 @@
 {
+  "include": [
+    "./docs",
+    "./packages",
+    "./tests",
+    ".eslintrc.js"
+  ],
   "exclude": [
     "public",
     "node_modules",
@@ -6,10 +12,10 @@
     ".next",
   ],
   "compilerOptions": {
-    "composite": true,
+    "types": ["node"],
     "target": "es5",
-    "module": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "module": "ESNext",
     "moduleResolution": "Node",
     "jsx": "react",
     "resolveJsonModule": true,

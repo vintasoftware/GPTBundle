@@ -1,8 +1,8 @@
 'use client';
 
-import { ExampleDataType } from '@/app/examples/examples-data';
 import { Text, Group, rem, ThemeIcon, Stack, UnstyledButton, useMantineTheme } from '@mantine/core';
 import Link from 'next/link';
+import { ExampleDataType } from '@/app/examples/examples-data';
 
 import classes from './ExampleDocLink.module.css';
 

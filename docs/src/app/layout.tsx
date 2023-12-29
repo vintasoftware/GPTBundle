@@ -2,7 +2,6 @@ import HolyLoader from 'holy-loader';
 import '@mantine/core/styles.css';
 import React from 'react';
 import { MantineProvider } from '@mantine/core';
-import { theme } from '@/theme';
 import { AIFormToolkitConfig } from '@ai-form-toolkit/client';
 import {
   customGenerateGPTFormAutofill,
@@ -10,6 +9,7 @@ import {
   AssistantArgsType,
   GeneratorArgsType,
 } from '@ai-form-toolkit/server';
+import { theme } from '@/theme';
 
 export const metadata = {
   title: `Build forms like it's ${Math.max(new Date().getFullYear(), 2024)} | AI Form Toolkit`,

@@ -7,11 +7,11 @@ const FooterNav = () => (
       <Container className={classes.inner} fluid>
         <p>
           © 2024{' '}
-          <a href="https://www.vinta.com.br" target="_blank">
+          <a href="https://www.vinta.com.br" target="_blank" rel="noreferrer">
             Vinta Software
           </a>
           {' – '}
-          <a href="https://www.vinta.com.br" target="_blank">
+          <a href="https://www.vinta.com.br" target="_blank" rel="noreferrer">
             meet the creators!
           </a>
         </p>

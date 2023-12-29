@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Button, Group, Loader, Textarea, Title, Text, Code } from '@mantine/core';
+import { Button, Group, Loader, Textarea, Title, Text, Code } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { IconBulb } from '@tabler/icons-react';
 import { useState } from 'react';
