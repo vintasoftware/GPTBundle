@@ -20,16 +20,14 @@
   },
   "scripts": {
     "build": "tsup",
-    "build:watch": "tsup --watch",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix",
-    "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
-    "test": "vitest run",
-    "test:cov": "vitest run --coverage"
+    "build:watch": "tsup --watch"
   },
   "peerDependencies": {
-    "openai": ">=4.24.1"
+    "openai": "^4.24.1",
+    "@rjsf/core": "^5.15.1",
+    "@rjsf/utils": "^5.15.1"
   },
   "dependencies": {
-    "dedent": ">=1.5.1"
+    "dedent": "^1.5.1"
   }
 }

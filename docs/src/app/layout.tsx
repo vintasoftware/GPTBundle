@@ -1,6 +1,6 @@
 import HolyLoader from 'holy-loader';
 import '@mantine/core/styles.css';
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { MantineProvider } from '@mantine/core';
 import { AIFormToolkitConfig } from '@ai-form-toolkit/client';
 import {
@@ -32,7 +32,7 @@ async function myGenerateGPTFormSchema(args: GeneratorArgsType) {
   });
 }
 
-export default function RootLayout({ children }: { children: any }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>

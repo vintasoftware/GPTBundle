@@ -1,3 +1,5 @@
+import { RJSFSchema, UiSchema } from '@rjsf/utils';
+
 export interface AssistantArgsType {
   pageTitle: string;
   formTitle: string;
@@ -9,7 +11,9 @@ export interface AssistantArgsType {
 
 export interface SettingsType {
   generateFormAutofillFn: ((args: AssistantArgsType) => Promise<Record<string, string>[]>) | null;
-  generateFormSchemaFn: ((...args: any[]) => Promise<{ json_schema: any; ui_schema: any }>) | null;
+  generateFormSchemaFn:
+    | ((...args: any[]) => Promise<{ json_schema: RJSFSchema; ui_schema: UiSchema<unknown, RJSFSchema> }>)
+    | null;
 }
 
 export const settings: SettingsType = {

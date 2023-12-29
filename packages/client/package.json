@@ -20,15 +20,15 @@
   },
   "scripts": {
     "build": "vite build",
-    "build:watch": "vite build --watch",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix",
-    "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
-    "test": "vitest run",
-    "test:cov": "vitest run --coverage"
+    "build:watch": "vite build --watch"
   },
   "peerDependencies": {
-    "react": ">=18.2.0",
-    "react-dom": ">=18.2.0",
-    "react-jsonschema-form": ">=1.8.1"
+    "@rjsf/core": "^5.15.1",
+    "@rjsf/utils": "^5.15.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.46"
   }
 }

@@ -1,6 +1,6 @@
 {
-  "name": "mantine-next-template",
-  "version": "1.0.0",
+  "name": "ai-form-toolkit-docs",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev",

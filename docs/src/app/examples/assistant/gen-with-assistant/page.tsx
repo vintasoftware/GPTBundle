@@ -36,10 +36,10 @@ export default function ExamSchemaGenWithAssistantExample() {
   const [isLoading, setIsLoading] = useState(false);
 
   const fieldToFill = Object.keys(formSchema?.properties || {})[0] || null;
-  const fieldLabels = Object.entries(formSchema?.properties || {}).reduce(
-    (acc, [key, value]) => ({ ...acc, [key]: [value.title] }),
-    {},
-  );
+  const fieldLabels = Object.entries(formSchema?.properties || {}).reduce((acc, [key, value]) => {
+    value = value as unknown as { title: string };
+    return { ...acc, [key]: [value.title] };
+  }, {});
 
   const [formValues, setFormValues] = useState<Record<string, string>>({
     question: '',
@@ -128,7 +128,9 @@ export default function ExamSchemaGenWithAssistantExample() {
         formSchema={formSchema}
         uiSchema={uiSchema}
         onSubmit={onSubmit}
+        // @ts-ignore
         formData={formValues}
+        // @ts-ignore
         onChange={(e) => setFormValues(e.formValues)}
       />
     </>

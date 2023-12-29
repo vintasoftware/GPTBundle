@@ -21,7 +21,7 @@ import {
 } from '@mantine/core';
 import { useClickOutside, useDisclosure } from '@mantine/hooks';
 import { IconChevronDown, IconHelpSquare } from '@tabler/icons-react';
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import Link from 'next/link';
 import classes from './HeaderNav.module.css';
 import { ExampleDataType, assistantLinksData, generationLinksData } from '@/app/examples/examples-data';
@@ -62,7 +62,7 @@ const HeaderWebMenu = ({
   title: string;
   tutorialLink: string;
   theme: MantineTheme;
-  children: any;
+  children: ReactNode;
 }) => {
   const ref = useClickOutside(() => setOpenedMenu(null));
 
@@ -136,7 +136,7 @@ const HeaderMobileMenu = ({
   title: string;
   tutorialLink: string;
   theme: MantineTheme;
-  children: any;
+  children: ReactNode;
 }) => {
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
 

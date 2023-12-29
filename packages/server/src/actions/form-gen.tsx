@@ -1,6 +1,7 @@
 'use server';
 
 import dedent from 'dedent';
+import { RJSFSchema, UiSchema } from '@rjsf/utils';
 import { openai } from './common';
 
 export interface GeneratorArgsType {
@@ -137,7 +138,10 @@ export async function customGenerateGPTFormSchema(args: GeneratorArgsType, setti
     if (!ui_schema) {
       throw new Error('OpenAI returned an empty UI Schema. Please try again.');
     }
-    return { json_schema, ui_schema };
+    return { json_schema, ui_schema } as unknown as {
+      json_schema: RJSFSchema;
+      ui_schema: UiSchema<unknown, RJSFSchema>;
+    };
   } catch (e) {
     throw new Error('Failed to communicate with OpenAI. Please try again.');
   }
