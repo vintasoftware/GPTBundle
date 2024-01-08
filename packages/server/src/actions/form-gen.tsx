@@ -143,7 +143,7 @@ export async function customGenerateGPTFormSchema(args: GeneratorArgsType, setti
       ui_schema: UiSchema<unknown, RJSFSchema>;
     };
   } catch (e) {
-    throw new Error('Failed to communicate with OpenAI. Please try again.');
+    throw new Error(`Failed to communicate with OpenAI. Please try again. Error: ${e}`);
   }
 }
 
