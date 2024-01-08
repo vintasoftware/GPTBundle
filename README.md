@@ -11,27 +11,7 @@ AI Form Toolkit facilitates adding AI capabilities to forms in React application
 
 Check documentation for installation instructions, tutorial and examples: TODO: PUT LINK HERE.
 
-Note that hosted examples are not interactive.
-
-## Interactive Documentation
-
-Run the docs locally to access the interactive examples.
-
-Create a `.env.local` file inside `docs/` and set the Open AI API Key there:
-
-```dotenv
-# docs/.env.local
-OPENAI_API_KEY=sk-...
-```
-
-Run the docs project:
-
-```bash
-cd docs/
-npm run dev
-```
-
-Then open `http://localhost:3000` in your browser.
+Note that hosted examples are not interactive. See [Building](#building) below to learn how to build the interactive docs.
 
 ## Project Structure
 
@@ -58,9 +38,32 @@ For building locally, run `npm run build` or `npm run build:watch` for each proj
 
 ```bash
 cd packages/server/
+npm install
 npm run build:watch
 
 # in another terminal
 cd packages/client/
+npm install
 npm run build:watch
 ```
+
+### Interactive Documentation
+
+Run the docs locally to access the interactive examples.
+
+Create a `.env.local` file inside `docs/` and set the Open AI API Key there:
+
+```dotenv
+# docs/.env.local
+OPENAI_API_KEY=sk-...
+```
+
+Run the docs project:
+
+```bash
+cd docs/
+npm install
+npm run dev
+```
+
+Then open `http://localhost:3000` in your browser.

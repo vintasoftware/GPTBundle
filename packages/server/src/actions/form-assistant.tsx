@@ -93,6 +93,7 @@ export async function customGenerateGPTFormAutofill(
   // console.log(getResponseFormatMessageFn(args));
   // console.log(getPromptMessageFn(args));
 
+  // TODO: test me, with mocks
   const completion = await openai.chat.completions.create({
     model,
     response_format: { type: 'json_object' },
