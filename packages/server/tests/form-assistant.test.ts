@@ -1,5 +1,9 @@
 import { openai } from '../src/actions/common';
-import { AssistantArgsType, generateGPTFormAutofill } from '../src/actions/form-assistant';
+import {
+  AssistantArgsType,
+  customGenerateGPTFormAutofill,
+  generateGPTFormAutofill,
+} from '../src/actions/form-assistant';
 import { mockOpenAIResponse } from './utils';
 
 jest.mock('../src/actions/common', () => ({
@@ -98,21 +102,27 @@ describe('Form Assistant', () => {
   it('should throw an error when OpenAI returns an empty response', async () => {
     mockOpenAIResponse(null);
 
-    await expect(generateGPTFormAutofill(baseAssistantArgs)).rejects.toThrow(
+    await expect(customGenerateGPTFormAutofill(baseAssistantArgs, {})).rejects.toThrow(
       'OpenAI returned an empty response. Please try again.',
+    );
+    await expect(generateGPTFormAutofill(baseAssistantArgs)).rejects.toThrow(
+      'Failed to communicate with OpenAI. Please try again.',
     );
   });
 
   it('should throw an error when OpenAI returns an empty Autofill Fields', async () => {
-    const testEmptyAutofillFields = (schema: any) => {
+    const testEmptyAutofillFields = async (schema: any) => {
       mockOpenAIResponse(
         JSON.stringify({
           fields: schema,
         }),
       );
 
-      return expect(generateGPTFormAutofill(baseAssistantArgs)).rejects.toThrow(
+      await expect(customGenerateGPTFormAutofill(baseAssistantArgs, {})).rejects.toThrow(
         'OpenAI returned an empty Autofill Fields. Please try again.',
+      );
+      await expect(generateGPTFormAutofill(baseAssistantArgs)).rejects.toThrow(
+        'Failed to communicate with OpenAI. Please try again.',
       );
     };
 
@@ -126,8 +136,11 @@ describe('Form Assistant', () => {
       new Error('OpenAI API request exceeded rate limit'),
     );
 
+    await expect(customGenerateGPTFormAutofill(baseAssistantArgs, {})).rejects.toThrow(
+      'OpenAI API request exceeded rate limit',
+    );
     await expect(generateGPTFormAutofill(baseAssistantArgs)).rejects.toThrow(
-      'Failed to communicate with OpenAI. Please try again. Error: Error: OpenAI API request exceeded rate limit',
+      'Failed to communicate with OpenAI. Please try again.',
     );
   });
 

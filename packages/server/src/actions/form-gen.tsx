@@ -108,45 +108,45 @@ function getPromptMessage({ content, prompt }: GeneratorArgsType) {
 }
 
 export async function customGenerateGPTFormSchema(args: GeneratorArgsType, settings: GeneratorSettingsType) {
-  try {
-    const model = settings.model ?? 'gpt-4-1106-preview';
-    const getSystemMessageFn = settings.getSystemMessage ?? getSystemMessage;
-    const getResponseFormatMessageFn = settings.getResponseFormatMessage ?? getResponseFormatMessage;
-    const getPromptMessageFn = settings.getPromptMessage ?? getPromptMessage;
+  const model = settings.model ?? 'gpt-4-1106-preview';
+  const getSystemMessageFn = settings.getSystemMessage ?? getSystemMessage;
+  const getResponseFormatMessageFn = settings.getResponseFormatMessage ?? getResponseFormatMessage;
+  const getPromptMessageFn = settings.getPromptMessage ?? getPromptMessage;
 
-    // console.log(model);
-    // console.log(getSystemMessageFn(args));
-    // console.log(getResponseFormatMessageFn(args));
-    // console.log(getPromptMessageFn(args));
+  // console.log(model);
+  // console.log(getSystemMessageFn(args));
+  // console.log(getResponseFormatMessageFn(args));
+  // console.log(getPromptMessageFn(args));
 
-    const completion = await openai.chat.completions.create({
-      model,
-      response_format: { type: 'json_object' },
-      messages: [
-        { role: 'system', content: getSystemMessageFn(args) },
-        { role: 'system', content: getResponseFormatMessageFn(args) },
-        { role: 'user', content: getPromptMessageFn(args) },
-      ],
-    });
-    if (!completion.choices[0].message.content) {
-      throw new Error('OpenAI returned an empty response. Please try again.');
-    }
-    const { json_schema, ui_schema } = JSON.parse(completion.choices[0].message.content);
-    if (!json_schema || (typeof json_schema === 'object' && Object.keys(json_schema).length === 0)) {
-      throw new Error('OpenAI returned an empty JSON Schema. Please try again.');
-    }
-    if (!ui_schema || (typeof ui_schema === 'object' && Object.keys(ui_schema).length === 0)) {
-      throw new Error('OpenAI returned an empty UI Schema. Please try again.');
-    }
-    return { json_schema, ui_schema } as unknown as {
-      json_schema: RJSFSchema;
-      ui_schema: UiSchema<unknown, RJSFSchema>;
-    };
-  } catch (e) {
-    throw new Error(`Failed to communicate with OpenAI. Please try again. Error: ${e}`);
+  const completion = await openai.chat.completions.create({
+    model,
+    response_format: { type: 'json_object' },
+    messages: [
+      { role: 'system', content: getSystemMessageFn(args) },
+      { role: 'system', content: getResponseFormatMessageFn(args) },
+      { role: 'user', content: getPromptMessageFn(args) },
+    ],
+  });
+  if (!completion.choices[0].message.content) {
+    throw new Error('OpenAI returned an empty response. Please try again.');
   }
+  const { json_schema, ui_schema } = JSON.parse(completion.choices[0].message.content);
+  if (!json_schema || (typeof json_schema === 'object' && Object.keys(json_schema).length === 0)) {
+    throw new Error('OpenAI returned an empty JSON Schema. Please try again.');
+  }
+  if (!ui_schema || (typeof ui_schema === 'object' && Object.keys(ui_schema).length === 0)) {
+    throw new Error('OpenAI returned an empty UI Schema. Please try again.');
+  }
+  return { json_schema, ui_schema } as unknown as {
+    json_schema: RJSFSchema;
+    ui_schema: UiSchema<unknown, RJSFSchema>;
+  };
 }
 
 export async function generateGPTFormSchema(args: GeneratorArgsType) {
-  return customGenerateGPTFormSchema(args, {});
+  try {
+    return await customGenerateGPTFormSchema(args, {});
+  } catch (e) {
+    throw new Error('Failed to communicate with OpenAI. Please try again.');
+  }
 }

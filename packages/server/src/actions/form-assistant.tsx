@@ -76,55 +76,55 @@ export async function customGenerateGPTFormAutofill(
   },
   settings: AssistantSettingsType,
 ): Promise<Record<string, string>[]> {
-  try {
-    const argsWithDefaults: AssistantArgsType = {
-      ...args,
-      pageTitle: args.pageTitle ?? '',
-      formTitle: args.formTitle ?? '',
-      fieldLabels: args.fieldLabels ?? {},
-      fieldChoices: args.fieldChoices ?? {},
-    };
-    const model = settings.model ?? 'gpt-3.5-turbo-1106';
-    const getSystemMessageFn = settings.getSystemMessage ?? getSystemMessage;
-    const getResponseFormatMessageFn = settings.getResponseFormatMessage ?? getResponseFormatMessage;
-    const getPromptMessageFn = settings.getPromptMessage ?? getPromptMessage;
-    // console.log(model);
-    // console.log(getSystemMessageFn(args));
-    // console.log(getResponseFormatMessageFn(args));
-    // console.log(getPromptMessageFn(args));
+  const argsWithDefaults: AssistantArgsType = {
+    ...args,
+    pageTitle: args.pageTitle ?? '',
+    formTitle: args.formTitle ?? '',
+    fieldLabels: args.fieldLabels ?? {},
+    fieldChoices: args.fieldChoices ?? {},
+  };
+  const model = settings.model ?? 'gpt-3.5-turbo-1106';
+  const getSystemMessageFn = settings.getSystemMessage ?? getSystemMessage;
+  const getResponseFormatMessageFn = settings.getResponseFormatMessage ?? getResponseFormatMessage;
+  const getPromptMessageFn = settings.getPromptMessage ?? getPromptMessage;
+  // console.log(model);
+  // console.log(getSystemMessageFn(args));
+  // console.log(getResponseFormatMessageFn(args));
+  // console.log(getPromptMessageFn(args));
 
-    const completion = await openai.chat.completions.create({
-      model,
-      response_format: { type: 'json_object' },
-      messages: [
-        {
-          role: 'system',
-          content: getSystemMessageFn(argsWithDefaults),
-        },
-        {
-          role: 'system',
-          content: getResponseFormatMessageFn(argsWithDefaults),
-        },
-        {
-          role: 'user',
-          content: getPromptMessageFn(argsWithDefaults),
-        },
-      ],
-    });
+  const completion = await openai.chat.completions.create({
+    model,
+    response_format: { type: 'json_object' },
+    messages: [
+      {
+        role: 'system',
+        content: getSystemMessageFn(argsWithDefaults),
+      },
+      {
+        role: 'system',
+        content: getResponseFormatMessageFn(argsWithDefaults),
+      },
+      {
+        role: 'user',
+        content: getPromptMessageFn(argsWithDefaults),
+      },
+    ],
+  });
 
-    if (!completion.choices[0].message.content) {
-      throw new Error('OpenAI returned an empty response. Please try again.');
-    }
-    const { fields: autofillFields } = JSON.parse(completion.choices[0].message.content);
-    if (!autofillFields || autofillFields?.length === 0) {
-      throw new Error('OpenAI returned an empty Autofill Fields. Please try again.');
-    }
-    return autofillFields;
-  } catch (e) {
-    throw new Error(`Failed to communicate with OpenAI. Please try again. Error: ${e}`);
+  if (!completion.choices[0].message.content) {
+    throw new Error('OpenAI returned an empty response. Please try again.');
   }
+  const { fields: autofillFields } = JSON.parse(completion.choices[0].message.content);
+  if (!autofillFields || autofillFields?.length === 0) {
+    throw new Error('OpenAI returned an empty Autofill Fields. Please try again.');
+  }
+  return autofillFields;
 }
 
 export async function generateGPTFormAutofill(args: AssistantArgsType) {
-  return customGenerateGPTFormAutofill(args, {});
+  try {
+    return await customGenerateGPTFormAutofill(args, {});
+  } catch (e) {
+    throw new Error('Failed to communicate with OpenAI. Please try again.');
+  }
 }
