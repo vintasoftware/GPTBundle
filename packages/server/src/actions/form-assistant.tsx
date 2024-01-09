@@ -87,13 +87,11 @@ export async function customGenerateGPTFormAutofill(
   const getSystemMessageFn = settings.getSystemMessage ?? getSystemMessage;
   const getResponseFormatMessageFn = settings.getResponseFormatMessage ?? getResponseFormatMessage;
   const getPromptMessageFn = settings.getPromptMessage ?? getPromptMessage;
-
   // console.log(model);
   // console.log(getSystemMessageFn(args));
   // console.log(getResponseFormatMessageFn(args));
   // console.log(getPromptMessageFn(args));
 
-  // TODO: test me, with mocks
   const completion = await openai.chat.completions.create({
     model,
     response_format: { type: 'json_object' },
@@ -112,12 +110,13 @@ export async function customGenerateGPTFormAutofill(
       },
     ],
   });
+
   if (!completion.choices[0].message.content) {
     throw new Error('OpenAI returned an empty response. Please try again.');
   }
   const { fields: autofillFields } = JSON.parse(completion.choices[0].message.content);
-  if (!autofillFields) {
-    throw new Error('OpenAI returned an empty response. Please try again.');
+  if (!autofillFields || autofillFields?.length === 0) {
+    throw new Error('OpenAI returned an empty Autofill Fields. Please try again.');
   }
   return autofillFields;
 }
