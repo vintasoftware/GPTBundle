@@ -1,3 +1,4 @@
+import { openai } from '../src/actions/common';
 import { generateGPTFormAutofill } from '../src/actions/form-assistant';
 import { mockOpenAIResponse } from './utils';
 
@@ -66,6 +67,16 @@ describe('Form Assistant', () => {
     await testEmptyAutofillFields(null);
     await testEmptyAutofillFields(undefined);
     await testEmptyAutofillFields([]);
+  });
+
+  it('should throw an error when failed to communicate with OpenAI', async () => {
+    (openai.chat.completions.create as jest.Mock).mockRejectedValue(
+      new Error('OpenAI API request exceeded rate limit'),
+    );
+
+    await expect(generateGPTFormAutofill(baseAssistantArgs)).rejects.toThrow(
+      'Failed to communicate with OpenAI. Please try again. Error: Error: OpenAI API request exceeded rate limit',
+    );
   });
 
   it('should return a valid Autofill Fields (multi field)', async () => {
