@@ -1,5 +1,5 @@
 {
-  "include": ["./docs", "./packages", "./tests", ".eslintrc.js"],
+  "include": ["./docs", "./packages", "./tests", ".eslintrc.js", "jest.config.js", "test-setup.ts"],
   "exclude": ["public", "node_modules", "dist", ".next"],
   "compilerOptions": {
     "composite": true,

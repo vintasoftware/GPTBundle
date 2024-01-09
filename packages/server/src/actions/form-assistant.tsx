@@ -111,16 +111,21 @@ export async function customGenerateGPTFormAutofill(
       },
     ],
   });
+
   if (!completion.choices[0].message.content) {
     throw new Error('OpenAI returned an empty response. Please try again.');
   }
   const { fields: autofillFields } = JSON.parse(completion.choices[0].message.content);
-  if (!autofillFields) {
-    throw new Error('OpenAI returned an empty response. Please try again.');
+  if (!autofillFields || autofillFields?.length === 0) {
+    throw new Error('OpenAI returned an empty Autofill Fields. Please try again.');
   }
   return autofillFields;
 }
 
 export async function generateGPTFormAutofill(args: AssistantArgsType) {
-  return customGenerateGPTFormAutofill(args, {});
+  try {
+    return await customGenerateGPTFormAutofill(args, {});
+  } catch (e) {
+    throw new Error('Failed to communicate with OpenAI. Please try again.');
+  }
 }
