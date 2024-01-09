@@ -12,6 +12,11 @@ jest.mock('../src/actions/common', () => ({
   },
 }));
 
+const baseGeneratorArgs = {
+  content: 'Test content',
+  prompt: 'Test prompt',
+};
+
 const baseOpenAIResponse = {
   json_schema: {
     type: 'object',
@@ -42,12 +47,9 @@ describe('Form Generation', () => {
   it('should throw an error when OpenAI returns an empty response', async () => {
     mockOpenAIResponse(null);
 
-    await expect(
-      generateGPTFormSchema({
-        content: 'Test content',
-        prompt: 'Test prompt',
-      }),
-    ).rejects.toThrow('OpenAI returned an empty response. Please try again.');
+    await expect(generateGPTFormSchema(baseGeneratorArgs)).rejects.toThrow(
+      'OpenAI returned an empty response. Please try again.',
+    );
   });
 
   it('should throw an error when OpenAI returns an empty JSON Schema', async () => {
@@ -59,12 +61,9 @@ describe('Form Generation', () => {
         }),
       );
 
-      return expect(
-        generateGPTFormSchema({
-          content: 'Test content',
-          prompt: 'Test prompt',
-        }),
-      ).rejects.toThrow('OpenAI returned an empty JSON Schema. Please try again.');
+      return expect(generateGPTFormSchema(baseGeneratorArgs)).rejects.toThrow(
+        'OpenAI returned an empty JSON Schema. Please try again.',
+      );
     };
 
     await testEmptyJSONSchema(null);
@@ -82,12 +81,9 @@ describe('Form Generation', () => {
         }),
       );
 
-      return expect(
-        generateGPTFormSchema({
-          content: 'Test content',
-          prompt: 'Test prompt',
-        }),
-      ).rejects.toThrow('OpenAI returned an empty UI Schema. Please try again.');
+      return expect(generateGPTFormSchema(baseGeneratorArgs)).rejects.toThrow(
+        'OpenAI returned an empty UI Schema. Please try again.',
+      );
     };
 
     await testEmptyUISchema(null);
@@ -101,12 +97,7 @@ describe('Form Generation', () => {
       new Error('OpenAI API request exceeded rate limit'),
     );
 
-    await expect(
-      generateGPTFormSchema({
-        content: 'Test content',
-        prompt: 'Test prompt',
-      }),
-    ).rejects.toThrow(
+    await expect(generateGPTFormSchema(baseGeneratorArgs)).rejects.toThrow(
       'Failed to communicate with OpenAI. Please try again. Error: Error: OpenAI API request exceeded rate limit',
     );
   });
@@ -114,10 +105,7 @@ describe('Form Generation', () => {
   it('should return a valid JSON Schema and UI Schema', async () => {
     mockOpenAIResponse(JSON.stringify(baseOpenAIResponse));
 
-    const { json_schema, ui_schema } = await generateGPTFormSchema({
-      content: 'Test content',
-      prompt: 'Test prompt',
-    });
+    const { json_schema, ui_schema } = await generateGPTFormSchema(baseGeneratorArgs);
 
     expect(json_schema).toEqual(baseOpenAIResponse.json_schema);
     expect(ui_schema).toEqual(baseOpenAIResponse.ui_schema);
