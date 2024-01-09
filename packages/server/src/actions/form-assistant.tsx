@@ -87,6 +87,7 @@ export async function customGenerateGPTFormAutofill(
   const getSystemMessageFn = settings.getSystemMessage ?? getSystemMessage;
   const getResponseFormatMessageFn = settings.getResponseFormatMessage ?? getResponseFormatMessage;
   const getPromptMessageFn = settings.getPromptMessage ?? getPromptMessage;
+
   // console.log(model);
   // console.log(getSystemMessageFn(args));
   // console.log(getResponseFormatMessageFn(args));
