@@ -8,6 +8,7 @@ module.exports = {
     '^.+\\.(ts|tsx)$': [
       'ts-jest',
       {
+        // FIXME: Remove this from the root config file
         tsconfig: './packages/server/tsconfig.json',
       },
     ],
