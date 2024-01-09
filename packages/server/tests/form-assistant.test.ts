@@ -1,5 +1,5 @@
 import { openai } from '../src/actions/common';
-import { generateGPTFormAutofill } from '../src/actions/form-assistant';
+import { AssistantArgsType, generateGPTFormAutofill } from '../src/actions/form-assistant';
 import { mockOpenAIResponse } from './utils';
 
 jest.mock('../src/actions/common', () => ({
@@ -12,7 +12,7 @@ jest.mock('../src/actions/common', () => ({
   },
 }));
 
-const baseAssistantArgs = {
+const baseAssistantArgs: AssistantArgsType = {
   pageTitle: 'Test Page Title',
   formTitle: 'Create Issue',
   fieldsToFill: ['category', 'priority'],
@@ -22,7 +22,12 @@ const baseAssistantArgs = {
     category: '',
     priority: '',
   },
-  fieldLabels: {},
+  fieldLabels: {
+    title: ['Issue title'],
+    description: ['Issue description'],
+    category: ['Issue category (Bug, Feature, Improvement)'],
+    priority: ['Issue priority (High, Medium, Low)'],
+  },
   fieldChoices: {
     category: ['Bug', 'Feature', 'Improvement'],
     priority: ['High', 'Medium', 'Low'],
@@ -43,6 +48,53 @@ const baseOpenAIResponse = {
 };
 
 describe('Form Assistant', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should pass all args to the prompt message', async () => {
+    mockOpenAIResponse(JSON.stringify(baseOpenAIResponse));
+
+    await generateGPTFormAutofill(baseAssistantArgs);
+
+    const { calls } = (openai.chat.completions.create as jest.Mock).mock;
+
+    expect(calls.length).toEqual(1);
+    expect(calls[0]).toEqual([
+      expect.objectContaining({
+        model: 'gpt-3.5-turbo-1106',
+        response_format: { type: 'json_object' },
+        messages: expect.arrayContaining([
+          expect.objectContaining({
+            role: 'system',
+          }),
+          expect.objectContaining({
+            role: 'system',
+          }),
+          expect.objectContaining({
+            role: 'user',
+            content:
+              expect.stringContaining(baseAssistantArgs.pageTitle) &&
+              expect.stringContaining(baseAssistantArgs.formTitle) &&
+              expect.stringContaining(JSON.stringify(baseAssistantArgs.fieldsToFill)) &&
+              expect.stringContaining(JSON.stringify(baseAssistantArgs.fields)) &&
+              expect.stringContaining(JSON.stringify(baseAssistantArgs.fieldLabels)) &&
+              expect.stringContaining(
+                JSON.stringify(
+                  baseAssistantArgs.fieldsToFill
+                    .map((field) => ({
+                      field,
+                      options: baseAssistantArgs.fieldChoices[field],
+                    }))
+                    .filter(({ options }) => options),
+                ),
+              ),
+          }),
+        ]),
+      }),
+    ]);
+  });
+
   it('should throw an error when OpenAI returns an empty response', async () => {
     mockOpenAIResponse(null);
 

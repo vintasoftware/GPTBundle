@@ -1,5 +1,5 @@
 import { openai } from '../src/actions/common';
-import { generateGPTFormSchema } from '../src/actions/form-gen';
+import { GeneratorArgsType, generateGPTFormSchema } from '../src/actions/form-gen';
 import { mockOpenAIResponse } from './utils';
 
 jest.mock('../src/actions/common', () => ({
@@ -12,7 +12,7 @@ jest.mock('../src/actions/common', () => ({
   },
 }));
 
-const baseGeneratorArgs = {
+const baseGeneratorArgs: GeneratorArgsType = {
   content: 'Test content',
   prompt: 'Test prompt',
 };
@@ -44,6 +44,39 @@ const baseOpenAIResponse = {
 };
 
 describe('Form Generation', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should pass all args to the prompt message', async () => {
+    mockOpenAIResponse(JSON.stringify(baseOpenAIResponse));
+
+    await generateGPTFormSchema(baseGeneratorArgs);
+
+    const { calls } = (openai.chat.completions.create as jest.Mock).mock;
+
+    expect(calls.length).toEqual(1);
+    expect(calls[0]).toEqual([
+      expect.objectContaining({
+        model: 'gpt-4-1106-preview',
+        response_format: { type: 'json_object' },
+        messages: expect.arrayContaining([
+          expect.objectContaining({
+            role: 'system',
+          }),
+          expect.objectContaining({
+            role: 'system',
+          }),
+          expect.objectContaining({
+            role: 'user',
+            content:
+              expect.stringContaining(baseGeneratorArgs.content) && expect.stringContaining(baseGeneratorArgs.prompt),
+          }),
+        ]),
+      }),
+    ]);
+  });
+
   it('should throw an error when OpenAI returns an empty response', async () => {
     mockOpenAIResponse(null);
 
