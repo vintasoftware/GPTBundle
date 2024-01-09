@@ -132,10 +132,10 @@ export async function customGenerateGPTFormSchema(args: GeneratorArgsType, setti
       throw new Error('OpenAI returned an empty response. Please try again.');
     }
     const { json_schema, ui_schema } = JSON.parse(completion.choices[0].message.content);
-    if (!json_schema) {
+    if (!json_schema || (typeof json_schema === 'object' && Object.keys(json_schema).length === 0)) {
       throw new Error('OpenAI returned an empty JSON Schema. Please try again.');
     }
-    if (!ui_schema) {
+    if (!ui_schema || (typeof ui_schema === 'object' && Object.keys(ui_schema).length === 0)) {
       throw new Error('OpenAI returned an empty UI Schema. Please try again.');
     }
     return { json_schema, ui_schema } as unknown as {
