@@ -67,3 +67,14 @@ npm run dev
 ```
 
 Then open `http://localhost:3000` in your browser.
+
+### Running Tests
+
+There are three available commands for running tests:
+
+1. `npm run test` or `npm test` – runs all test cases.
+2. `npm run test:cov` – runs all tests and generates a coverage report.
+3. `npm run test:watch` – runs all tests in watch mode.
+
+NOTE: Running these commands in the root directory will trigger all tests from all packages.
+However, if you run them within a specific package directory, only the tests associated with that package will be executed.

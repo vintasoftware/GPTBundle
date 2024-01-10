@@ -18,8 +18,9 @@
     ]
   },
   "scripts": {
-    "test": "vitest run",
-    "test:cov": "vitest run --coverage",
+    "test": "jest",
+    "test:cov": "jest --coverage",
+    "test:watch": "jest --watch",
     "prepare": "husky install"
   },
   "devDependencies": {

@@ -87,7 +87,8 @@ describe('Form Assistant', () => {
     });
 
     it('fillFields should call generator with correct parameters when fieldsToFill is null', async () => {
-      const fieldsToFill = ['title', 'description', 'category', 'priority'];
+      // fieldsToFill == null means only fill empty fields
+      const fieldsToFill = ['category'];
 
       (settings.generateFormAutofillFn as jest.Mock).mockResolvedValue([
         { name: 'title', value: 'Fix N+1s in Django codebase' },
@@ -99,7 +100,7 @@ describe('Form Assistant', () => {
       const { result } = renderHook(() =>
         useFormAssistant({
           ...assistantArgs,
-          fieldsToFill,
+          fieldsToFill: null,
           formGetValues,
           formSetValues,
         }),
@@ -120,6 +121,7 @@ describe('Form Assistant', () => {
     });
 
     it("fillFields should call generator with correct parameters when fieldsToFill is '__all__'", async () => {
+      // fieldsToFill === '__all__' means fill all fields, even if they have a value
       const fieldsToFill = ['title', 'description', 'category', 'priority'];
 
       (settings.generateFormAutofillFn as jest.Mock).mockResolvedValue([
@@ -153,6 +155,7 @@ describe('Form Assistant', () => {
     });
 
     it('fillFields should call generator with correct parameters when fieldsToFill is an array', async () => {
+      // fieldsToFill === ['category', 'priority'] means fill only those specified fields
       const fieldsToFill = ['category', 'priority'];
 
       (settings.generateFormAutofillFn as jest.Mock).mockResolvedValue([
