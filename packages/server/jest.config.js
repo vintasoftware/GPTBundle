@@ -2,15 +2,8 @@ import base from '../../jest.config.base.js';
 
 export default {
   ...base,
+  name: 'server',
   testEnvironment: 'node',
-  transform: {
-    '^.+\\.(ts|tsx)$': [
-      'ts-jest',
-      {
-        tsconfig: './packages/server/tsconfig.json',
-      },
-    ],
-  },
   setupFiles: ['../../test-setup.ts'],
   setupFilesAfterEnv: ['../../test-setup-after-env.ts'],
 };

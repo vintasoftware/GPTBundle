@@ -20,7 +20,10 @@
   },
   "scripts": {
     "build": "vite build",
-    "build:watch": "vite build --watch"
+    "build:watch": "vite build --watch",
+    "test": "jest",
+    "test:cov": "jest --coverage",
+    "test:watch": "jest --watch"
   },
   "peerDependencies": {
     "@rjsf/core": "^5.15.1",
