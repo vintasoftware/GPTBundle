@@ -38,6 +38,7 @@ describe('Form Generation', () => {
         await act(async () => {
           await result.current.generateFormSchema('Test content', 'Test prompt');
         });
+        expect(settings.generateFormSchemaFn).not.toHaveBeenCalled();
       }).rejects.toThrow('Cannot use form generator without generateFormSchemaFn');
     });
 
@@ -58,12 +59,19 @@ describe('Form Generation', () => {
     });
 
     it('should call setFormSchema and setUiSchema with correct parameters', async () => {
+      const content = 'Test content';
+      const prompt = 'Test prompt';
+
       const { result } = renderHook(() => useGeneratedFormSchema());
 
       await act(async () => {
-        await result.current.generateFormSchema('Test content', 'Test prompt');
+        await result.current.generateFormSchema(content, prompt);
       });
 
+      expect(settings.generateFormSchemaFn).toHaveBeenCalledWith({
+        content,
+        prompt,
+      });
       expect(result.current.formSchema).toEqual('mockJsonSchema');
       expect(result.current.uiSchema).toEqual('mockUiSchema');
       expect(result.current).toMatchObject({
