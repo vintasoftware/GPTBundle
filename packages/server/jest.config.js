@@ -12,4 +12,5 @@ export default {
     ],
   },
   setupFiles: ['../../test-setup.ts'],
+  setupFilesAfterEnv: ['../../test-setup-after-env.ts'],
 };

@@ -11,8 +11,6 @@ jest.mock('../src/settings', () => ({
 describe('Form Generation', () => {
   describe('useGeneratedFormSchema', () => {
     beforeEach(() => {
-      jest.resetModules();
-      jest.clearAllMocks();
       settings.generateFormSchemaFn = jest.fn().mockResolvedValue({
         json_schema: 'mockJsonSchema',
         ui_schema: 'mockUiSchema',

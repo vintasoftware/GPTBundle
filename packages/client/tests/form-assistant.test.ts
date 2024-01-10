@@ -15,8 +15,6 @@ describe('Form Assistant', () => {
     const formSetValues: (values: Record<string, string>) => unknown = jest.fn();
 
     beforeEach(() => {
-      jest.resetModules();
-      jest.clearAllMocks();
       settings.generateFormAutofillFn = jest.fn();
 
       assistantArgs = {
