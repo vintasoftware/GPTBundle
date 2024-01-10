@@ -52,10 +52,6 @@ const baseOpenAIResponse = {
 };
 
 describe('Form Assistant', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
   it('should pass all args to the prompt message', async () => {
     mockOpenAIResponse(JSON.stringify(baseOpenAIResponse));
 
