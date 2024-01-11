@@ -1,6 +1,6 @@
+/** @type {import('vite').UserConfig} */
 import react from '@vitejs/plugin-react';
 import path from 'node:path';
-import { defineConfig, configDefaults } from 'vitest/config';
 import dts from 'vite-plugin-dts';
 import { type UserConfigExport } from 'vite';
 import { name } from './package.json';
@@ -13,7 +13,7 @@ const app = async (): Promise<UserConfigExport> => {
    */
   const formattedName = name.match(/[^/]+$/)?.[0] ?? name;
 
-  return defineConfig({
+  return {
     plugins: [
       react(),
       dts({
@@ -51,12 +51,7 @@ const app = async (): Promise<UserConfigExport> => {
         '#root': path.resolve(__dirname, 'src/'),
       },
     },
-    test: {
-      globals: true,
-      environment: 'jsdom',
-      exclude: [...configDefaults.exclude, '**/node_modules/**', 'docs/**'],
-    },
-  });
+  };
 };
 // https://vitejs.dev/config/
 export default app;
