@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { RJSFSchema } from '@rjsf/utils';
 import validator from '@rjsf/validator-ajv8';
 import { CodeHighlightTabs } from '@mantine/code-highlight';
-import SchemaForm from '@/components/Forms/SchemaForm';
+import SchemaForm from '@rjsf/mui';
 
 export function BasicInputForm() {
   const [content, setContent] = useState('Name: ...\nAge: ...');

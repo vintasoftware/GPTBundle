@@ -3,7 +3,7 @@ import validator from '@rjsf/validator-ajv8';
 import { RJSFSchema, UiSchema } from '@rjsf/utils';
 import { CodeHighlightTabs } from '@mantine/code-highlight';
 import { FormProps, IChangeEvent } from '@rjsf/core';
-import SchemaForm from './SchemaForm';
+import SchemaForm from '@rjsf/mui';
 
 export default function SchemaFormDemo({
   formSchema,
