@@ -61,6 +61,67 @@ describe('Form Assistant', () => {
       }).rejects.toThrow('Cannot use form assistant without generateFormAutofillFn');
     });
 
+    it('should handle optional args and call the generator with default values', async () => {
+      (settings.generateFormAutofillFn as jest.Mock).mockResolvedValue([
+        { name: 'title', value: 'Fix N+1s in Django codebase' },
+        { name: 'description', value: 'Use prefetch...' },
+        { name: 'category', value: 'Improvement' },
+        { name: 'priority', value: 'Medium' },
+      ]);
+
+      const { result } = renderHook(() =>
+        useFormAssistant({
+          formGetValues,
+          formSetValues,
+          pageTitle: undefined,
+          formTitle: undefined,
+          fieldsToFill: undefined,
+          fieldLabels: undefined,
+          fieldChoices: undefined,
+        }),
+      );
+
+      await act(async () => {
+        await result.current.fillSingleField('category');
+
+        expect(formGetValues).toHaveBeenCalled();
+        expect(settings.generateFormAutofillFn).toHaveBeenCalledWith({
+          ...assistantArgs,
+          pageTitle: '',
+          formTitle: '',
+          fieldsToFill: ['category'],
+          fieldLabels: {},
+          fieldChoices: {},
+        });
+        expect(formSetValues).toHaveBeenCalledWith({
+          title: 'Fix N+1s in Django codebase',
+          description: 'Use prefetch...',
+          category: 'Improvement',
+          priority: 'Medium',
+        });
+      });
+
+      await act(async () => {
+        await result.current.fillFields();
+
+        expect(formGetValues).toHaveBeenCalled();
+        expect(settings.generateFormAutofillFn).toHaveBeenCalledWith({
+          ...assistantArgs,
+          pageTitle: '',
+          formTitle: '',
+          fieldsToFill: ['category'],
+          fieldLabels: {},
+          fieldChoices: {},
+        });
+        expect(formSetValues).toHaveBeenCalledWith({
+          title: 'Fix N+1s in Django codebase',
+          description: 'Use prefetch...',
+          category: 'Improvement',
+          priority: 'Medium',
+        });
+      });
+    });
+
     it('fillSingleField should call generator with correct parameters', async () => {
       const fieldsToFill = ['category'];
 

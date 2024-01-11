@@ -95,6 +95,98 @@ describe('Form Assistant', () => {
     ]);
   });
 
+  it('should handle optional args and pass default values to the prompt message', async () => {
+    mockOpenAIResponse(JSON.stringify(baseOpenAIResponse));
+
+    await customGenerateGPTFormAutofill(
+      {
+        ...baseAssistantArgs,
+        pageTitle: undefined,
+        formTitle: undefined,
+        fieldLabels: undefined,
+        fieldChoices: undefined,
+      },
+      {},
+    );
+
+    const { calls } = (openai.chat.completions.create as jest.Mock).mock;
+
+    expect(calls.length).toEqual(1);
+    expect(calls[0]).toEqual([
+      expect.objectContaining({
+        model: 'gpt-3.5-turbo-1106',
+        response_format: { type: 'json_object' },
+        messages: expect.arrayContaining([
+          expect.objectContaining({
+            role: 'system',
+          }),
+          expect.objectContaining({
+            role: 'system',
+          }),
+          expect.objectContaining({
+            role: 'user',
+            content:
+              expect.not.stringContaining(baseAssistantArgs.pageTitle) &&
+              expect.not.stringContaining(baseAssistantArgs.formTitle) &&
+              expect.stringContaining(JSON.stringify(baseAssistantArgs.fieldsToFill)) &&
+              expect.stringContaining(JSON.stringify(baseAssistantArgs.fields)) &&
+              expect.not.stringContaining(JSON.stringify(baseAssistantArgs.fieldLabels)) &&
+              expect.not.stringContaining(
+                JSON.stringify(
+                  baseAssistantArgs.fieldsToFill
+                    .map((field) => ({
+                      field,
+                      options: baseAssistantArgs.fieldChoices[field],
+                    }))
+                    .filter(({ options }) => options),
+                ),
+              ),
+          }),
+        ]),
+      }),
+    ]);
+  });
+
+  it('should use custom messages from the settings paramenter', async () => {
+    mockOpenAIResponse(JSON.stringify(baseOpenAIResponse));
+
+    const model = 'test-model';
+    const getSystemMessage = () => 'Test system message';
+    const getResponseFormatMessage = () => 'Test response format message';
+    const getPromptMessage = () => 'Test prompt message';
+
+    await customGenerateGPTFormAutofill(baseAssistantArgs, {
+      model,
+      getSystemMessage,
+      getResponseFormatMessage,
+      getPromptMessage,
+    });
+
+    const { calls } = (openai.chat.completions.create as jest.Mock).mock;
+
+    expect(calls.length).toEqual(1);
+    expect(calls[0]).toEqual([
+      {
+        model,
+        response_format: { type: 'json_object' },
+        messages: [
+          {
+            role: 'system',
+            content: getSystemMessage(),
+          },
+          {
+            role: 'system',
+            content: getResponseFormatMessage(),
+          },
+          {
+            role: 'user',
+            content: getPromptMessage(),
+          },
+        ],
+      },
+    ]);
+  });
+
   it('should throw an error when OpenAI returns an empty response', async () => {
     mockOpenAIResponse(null);
 
@@ -107,10 +199,10 @@ describe('Form Assistant', () => {
   });
 
   it('should throw an error when OpenAI returns an empty Autofill Fields', async () => {
-    const testEmptyAutofillFields = async (schema: any) => {
+    const testEmptyAutofillFields = async (value: any) => {
       mockOpenAIResponse(
         JSON.stringify({
-          fields: schema,
+          fields: value,
         }),
       );
 
