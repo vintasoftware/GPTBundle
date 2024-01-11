@@ -1,12 +1,11 @@
 'use client';
 
-import { Alert } from '@mantine/core';
-import { IconInfoCircle } from '@tabler/icons-react';
+import { Alert, AlertTitle } from '@mui/material';
 import { useEffect, useState } from 'react';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { checkOpenAIKeyExists } from '@/app/actions';
 
 export function OpenAIKeyWarning() {
-  const icon = <IconInfoCircle />;
   const [hasOpenAIKey, setHasOpenAIKey] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -20,7 +19,8 @@ export function OpenAIKeyWarning() {
   return (
     hasOpenAIKey !== null &&
     !hasOpenAIKey && (
-      <Alert variant="light" color="orange" title="Missing OpenAI API key on the server-side" icon={icon} mb="md">
+      <Alert severity="warning" icon={<InfoOutlinedIcon />}>
+        <AlertTitle sx={{ fontWeight: 'bold' }}>Missing OpenAI API key on the server-side</AlertTitle>
         This example is interactive, but it will not work without an <b>OpenAI API key</b>. Please run the <b>docs</b>{' '}
         project in your localhost and set <code>OPENAI_API_KEY</code> at the <code>docs/.env.local</code> file. Check
         README for more details.
