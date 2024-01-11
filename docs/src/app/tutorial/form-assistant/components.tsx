@@ -1,5 +1,5 @@
-import { Box, Button, Group, TextInput, Textarea } from '@mantine/core';
 import { useState } from 'react';
+import { Button, Paper, Stack, TextField } from '@mui/material';
 
 const AI_GENERATED_RECIPE =
   'Hummus quick recipe: ' +
@@ -13,17 +13,19 @@ export function BasicSingleFieldForm() {
   const [formValues, setFormValues] = useState<Record<string, string>>({ recipe: AI_GENERATED_RECIPE });
 
   return (
-    <Box mb="md" className="doc-form-example">
-      <Textarea
-        autosize
-        value={formValues.recipe}
-        onChange={(e) => setFormValues({ ...formValues, recipe: e.target.value })}
-      />
+    <Paper variant="outlined">
+      <Stack spacing={3} paddingX={2} paddingY={3}>
+        <TextField
+          multiline
+          value={formValues.recipe}
+          onChange={(e) => setFormValues({ ...formValues, recipe: e.target.value })}
+        />
 
-      <Group justify="flex-end" mt="md">
-        <Button variant="default">Autofill with GPT-4</Button>
-      </Group>
-    </Box>
+        <Button variant="outlined" sx={{ alignSelf: 'flex-start' }}>
+          Autofill with GPT-4
+        </Button>
+      </Stack>
+    </Paper>
   );
 }
 
@@ -35,29 +37,29 @@ export function BasicMultiFieldForm() {
   });
 
   return (
-    <Box mb="md" className="doc-form-example">
-      <Textarea
-        label="Recipe"
-        autosize
-        value={formValues.recipe}
-        onChange={(e) => setFormValues({ ...formValues, recipe: e.target.value })}
-        mb="xs"
-      />
-      <TextInput
-        label="Duration"
-        value={formValues.duration}
-        onChange={(e) => setFormValues({ ...formValues, duration: e.target.value })}
-        mb="xs"
-      />
-      <TextInput
-        label="Cost"
-        value={formValues.cost}
-        onChange={(e) => setFormValues({ ...formValues, duration: e.target.value })}
-      />
+    <Paper variant="outlined">
+      <Stack spacing={3} paddingX={2} paddingY={3}>
+        <TextField
+          multiline
+          label="Recipe"
+          value={formValues.recipe}
+          onChange={(e) => setFormValues({ ...formValues, recipe: e.target.value })}
+        />
+        <TextField
+          label="Duration"
+          value={formValues.duration}
+          onChange={(e) => setFormValues({ ...formValues, duration: e.target.value })}
+        />
+        <TextField
+          label="Cost"
+          value={formValues.cost}
+          onChange={(e) => setFormValues({ ...formValues, duration: e.target.value })}
+        />
 
-      <Group justify="flex-end" mt="md">
-        <Button variant="outline">Autofill with GPT-4</Button>
-      </Group>
-    </Box>
+        <Button variant="outlined" sx={{ alignSelf: 'flex-start' }}>
+          Autofill with GPT-4
+        </Button>
+      </Stack>
+    </Paper>
   );
 }
