@@ -116,7 +116,7 @@ export async function customGenerateGPTFormAutofill(
     throw new Error('OpenAI returned an empty response. Please try again.');
   }
   const { fields: autofillFields } = JSON.parse(completion.choices[0].message.content);
-  if (!autofillFields || autofillFields?.length === 0) {
+  if (!Array.isArray(autofillFields) || autofillFields.length === 0) {
     throw new Error('OpenAI returned an empty Autofill Fields. Please try again.');
   }
   return autofillFields;

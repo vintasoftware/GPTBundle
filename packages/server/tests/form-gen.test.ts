@@ -73,6 +73,46 @@ describe('Form Generation', () => {
     ]);
   });
 
+  it('should use custom messages from the settings paramenter', async () => {
+    mockOpenAIResponse(JSON.stringify(baseOpenAIResponse));
+
+    const model = 'test-model';
+    const getSystemMessage = () => 'Test system message';
+    const getResponseFormatMessage = () => 'Test response format message';
+    const getPromptMessage = () => 'Test prompt message';
+
+    await customGenerateGPTFormSchema(baseGeneratorArgs, {
+      model,
+      getSystemMessage,
+      getResponseFormatMessage,
+      getPromptMessage,
+    });
+
+    const { calls } = (openai.chat.completions.create as jest.Mock).mock;
+
+    expect(calls.length).toEqual(1);
+    expect(calls[0]).toEqual([
+      {
+        model,
+        response_format: { type: 'json_object' },
+        messages: [
+          {
+            role: 'system',
+            content: getSystemMessage(),
+          },
+          {
+            role: 'system',
+            content: getResponseFormatMessage(),
+          },
+          {
+            role: 'user',
+            content: getPromptMessage(),
+          },
+        ],
+      },
+    ]);
+  });
+
   it('should throw an error when OpenAI returns an empty response', async () => {
     mockOpenAIResponse(null);
 
