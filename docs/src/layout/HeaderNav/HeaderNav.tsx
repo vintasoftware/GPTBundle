@@ -11,7 +11,6 @@ import {
   useMantineTheme,
   Burger,
   UnstyledButton,
-  ThemeIcon,
   Popover,
   Center,
   Divider,
@@ -19,31 +18,15 @@ import {
   Collapse,
   MantineTheme,
 } from '@mantine/core';
+import HelpCenterOutlinedIcon from '@mui/icons-material/HelpCenterOutlined';
 import { useClickOutside, useDisclosure } from '@mantine/hooks';
-import { IconChevronDown, IconHelpSquare } from '@tabler/icons-react';
+import { IconChevronDown } from '@tabler/icons-react';
 import { ReactNode, useState } from 'react';
 import Link from 'next/link';
+import { Stack } from '@mui/material';
 import classes from './HeaderNav.module.css';
-import { ExampleDataType, assistantLinksData, generationLinksData } from '@/app/examples/examples-data';
-
-const makeLinks = (theme: MantineTheme, links: ExampleDataType[], closeMenu: () => void) =>
-  links.map((item) => (
-    <UnstyledButton className={classes.subLink} key={item.title} component={Link} href={item.href} onClick={closeMenu}>
-      <Group wrap="nowrap" align="flex-start">
-        <ThemeIcon size={34} variant="default" radius="md">
-          <item.icon style={{ width: rem(22), height: rem(22) }} color={theme.colors.blue[6]} />
-        </ThemeIcon>
-        <div>
-          <Text size="sm" fw={500}>
-            {item.title}
-          </Text>
-          <Text size="xs" c="dimmed">
-            {item.description}
-          </Text>
-        </div>
-      </Group>
-    </UnstyledButton>
-  ));
+import { assistantLinksData, generationLinksData } from '@/app/examples/examples-data';
+import { ExampleDocLink } from '@/components/Docs/ExampleDocLink';
 
 type MenuType = 'tutorial' | 'assistant' | 'generation';
 
@@ -126,13 +109,11 @@ const HeaderWebMenu = ({
 };
 
 const HeaderMobileMenu = ({
-  closeDrawer,
   title,
   tutorialLink,
   theme,
   children,
 }: {
-  closeDrawer: () => void;
   title: string;
   tutorialLink: string;
   theme: MantineTheme;
@@ -151,21 +132,14 @@ const HeaderMobileMenu = ({
         </Center>
       </UnstyledButton>
       <Collapse in={linksOpened}>
-        <UnstyledButton className={classes.subLink} component={Link} href={tutorialLink} onClick={closeDrawer}>
-          <Group wrap="nowrap" align="flex-start">
-            <ThemeIcon size={34} variant="default" radius="md">
-              <IconHelpSquare style={{ width: rem(22), height: rem(22) }} color={theme.colors.blue[6]} />
-            </ThemeIcon>
-            <div>
-              <Text size="sm" fw={500}>
-                Tutorial
-              </Text>
-              <Text size="xs" c="dimmed">
-                Learn how to add {title} to your React app!
-              </Text>
-            </div>
-          </Group>
-        </UnstyledButton>
+        <ExampleDocLink
+          item={{
+            icon: HelpCenterOutlinedIcon,
+            title: 'Tutorial',
+            description: 'Learn how to add AI Form Toolkit to your React app!',
+            href: tutorialLink,
+          }}
+        />
         {children}
       </Collapse>
     </>
@@ -185,8 +159,6 @@ const HeaderNav = () => {
     closeDrawer();
   };
   const theme = useMantineTheme();
-  const generationLinks = makeLinks(theme, generationLinksData, closeAllMenus);
-  const assistantLinks = makeLinks(theme, assistantLinksData, closeAllMenus);
 
   return (
     <Box className={classes.header}>
@@ -212,7 +184,9 @@ const HeaderNav = () => {
             tutorialLink="/tutorial/form-generation/"
             theme={theme}
           >
-            {generationLinks}
+            {generationLinksData.map((item) => (
+              <ExampleDocLink item={item} />
+            ))}
           </HeaderWebMenu>
 
           <HeaderWebMenu
@@ -223,7 +197,9 @@ const HeaderNav = () => {
             tutorialLink="/tutorial/form-assistant/"
             theme={theme}
           >
-            {assistantLinks}
+            {assistantLinksData.map((item) => (
+              <ExampleDocLink item={item} />
+            ))}
           </HeaderWebMenu>
         </Group>
 
@@ -256,22 +232,20 @@ const HeaderNav = () => {
             Getting Started
           </Link>
 
-          <HeaderMobileMenu
-            closeDrawer={closeDrawer}
-            title="AI Form Generation"
-            tutorialLink="/tutorial/form-generation/"
-            theme={theme}
-          >
-            {generationLinks}
+          <HeaderMobileMenu title="AI Form Generation" tutorialLink="/tutorial/form-generation/" theme={theme}>
+            <Stack sx={{ maxWidth: '90%' }}>
+              {generationLinksData.map((item) => (
+                <ExampleDocLink item={item} />
+              ))}
+            </Stack>
           </HeaderMobileMenu>
 
-          <HeaderMobileMenu
-            closeDrawer={closeDrawer}
-            title="AI Form Assistant"
-            tutorialLink="/tutorial/form-assistant/"
-            theme={theme}
-          >
-            {assistantLinks}
+          <HeaderMobileMenu title="AI Form Assistant" tutorialLink="/tutorial/form-assistant/" theme={theme}>
+            <Stack sx={{ maxWidth: '90%' }}>
+              {assistantLinksData.map((item) => (
+                <ExampleDocLink item={item} />
+              ))}
+            </Stack>
           </HeaderMobileMenu>
 
           <Divider my="sm" />
