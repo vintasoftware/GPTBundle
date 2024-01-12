@@ -1,9 +1,11 @@
 'use client';
 
-import { Text, Box, Button, Textarea, Title, LoadingOverlay, Loader, Center, Group, Code } from '@mantine/core';
 import { useState } from 'react';
-import { IconBrain, IconForms } from '@tabler/icons-react';
 import dedent from 'dedent';
+import { Backdrop, CircularProgress, TextField, Typography, Stack } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
+import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
+import PsychologyOutlinedIcon from '@mui/icons-material/PsychologyOutlined';
 
 import { useGeneratedFormSchema, useFormAssistant } from '@ai-form-toolkit/client';
 import SchemaFormDemo from '@/components/Forms/SchemaFormDemo';
@@ -56,74 +58,72 @@ export default function ExamSchemaGenWithAssistantExample() {
   };
 
   return (
-    <>
-      <Box pos="relative" mb="md">
-        <LoadingOverlay
-          visible={isLoading}
-          loaderProps={{
-            children: (
-              <>
-                <Center>
-                  <Loader size={16} mr={8} />
-                  <Text inherit>Loading (may take up to 2 minutes)...</Text>
-                </Center>
-              </>
-            ),
-          }}
-        />
-        <Title order={2} mb="xs">
-          Generate and then autofill form:
-        </Title>
-        <Text mb="xs">
-          Code at <Code>docs/src/app/examples/assistant/gen-with-assistant/page.tsx</Code>
-        </Text>
-        <Text mb="xs">
-          This form combines <Code>useGeneratedFormSchema</Code> with <Code>useFormAssistant</Code> hooks to generate a
+    <Stack spacing={2}>
+      <Stack spacing={2}>
+        <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={isLoading}>
+          <Stack direction="row" spacing={1}>
+            <CircularProgress color="inherit" size={20} />
+            <Typography variant="body1">Loading (may take up to 2 minutes)...</Typography>
+          </Stack>
+        </Backdrop>
+
+        <Typography variant="h4">Generate and then autofill form:</Typography>
+        <Typography variant="body1">
+          Code at <code>docs/src/app/examples/assistant/gen-with-assistant/page.tsx</code>
+        </Typography>
+        <Typography variant="body1">
+          This form combines <code>useGeneratedFormSchema</code> with <code>useFormAssistant</code> hooks to generate a
           form from content + prompt, and then support GPT-4 autofill on it.
-        </Text>
-        <Textarea
+        </Typography>
+
+        <TextField
+          multiline
+          fullWidth
           label="Full content text:"
           placeholder="Put text or HTML content here..."
-          autosize
           minRows={6}
           value={content}
           onChange={(event) => setContent(event.currentTarget.value)}
-          mb="md"
         />
-        <Textarea
+        <TextField
+          multiline
+          fullWidth
           label="Prompt:"
           placeholder={`e.g. ${defaultPrompt}`}
           value={prompt}
           onChange={(event) => setPrompt(event.currentTarget.value)}
-          mb="md"
         />
-      </Box>
-      <Group justify="flex-end" mt="md" mb="md">
+      </Stack>
+
+      <Stack direction="row" spacing={2} alignSelf="flex-end">
         {fieldToFill && (
-          <Button
-            variant="default"
-            leftSection={isLoading ? <Loader size={14} /> : <IconBrain size={14} />}
-            disabled={isLoading}
+          <LoadingButton
+            variant="outlined"
+            loadingPosition="start"
+            loading={isLoading}
+            startIcon={<PsychologyOutlinedIcon />}
             onClick={() => {
               setIsLoading(true);
               fillSingleField(fieldToFill).finally(() => setIsLoading(false));
             }}
           >
             Autofill missing with GPT-4
-          </Button>
+          </LoadingButton>
         )}
-        <Button
-          leftSection={isLoading ? <Loader color="blue" size={14} /> : <IconForms size={14} />}
-          variant="outline"
+        <LoadingButton
+          variant="outlined"
+          loadingPosition="start"
+          loading={isLoading}
+          startIcon={<ListAltOutlinedIcon />}
           onClick={() => {
             setIsLoading(true);
             generateFormSchema(content, prompt).finally(() => setIsLoading(false));
           }}
-          disabled={isLoading}
         >
           Generate Form
-        </Button>
-      </Group>
+        </LoadingButton>
+      </Stack>
+
       <SchemaFormDemo
         formSchema={formSchema}
         uiSchema={uiSchema}
@@ -133,6 +133,6 @@ export default function ExamSchemaGenWithAssistantExample() {
         // @ts-ignore
         onChange={(e) => setFormValues(e.formValues)}
       />
-    </>
+    </Stack>
   );
 }
