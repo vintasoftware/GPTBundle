@@ -1,10 +1,11 @@
 'use client';
 
-import { Text, Box, Button, Textarea, Title, Anchor, LoadingOverlay, Loader, Center, Code } from '@mantine/core';
-import { RJSFSchema } from '@rjsf/utils';
-import { IChangeEvent } from '@rjsf/core';
 import { useState } from 'react';
-import { IconForms } from '@tabler/icons-react';
+import { Backdrop, TextField, Typography, Stack, CircularProgress, Link } from '@mui/material';
+import { IChangeEvent } from '@rjsf/core';
+import { LoadingButton } from '@mui/lab';
+import { RJSFSchema } from '@rjsf/utils';
+import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
 
 import { useGeneratedFormSchema } from '@ai-form-toolkit/client';
 import SchemaFormDemo from '@/components/Forms/SchemaFormDemo';
@@ -24,66 +25,62 @@ export default function LegalSchemaGenExample() {
   };
 
   return (
-    <>
-      <Box pos="relative" mb="md">
-        <LoadingOverlay
-          visible={isLoading}
-          loaderProps={{
-            children: (
-              <>
-                <Center>
-                  <Loader size={16} mr={8} />
-                  <Text inherit>Loading (may take up to 2 minutes)...</Text>
-                </Center>
-              </>
-            ),
-          }}
-        />
-        <Title order={2} mb="md">
-          Generate forms for data collection from existing contracts / agreements:
-        </Title>
-        <Text mb="xs">
-          Code at <Code>docs/src/app/examples/generation/legal/page.tsx</Code>
-        </Text>
-        <Textarea
+    <Stack spacing={2}>
+      <Stack spacing={2}>
+        <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={isLoading}>
+          <Stack direction="row" spacing={1}>
+            <CircularProgress color="inherit" size={20} />
+            <Typography variant="body1">Loading (may take up to 2 minutes)...</Typography>
+          </Stack>
+        </Backdrop>
+
+        <Typography variant="h4">Generate forms for data collection from existing contracts / agreements:</Typography>
+        <Typography variant="body1">
+          Code at <code>docs/src/app/examples/generation/legal/page.tsx</code>
+        </Typography>
+
+        <TextField
+          multiline
+          fullWidth
           label="Full contract text:"
           placeholder="Put text or HTML content here..."
-          description={
+          helperText={
             <>
               If you don&apos;t have one, copy this{' '}
-              <Anchor inherit href="https://www.vertex42.com/WordTemplates/lease-agreement-template.html">
+              <Link href="https://www.vertex42.com/WordTemplates/lease-agreement-template.html" target="_blank">
                 doc
-              </Anchor>{' '}
+              </Link>{' '}
               and paste below
             </>
           }
-          autosize
           minRows={6}
           value={content}
           onChange={(event) => setContent(event.currentTarget.value)}
-          mb="md"
         />
-        <Textarea
+        <TextField
+          multiline
+          fullWidth
           label="Prompt:"
           placeholder={`e.g. ${defaultPrompt}`}
           value={prompt}
           onChange={(event) => setPrompt(event.currentTarget.value)}
-          mb="md"
         />
-      </Box>
-      <Button
-        leftSection={isLoading ? <Loader color="blue" size={14} /> : <IconForms size={14} />}
-        variant="outline"
+      </Stack>
+
+      <LoadingButton
+        variant="outlined"
+        loadingPosition="start"
+        loading={isLoading}
+        startIcon={<ListAltOutlinedIcon />}
         onClick={() => {
           setIsLoading(true);
           generateFormSchema(content, prompt).finally(() => setIsLoading(false));
         }}
-        disabled={isLoading}
-        mb="md"
+        sx={{ alignSelf: 'flex-end' }}
       >
         Generate Form
-      </Button>
+      </LoadingButton>
       <SchemaFormDemo formSchema={formSchema} uiSchema={uiSchema} onSubmit={onSubmit} />
-    </>
+    </Stack>
   );
 }
