@@ -1,5 +1,6 @@
-import { Button, Grid } from '@mantine/core';
-import Link from 'next/link';
+import { Button, Stack } from '@mui/material';
+import KeyboardDoubleArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftOutlined';
+import KeyboardDoubleArrowRightOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowRightOutlined';
 import { BasicInputForm, BasicGeneratedForm, BasicGeneratedSchemas } from './components';
 
 # Form Generation Tutorial
@@ -102,15 +103,11 @@ Check [the examples](/examples/#form-generation-examples) for some ideas.
 
 Use the [advanced settings](/reference/settings/) to override prompts, AI models, etc.
 
-<Grid>
-  <Grid.Col span={6}>
-    <Button fullWidth variant="outline" component={Link} href="/tutorial/getting-started/">
-      « Getting Started
-    </Button>
-  </Grid.Col>
-  <Grid.Col span={6}>
-    <Button fullWidth variant="outline" component={Link} href="/tutorial/form-assistant/">
-      Form Assistant »
-    </Button>
-  </Grid.Col>
-</Grid>
+<Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
+  <Button variant="outlined" startIcon={<KeyboardDoubleArrowLeftOutlinedIcon />} href="/tutorial/getting-started/">
+    <span>Getting Started</span>
+  </Button>
+  <Button variant="outlined" endIcon={<KeyboardDoubleArrowRightOutlinedIcon />} href="/tutorial/form-assistant/">
+    <span>Form Assistant</span>
+  </Button>
+</Stack>
