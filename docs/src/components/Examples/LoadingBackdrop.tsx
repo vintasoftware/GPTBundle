@@ -1,6 +1,6 @@
 import { Backdrop, CircularProgress, Stack, Typography } from '@mui/material';
 
-export function LoadingBackdrop({
+export default function LoadingBackdrop({
   open,
   message = 'Loading (may take up to 2 minutes)...',
 }: {
