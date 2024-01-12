@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import dedent from 'dedent';
-import { Backdrop, CircularProgress, TextField, Typography, Stack } from '@mui/material';
+import { TextField, Typography, Stack } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
 import PsychologyOutlinedIcon from '@mui/icons-material/PsychologyOutlined';
@@ -10,7 +10,7 @@ import PsychologyOutlinedIcon from '@mui/icons-material/PsychologyOutlined';
 import { useGeneratedFormSchema, useFormAssistant } from '@ai-form-toolkit/client';
 import SchemaFormDemo from '@/components/Forms/SchemaFormDemo';
 
-import './styles.css';
+import { LoadingBackdrop } from '@/components/Examples/LoadingBackdrop';
 
 export default function ExamSchemaGenWithAssistantExample() {
   const defaultContent = dedent`
@@ -60,12 +60,7 @@ export default function ExamSchemaGenWithAssistantExample() {
   return (
     <Stack spacing={2}>
       <Stack spacing={2}>
-        <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={isLoading}>
-          <Stack direction="row" spacing={1}>
-            <CircularProgress color="inherit" size={20} />
-            <Typography variant="body1">Loading (may take up to 2 minutes)...</Typography>
-          </Stack>
-        </Backdrop>
+        <LoadingBackdrop open={isLoading} />
 
         <Typography variant="h4">Generate and then autofill form:</Typography>
         <Typography variant="body1">

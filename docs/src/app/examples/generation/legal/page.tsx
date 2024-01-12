@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Backdrop, TextField, Typography, Stack, CircularProgress, Link } from '@mui/material';
+import { TextField, Typography, Stack, Link } from '@mui/material';
 import { IChangeEvent } from '@rjsf/core';
 import { LoadingButton } from '@mui/lab';
 import { RJSFSchema } from '@rjsf/utils';
@@ -10,7 +10,7 @@ import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
 import { useGeneratedFormSchema } from '@ai-form-toolkit/client';
 import SchemaFormDemo from '@/components/Forms/SchemaFormDemo';
 
-import '../styles.css';
+import { LoadingBackdrop } from '@/components/Examples/LoadingBackdrop';
 
 export default function LegalSchemaGenExample() {
   const defaultPrompt = 'Generate a form for filling the missing fields in this contract';
@@ -27,12 +27,7 @@ export default function LegalSchemaGenExample() {
   return (
     <Stack spacing={2}>
       <Stack spacing={2}>
-        <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={isLoading}>
-          <Stack direction="row" spacing={1}>
-            <CircularProgress color="inherit" size={20} />
-            <Typography variant="body1">Loading (may take up to 2 minutes)...</Typography>
-          </Stack>
-        </Backdrop>
+        <LoadingBackdrop open={isLoading} />
 
         <Typography variant="h4">Generate forms for data collection from existing contracts / agreements:</Typography>
         <Typography variant="body1">
