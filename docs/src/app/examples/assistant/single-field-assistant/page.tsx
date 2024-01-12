@@ -1,63 +1,79 @@
 'use client';
 
-import { Button, Group, Loader, Textarea, Title, Text, Code } from '@mantine/core';
-import { useForm } from '@mantine/form';
-import { IconBulb } from '@tabler/icons-react';
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { Button, TextField, Typography, Stack } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
+import TipsAndUpdatesOutlinedIcon from '@mui/icons-material/TipsAndUpdatesOutlined';
 
 import { useFormAssistant } from '@ai-form-toolkit/client';
 
 export default function SingleFieldFormAssistant() {
-  const form = useForm({
-    initialValues: {
-      recipe: 'Carrot cake recipe\n\nIngredients:\n\nDirections:\n\n',
-    },
+  const [formValues, setFormValues] = useState<Record<string, string>>({
+    recipe: 'Carrot cake recipe\n\nIngredients:\n\nDirections:\n\n',
   });
   const { fillSingleField } = useFormAssistant({
     formTitle: 'Create Recipe',
-    formGetValues: () => form.values,
-    formSetValues: form.setValues,
+    formGetValues: () => formValues,
+    formSetValues: setFormValues,
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  return (
-    <>
-      <Title mb="md" order={2}>
-        GPT-4 form assistant (single field)
-      </Title>
-      <Text mb="xs">
-        Code at <Code>docs/src/app/examples/assistant/single-field-assistant/page.tsx</Code>
-      </Text>
-      <Text mb="md">
-        This form uses the <Code>useFormAssistant</Code> hook to enable the GPT-4 autofill functionality. Click on the
-        button below to test it!
-      </Text>
-      <form onSubmit={form.onSubmit((values) => console.log(values))}>
-        <Textarea
-          withAsterisk
-          label="Recipe"
-          placeholder="Write a Recipe here"
-          autosize
-          minRows={10}
-          {...form.getInputProps('recipe')}
-          disabled={isLoading}
-        />
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setFormValues({
+      ...formValues,
+      [event.target.name]: event.target.value,
+    });
+  };
 
-        <Group justify="flex-end" mt="md">
-          <Button
-            variant="default"
-            leftSection={isLoading ? <Loader size={14} /> : <IconBulb size={14} />}
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+    console.log(formValues);
+  };
+
+  return (
+    <Stack spacing={2}>
+      <Typography variant="h4">GPT-4 form assistant (single field)</Typography>
+      <Typography variant="body1">
+        Code at <code>docs/src/app/examples/assistant/single-field-assistant/page.tsx</code>
+      </Typography>
+      <Typography variant="body1">
+        This form uses the <code>useFormAssistant</code> hook to enable the GPT-4 autofill functionality. Click on the
+        button below to test it!
+      </Typography>
+
+      <form onSubmit={handleSubmit}>
+        <Stack spacing={2}>
+          <TextField
+            required
+            multiline
+            fullWidth
+            label="Recipe"
+            placeholder="Write a Recipe here"
+            minRows={10}
             disabled={isLoading}
-            onClick={() => {
-              setIsLoading(true);
-              fillSingleField('recipe').finally(() => setIsLoading(false));
-            }}
-          >
-            Autofill with GPT-4
-          </Button>
-          <Button type="submit">Submit</Button>
-        </Group>
+            value={formValues.recipe}
+            onChange={handleInputChange}
+          />
+
+          <Stack direction="row" spacing={2} alignSelf="flex-end">
+            <LoadingButton
+              variant="outlined"
+              loadingPosition="start"
+              loading={isLoading}
+              startIcon={<TipsAndUpdatesOutlinedIcon />}
+              onClick={() => {
+                setIsLoading(true);
+                fillSingleField('recipe').finally(() => setIsLoading(false));
+              }}
+            >
+              Autofill with GPT-4
+            </LoadingButton>
+            <Button type="submit" variant="contained">
+              Submit
+            </Button>
+          </Stack>
+        </Stack>
       </form>
-    </>
+    </Stack>
   );
 }
