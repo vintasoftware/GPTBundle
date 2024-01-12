@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { Box, rem } from '@mantine/core';
+import { Box } from '@mui/material';
 
 import Layout from '@/layout';
 
@@ -14,7 +14,7 @@ type Props = {
 export default function DocsLayout({ children }: Props) {
   return (
     <Layout>
-      <Box maw={600} mx="auto" pb={rem(30)} px={rem(20)}>
+      <Box maxWidth={600} mx="auto" paddingY={4} paddingX={2.5}>
         {children}
       </Box>
     </Layout>
