@@ -67,6 +67,7 @@ export default function MultiFieldFormAssistant() {
           <TextField
             required
             fullWidth
+            name="title"
             label="Title"
             placeholder="Write the title here"
             disabled={isLoading}
@@ -77,6 +78,7 @@ export default function MultiFieldFormAssistant() {
             required
             multiline
             fullWidth
+            name="description"
             label="Description"
             placeholder="Write the description here"
             minRows={4}
@@ -105,6 +107,7 @@ export default function MultiFieldFormAssistant() {
               <TextField
                 {...params}
                 required
+                name="category"
                 label="Category"
                 placeholder="Pick a category"
                 value={formValues.category}
@@ -119,6 +122,7 @@ export default function MultiFieldFormAssistant() {
               <TextField
                 {...params}
                 required
+                name="priority"
                 label="Priority"
                 placeholder="Pick a priority"
                 value={formValues.priority}

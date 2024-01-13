@@ -47,6 +47,7 @@ export default function SingleFieldFormAssistant() {
             required
             multiline
             fullWidth
+            name="recipe"
             label="Recipe"
             placeholder="Write a Recipe here"
             minRows={10}

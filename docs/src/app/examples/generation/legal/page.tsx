@@ -36,6 +36,7 @@ export default function LegalSchemaGenExample() {
         <TextField
           multiline
           fullWidth
+          name="content"
           label="Full contract text:"
           placeholder="Put text or HTML content here..."
           helperText={
@@ -54,6 +55,7 @@ export default function LegalSchemaGenExample() {
         <TextField
           multiline
           fullWidth
+          name="prompt"
           label="Prompt:"
           placeholder={`e.g. ${defaultPrompt}`}
           value={prompt}

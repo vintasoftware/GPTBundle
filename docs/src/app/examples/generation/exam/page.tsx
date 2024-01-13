@@ -54,6 +54,7 @@ export default function ExamSchemaGenExample() {
         <TextField
           multiline
           fullWidth
+          name="content"
           label="Full content text:"
           placeholder="Put text or HTML content here..."
           minRows={6}
@@ -63,6 +64,7 @@ export default function ExamSchemaGenExample() {
         <TextField
           multiline
           fullWidth
+          name="prompt"
           label="Prompt:"
           placeholder={`e.g. ${defaultPrompt}`}
           value={prompt}

@@ -34,6 +34,7 @@ export default function GenericSchemaGenExample() {
         <TextField
           multiline
           fullWidth
+          name="content"
           label="Content"
           helperText="Content to use for generating the form"
           placeholder="Put text or HTML content here..."
@@ -44,6 +45,7 @@ export default function GenericSchemaGenExample() {
         <TextField
           multiline
           fullWidth
+          name="prompt"
           label="Prompt"
           helperText="Prompt to use for generating the form"
           placeholder="e.g. generate a 5 question exam to ensure the reader learned this content"

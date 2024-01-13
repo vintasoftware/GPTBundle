@@ -36,6 +36,7 @@ export default function ChecklistSchemaGenExample() {
         <TextField
           multiline
           fullWidth
+          name="content"
           label="Full content text:"
           placeholder="Put text or HTML content here..."
           helperText={
@@ -57,6 +58,7 @@ export default function ChecklistSchemaGenExample() {
         <TextField
           multiline
           fullWidth
+          name="prompt"
           label="Prompt:"
           placeholder={`e.g. ${defaultPrompt}`}
           value={prompt}

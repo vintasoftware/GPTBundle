@@ -63,6 +63,7 @@ export default function ERSchemaGenExample() {
         <TextField
           multiline
           fullWidth
+          name="content"
           label="Mermaid diagram for Entity-Relationship Model:"
           placeholder="Put Mermaid text here..."
           value={content}
@@ -72,6 +73,7 @@ export default function ERSchemaGenExample() {
         <TextField
           multiline
           fullWidth
+          name="prompt"
           label="Prompt:"
           placeholder={`e.g. ${defaultPrompt}`}
           value={prompt}
