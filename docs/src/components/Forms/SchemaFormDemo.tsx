@@ -1,9 +1,9 @@
-import { Box, Title } from '@mantine/core';
 import validator from '@rjsf/validator-ajv8';
 import { RJSFSchema, UiSchema } from '@rjsf/utils';
 import { CodeHighlightTabs } from '@mantine/code-highlight';
 import { FormProps, IChangeEvent } from '@rjsf/core';
 import SchemaForm from '@rjsf/mui';
+import { Stack, Typography } from '@mui/material';
 
 export default function SchemaFormDemo({
   formSchema,
@@ -19,16 +19,13 @@ export default function SchemaFormDemo({
   return (
     formSchema && (
       <>
-        <Box mb="md">
-          <Title order={3} mb="xs">
-            Generated Form:
-          </Title>
+        <Stack>
+          <Typography variant="h5">Generated Form:</Typography>
           <SchemaForm schema={formSchema} uiSchema={uiSchema} validator={validator} onSubmit={onSubmit} {...props} />
-        </Box>
-        <Box mb="md">
-          <Title order={3} mb="xs">
-            Actual form code:
-          </Title>
+        </Stack>
+
+        <Stack spacing={2} paddingTop={1}>
+          <Typography variant="h5">Actual form code:</Typography>
           <CodeHighlightTabs
             code={[
               {
@@ -44,7 +41,7 @@ export default function SchemaFormDemo({
             ]}
             mb="md"
           />
-        </Box>
+        </Stack>
       </>
     )
   );
