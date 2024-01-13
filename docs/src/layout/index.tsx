@@ -1,8 +1,9 @@
 import { ReactNode } from 'react';
-import { AppShell, Box, rem } from '@mantine/core';
+import { Box } from '@mui/material';
 import HeaderNav from './HeaderNav/HeaderNav';
 import FooterNav from './FooterNav/FooterNav';
 
+// NOTE: This is needed for CodeHighlightTabs to work
 import '@mantine/code-highlight/styles.css';
 
 type LayoutProps = {
@@ -11,17 +12,13 @@ type LayoutProps = {
 
 function Layout({ children }: LayoutProps) {
   return (
-    <AppShell header={{ height: 60 }} footer={{ height: 60 }}>
-      <AppShell.Header>
-        <HeaderNav />
-      </AppShell.Header>
-      <AppShell.Main pt={`calc(${rem(60)} + var(--mantine-spacing-md))`}>
-        <Box>{children}</Box>
-      </AppShell.Main>
-      <AppShell.Footer>
-        <FooterNav />
-      </AppShell.Footer>
-    </AppShell>
+    <Box display="flex" flexDirection="column" minHeight="100vh">
+      <HeaderNav />
+      <Box flexGrow={1} width="-webkit-fill-available">
+        {children}
+      </Box>
+      <FooterNav />
+    </Box>
   );
 }
 
