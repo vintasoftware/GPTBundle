@@ -1,22 +1,20 @@
-import { Box, Container } from '@mantine/core';
-import classes from './FooterNav.module.css';
+import { Box, Link } from '@mui/material';
+import { grey } from '@mui/material/colors';
 
 const FooterNav = () => (
-  <Box>
-    <footer className={classes.footer}>
-      <Container className={classes.inner} fluid>
-        <p>
-          © 2024{' '}
-          <a href="https://www.vinta.com.br" target="_blank" rel="noreferrer">
-            Vinta Software
-          </a>
-          {' – '}
-          <a href="https://www.vinta.com.br" target="_blank" rel="noreferrer">
-            meet the creators!
-          </a>
-        </p>
-      </Container>
-    </footer>
+  <Box sx={{ position: 'sticky', bottom: 0, backgroundColor: '#fff', borderTop: `1px solid ${grey[300]}` }}>
+    <Box component="footer">
+      <Box display="flex" alignItems="center" height={60} paddingX={4} gap={0.5}>
+        © 2024
+        <Link href="https://www.vinta.com.br" target="_blank">
+          Vinta Software
+        </Link>
+        {' – '}
+        <Link href="https://www.vinta.com.br" target="_blank">
+          meet the creators!
+        </Link>
+      </Box>
+    </Box>
   </Box>
 );
 
