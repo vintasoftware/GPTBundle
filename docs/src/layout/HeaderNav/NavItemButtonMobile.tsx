@@ -30,7 +30,7 @@ const NavItemButtonMobile = ({ name, examples, tutorialLink }: Props) => {
             }}
           />
           {examples.map((example) => (
-            <ExampleDocLink item={example} />
+            <ExampleDocLink key={example.title} item={example} />
           ))}
         </List>
       </Collapse>

@@ -15,15 +15,12 @@ export function Welcome() {
         justifyContent="space-between"
       >
         <Stack maxWidth={456} spacing={2}>
-          <Stack>
-            <Typography variant="h3">
-              <Box component="span" borderRadius={1} paddingY={0.5} paddingX={1} sx={{ backgroundColor: blue[50] }}>
-                Supercharge
-              </Box>{' '}
-              your
-              <Typography variant="h3">forms with AI</Typography>
-            </Typography>
-          </Stack>
+          <Typography variant="h3">
+            <Box component="span" borderRadius={1} paddingY={0.5} paddingX={1} sx={{ backgroundColor: blue[50] }}>
+              Supercharge
+            </Box>{' '}
+            your forms with AI
+          </Typography>
 
           <Typography variant="body1">
             Build and enhance your{' '}
