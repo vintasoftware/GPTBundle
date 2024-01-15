@@ -1,6 +1,6 @@
 'use client';
 
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { Autocomplete, Box, Button, CircularProgress, IconButton, TextField, Typography, Stack } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import AutoFixHighOutlinedIcon from '@mui/icons-material/AutoFixHighOutlined';
@@ -22,7 +22,11 @@ export default function MultiFieldFormAssistant() {
   const { fillSingleField, fillFields } = useFormAssistant({
     formTitle: 'Create Issue',
     formGetValues: () => formValues,
-    formSetValues: setFormValues,
+    formSetValues: (newValues: Record<string, string>) =>
+      setFormValues({
+        ...formValues,
+        ...newValues,
+      }),
     fieldChoices: {
       category: CATEGORY_CHOICES,
       priority: PRIORITY_CHOICES,
@@ -31,10 +35,10 @@ export default function MultiFieldFormAssistant() {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingDescription, setIsLoadingDescription] = useState(false);
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (name: string, value: string | null) => {
     setFormValues({
       ...formValues,
-      [event.target.name]: event.target.value,
+      [name]: value || '',
     });
   };
 
@@ -72,7 +76,7 @@ export default function MultiFieldFormAssistant() {
             placeholder="Write the title here"
             disabled={isLoading}
             value={formValues.title}
-            onChange={handleInputChange}
+            onChange={(event) => handleInputChange('title', event.target.value)}
           />
           <TextField
             required
@@ -83,14 +87,14 @@ export default function MultiFieldFormAssistant() {
             placeholder="Write the description here"
             minRows={4}
             value={formValues.description}
-            onChange={handleInputChange}
-            disabled={isLoading}
+            onChange={(event) => handleInputChange('description', event.target.value)}
+            disabled={isLoading || isLoadingDescription}
             InputProps={{
               endAdornment: (
                 <IconButton
                   aria-label="Enhance"
                   size="large"
-                  disabled={isLoadingDescription}
+                  disabled={isLoading || isLoadingDescription}
                   onClick={() => {
                     setIsLoadingDescription(true);
                     fillSingleField('description').finally(() => setIsLoadingDescription(false));
@@ -103,6 +107,8 @@ export default function MultiFieldFormAssistant() {
           />
           <Autocomplete
             options={CATEGORY_CHOICES}
+            value={formValues.category}
+            onChange={(_, value) => handleInputChange('category', value)}
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -110,14 +116,14 @@ export default function MultiFieldFormAssistant() {
                 name="category"
                 label="Category"
                 placeholder="Pick a category"
-                value={formValues.category}
-                onChange={handleInputChange}
                 disabled={isLoading}
               />
             )}
           />
           <Autocomplete
             options={PRIORITY_CHOICES}
+            value={formValues.priority}
+            onChange={(_, value) => handleInputChange('priority', value)}
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -125,8 +131,6 @@ export default function MultiFieldFormAssistant() {
                 name="priority"
                 label="Priority"
                 placeholder="Pick a priority"
-                value={formValues.priority}
-                onChange={handleInputChange}
                 disabled={isLoading}
               />
             )}
@@ -138,6 +142,7 @@ export default function MultiFieldFormAssistant() {
               loadingPosition="start"
               loading={isLoading}
               startIcon={<PsychologyOutlinedIcon />}
+              disabled={isLoading || isLoadingDescription}
               onClick={() => {
                 setIsLoading(true);
                 fillFields().finally(() => setIsLoading(false));
