@@ -9,7 +9,6 @@ import {
   AssistantArgsType,
   GeneratorArgsType,
 } from '@ai-form-toolkit/server';
-import { theme } from '@/theme';
 import MuiThemeWrapper from '@/MuiThemeWrapper';
 
 export const metadata = {
@@ -46,7 +45,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           generateFormAutofillFn={myGenerateGPTFormAutofill}
           generateFormSchemaFn={myGenerateGPTFormSchema}
         />
-        <MantineProvider theme={theme}>
+        <MantineProvider>
           <MuiThemeWrapper>{children}</MuiThemeWrapper>
         </MantineProvider>
       </body>
