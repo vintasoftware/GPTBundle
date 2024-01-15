@@ -14,28 +14,22 @@ type Props = {
 export default function DocsLayout({ children }: Props) {
   const docsMarkdownStyles = (theme: Theme) => ({
     h1: {
-      marginTop: 0,
-      marginBottom: theme.spacing(1),
+      marginY: theme.spacing(1),
     },
     h2: {
-      marginTop: 0,
-      marginBottom: theme.spacing(1),
+      marginY: theme.spacing(1),
     },
     h3: {
-      marginTop: 0,
-      marginBottom: theme.spacing(1),
+      marginY: theme.spacing(1),
     },
     h4: {
-      marginTop: 0,
-      marginBottom: theme.spacing(1),
+      marginY: theme.spacing(1),
     },
     h5: {
-      marginTop: 0,
-      marginBottom: theme.spacing(1),
+      marginY: theme.spacing(1),
     },
     h6: {
-      marginTop: 0,
-      marginBottom: theme.spacing(1),
+      marginY: theme.spacing(1),
     },
     figure: {
       margin: 0,
@@ -86,7 +80,7 @@ export default function DocsLayout({ children }: Props) {
     <>
       <GlobalStyles styles={docsMarkdownStyles} />
       <Layout>
-        <Box maxWidth={600} mx="auto" paddingY={4} paddingX={2.5}>
+        <Box maxWidth={600} mx="auto" paddingTop={1} paddingBottom={4} paddingX={2.5}>
           {children}
         </Box>
       </Layout>
