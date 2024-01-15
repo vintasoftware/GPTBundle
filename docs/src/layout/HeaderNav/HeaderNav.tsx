@@ -102,7 +102,7 @@ export default function HeaderNav() {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { md: 'none' } }}
+            sx={{ display: { md: 'none' } }}
           >
             <MenuIcon />
           </IconButton>
@@ -117,13 +117,25 @@ export default function HeaderNav() {
         onClose={handleDrawerToggle}
         PaperProps={{ style: { width: '90%', height: '100%' } }}
       >
-        <Box display="flex" justifyContent="flex-end" padding={1}>
+        <Box display="flex" justifyContent="space-between" alignItems="center" paddingY={1} paddingX={3}>
+          <Typography
+            variant="h6"
+            component="span"
+            sx={{
+              background: 'linear-gradient(#2D0FED, #9D3EC2)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
+          >
+            <a href="/">AI Form Toolkit</a>
+          </Typography>
           <IconButton onClick={handleDrawerToggle}>
             <CloseIcon />
           </IconButton>
         </Box>
 
         <Divider />
+
         <List>
           <ListItem>
             <Button href="/">Home</Button>
@@ -154,7 +166,7 @@ export default function HeaderNav() {
         <Divider />
 
         <List>
-          <ListItem>
+          <ListItem sx={{ maxWidth: 350, marginX: 'auto' }}>
             <Button fullWidth variant="contained" href="/tutorial/getting-started/">
               Install
             </Button>

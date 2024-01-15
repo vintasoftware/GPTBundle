@@ -9,6 +9,7 @@ const MuiThemeWrapper = ({ children }: { children: ReactNode }) => {
       MuiButton: {
         styleOverrides: {
           root: {
+            minWidth: 0, // Disable minimum width for buttons
             textTransform: 'none', // Disable auto-capitalization of button text
           },
         },
