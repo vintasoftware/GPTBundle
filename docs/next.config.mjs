@@ -29,7 +29,6 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   experimental: {
-    optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
     mdxRs: false,
   },
 };
