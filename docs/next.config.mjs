@@ -29,7 +29,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   experimental: {
-    optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
+    optimizePackageImports: ['@mui/material', '@mui/icons-material', '@mui/lab'],
     mdxRs: false,
   },
 };

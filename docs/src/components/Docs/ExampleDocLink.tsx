@@ -2,10 +2,10 @@
 
 import { Card, CardActionArea, Typography, Stack, Paper } from '@mui/material';
 
-import { grey } from '@mui/material/colors';
+import { blue, grey } from '@mui/material/colors';
 import { ExampleDataType } from '@/app/examples/examples-data';
 
-export function ExampleDocLink({ item, iconColor = grey[900] }: { item: ExampleDataType; iconColor?: string }) {
+export function ExampleDocLink({ item, iconColor = blue[600] }: { item: ExampleDataType; iconColor?: string }) {
   return (
     <Card key={item.title} elevation={0}>
       <CardActionArea href={item.href} sx={{ padding: 1 }}>

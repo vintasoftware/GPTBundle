@@ -1,9 +1,0 @@
-.footer {
-  height: rem(60px);
-}
-
-.inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}

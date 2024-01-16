@@ -1,10 +1,10 @@
 module.exports = {
-  extends: ['plugin:prettier/recommended', 'mantine'],
+  extends: ['plugin:prettier/recommended', 'plugin:@typescript-eslint/recommended'],
   env: {
     browser: true,
     es2021: true,
   },
-  plugins: ['react', 'testing-library'],
+  plugins: ['react', 'testing-library', '@typescript-eslint'],
   overrides: [
     {
       files: ['**/?(*.)+(spec|test).[jt]s?(x)'],
@@ -51,6 +51,12 @@ module.exports = {
         leadingUnderscore: 'require',
         format: null,
         modifiers: ['unused'],
+      },
+    ],
+    'no-restricted-imports': [
+      'error',
+      {
+        patterns: ['@mui/*/*/*'],
       },
     ],
   },

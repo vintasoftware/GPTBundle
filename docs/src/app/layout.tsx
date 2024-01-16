@@ -1,7 +1,5 @@
 import HolyLoader from 'holy-loader';
-import '@mantine/core/styles.css';
 import React, { ReactNode } from 'react';
-import { MantineProvider } from '@mantine/core';
 import { AIFormToolkitConfig } from '@ai-form-toolkit/client';
 import {
   customGenerateGPTFormAutofill,
@@ -9,7 +7,8 @@ import {
   AssistantArgsType,
   GeneratorArgsType,
 } from '@ai-form-toolkit/server';
-import { theme } from '@/theme';
+import MuiThemeWrapper from '@/MuiThemeWrapper';
+import MDXProviderWrapper from '@/MDXProviderWrapper';
 
 export const metadata = {
   title: `Build forms like it's ${Math.max(new Date().getFullYear(), 2024)} | AI Form Toolkit`,
@@ -45,7 +44,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           generateFormAutofillFn={myGenerateGPTFormAutofill}
           generateFormSchemaFn={myGenerateGPTFormSchema}
         />
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <MuiThemeWrapper>
+          <MDXProviderWrapper>{children}</MDXProviderWrapper>
+        </MuiThemeWrapper>
       </body>
     </html>
   );
