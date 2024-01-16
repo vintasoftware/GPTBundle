@@ -8,6 +8,7 @@ import {
   GeneratorArgsType,
 } from '@ai-form-toolkit/server';
 import MuiThemeWrapper from '@/MuiThemeWrapper';
+import MDXProviderWrapper from '@/MDXProviderWrapper';
 
 export const metadata = {
   title: `Build forms like it's ${Math.max(new Date().getFullYear(), 2024)} | AI Form Toolkit`,
@@ -43,7 +44,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           generateFormAutofillFn={myGenerateGPTFormAutofill}
           generateFormSchemaFn={myGenerateGPTFormSchema}
         />
-        <MuiThemeWrapper>{children}</MuiThemeWrapper>
+        <MuiThemeWrapper>
+          <MDXProviderWrapper>{children}</MDXProviderWrapper>
+        </MuiThemeWrapper>
       </body>
     </html>
   );

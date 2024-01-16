@@ -13,24 +13,6 @@ type Props = {
 
 export default function DocsLayout({ children }: Props) {
   const docsMarkdownStyles = (theme: Theme) => ({
-    h1: {
-      marginY: theme.spacing(1),
-    },
-    h2: {
-      marginY: theme.spacing(1),
-    },
-    h3: {
-      marginY: theme.spacing(1),
-    },
-    h4: {
-      marginY: theme.spacing(1),
-    },
-    h5: {
-      marginY: theme.spacing(1),
-    },
-    h6: {
-      marginY: theme.spacing(1),
-    },
     figure: {
       margin: 0,
     },
@@ -68,11 +50,6 @@ export default function DocsLayout({ children }: Props) {
       width: '100%',
       height: 'auto',
       border: `2px solid ${theme.palette.grey[200]}`,
-    },
-    '.doc-form-example': {
-      borderRadius: theme.shape.borderRadius,
-      border: `2px solid ${theme.palette.grey[200]}`,
-      padding: theme.spacing(1),
     },
   });
 
