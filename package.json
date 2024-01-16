@@ -55,8 +55,5 @@
     "typescript": "^5.3.3",
     "vite": "^5.0.10",
     "vite-plugin-dts": "^3.7.0"
-  },
-  "workspaces": [
-    "packages/*"
-  ]
+  }
 }

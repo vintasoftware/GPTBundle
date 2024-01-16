@@ -29,22 +29,18 @@ Both are stored at `packages/` directory.
 Set up Husky in your local git repository:
 
 ```bash
-npm run prepare
+pnpm run prepare
 ```
 
 ### Building
 
-For building locally, run `npm run build` or `npm run build:watch` for each project in `packages/` directory. For example:
+For building locally, run `build` or `build:watch` for each project. For example:
 
 ```bash
-cd packages/server/
-npm install
-npm run build:watch
+pnpm -F @ai-form-toolkit/server build:watch
 
 # in another terminal
-cd packages/client/
-npm install
-npm run build:watch
+pnpm -F @ai-form-toolkit/client build:watch
 ```
 
 ### Interactive Documentation
@@ -61,9 +57,7 @@ OPENAI_API_KEY=sk-...
 Run the docs project:
 
 ```bash
-cd docs/
-npm install
-npm run dev
+pnpm -F ai-form-toolkit-docs run dev
 ```
 
 Then open `http://localhost:3000` in your browser.
@@ -72,9 +66,9 @@ Then open `http://localhost:3000` in your browser.
 
 There are three available commands for running tests:
 
-1. `npm run test` or `npm test` – runs all test cases.
-2. `npm run test:cov` – runs all tests and generates a coverage report.
-3. `npm run test:watch` – runs all tests in watch mode.
+1. `pnpm run test` or `pnpm test` – runs all test cases.
+2. `pnpm run test:cov` – runs all tests and generates a coverage report.
+3. `pnpm run test:watch` – runs all tests in watch mode.
 
 NOTE: Running these commands in the root directory will trigger all tests from all packages.
 However, if you run them within a specific package directory, only the tests associated with that package will be executed.

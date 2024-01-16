@@ -5,8 +5,8 @@
     "./tests",
     ".eslintrc.js",
     "jest.config.js",
-    "test-setup.ts",
-    "test-setup-after-env.ts"
+    "test-setup.js",
+    "test-setup-after-env.js"
   ],
   "exclude": ["public", "node_modules", "dist", ".next"],
   "compilerOptions": {
