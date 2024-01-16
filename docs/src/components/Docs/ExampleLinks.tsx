@@ -6,7 +6,7 @@ export function ExampleLinks({ linksData }: { linksData: ExampleDataType[] }) {
   return (
     <Stack spacing={2} paddingBottom={2}>
       {linksData.map((item) => (
-        <ExampleDocLink item={item} />
+        <ExampleDocLink key={item.title} item={item} />
       ))}
     </Stack>
   );
