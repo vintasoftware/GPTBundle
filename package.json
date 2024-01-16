@@ -21,7 +21,9 @@
     "test": "jest",
     "test:cov": "jest --coverage",
     "test:watch": "jest --watch",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "build": "pnpm -F @ai-form-toolkit/server build && pnpm -F @ai-form-toolkit/client build",
+    "build:watch": "pnpm -F @ai-form-toolkit/server build:watch & pnpm -F @ai-form-toolkit/client build:watch"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",

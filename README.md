@@ -34,14 +34,7 @@ pnpm run prepare
 
 ### Building
 
-For building locally, run `build` or `build:watch` for each project. For example:
-
-```bash
-pnpm -F @ai-form-toolkit/server build:watch
-
-# in another terminal
-pnpm -F @ai-form-toolkit/client build:watch
-```
+For building locally, run `pnpm run build` or `pnpm run build:watch`.
 
 ### Interactive Documentation
 
