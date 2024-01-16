@@ -1,5 +1,6 @@
-import { Button, Grid } from '@mantine/core';
-import Link from 'next/link';
+import { Button, Stack } from '@mui/material';
+import KeyboardDoubleArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftOutlined';
+import KeyboardDoubleArrowRightOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowRightOutlined';
 import { BasicSingleFieldForm, BasicMultiFieldForm } from './components';
 
 # Form Assistant Tutorial
@@ -21,7 +22,7 @@ function Form() {
 
 You can create a button to autofill the recipe field with the `useFormAssistant` hook:
 
-```jsx {5-9,16}
+```jsx {5-9,12}
 function FormWithAssistant() {
   const [formValues, setFormValues] = useState({
     recipe: 'Hummus quick recipe:\nIngredients: ...\nDirections: ...',
@@ -152,15 +153,11 @@ Check [the examples](/examples/#form-assistant-examples) for some ideas.
 
 Use the [advanced settings](/reference/settings/) to override prompts, AI models, etc.
 
-<Grid>
-  <Grid.Col span={6}>
-    <Button fullWidth variant="outline" component={Link} href="/tutorial/form-generation/">
-      « Form Generation
-    </Button>
-  </Grid.Col>
-  <Grid.Col span={6}>
-    <Button fullWidth variant="outline" component={Link} href="/examples/">
-      All Examples »
-    </Button>
-  </Grid.Col>
-</Grid>
+<Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
+  <Button variant="outlined" startIcon={<KeyboardDoubleArrowLeftOutlinedIcon />} href="/tutorial/form-generation/">
+    <span>Form Generation</span>
+  </Button>
+  <Button variant="outlined" endIcon={<KeyboardDoubleArrowRightOutlinedIcon />} href="/examples/">
+    <span>All Examples</span>
+  </Button>
+</Stack>

@@ -1,15 +1,15 @@
 'use client';
 
-import { Text, Box, Button, Textarea, Title, LoadingOverlay, Loader, Center, Code } from '@mantine/core';
+import { useState } from 'react';
+import { TextField, Typography, Stack } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
+import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
 import { RJSFSchema } from '@rjsf/utils';
 import { IChangeEvent } from '@rjsf/core';
-import { useState } from 'react';
-import { IconForms } from '@tabler/icons-react';
 
 import { useGeneratedFormSchema } from '@ai-form-toolkit/client';
+import LoadingBackdrop from '@/components/Examples/LoadingBackdrop';
 import SchemaFormDemo from '@/components/Forms/SchemaFormDemo';
-
-import '../styles.css';
 
 export default function GenericSchemaGenExample() {
   const [content, setContent] = useState('');
@@ -22,59 +22,52 @@ export default function GenericSchemaGenExample() {
   };
 
   return (
-    <>
-      <Box pos="relative" mb="md">
-        <LoadingOverlay
-          visible={isLoading}
-          loaderProps={{
-            children: (
-              <>
-                <Center>
-                  <Loader size={16} mr={8} />
-                  <Text inherit>Loading (may take up to 2 minutes)...</Text>
-                </Center>
-              </>
-            ),
-          }}
-        />
-        <Title order={2} mb="xs">
-          Generate checklists from content:
-        </Title>
-        <Text mb="xs">
-          Code at <Code>docs/src/app/examples/generation/generic/page.tsx</Code>
-        </Text>
-        <Textarea
+    <Stack spacing={2}>
+      <Stack spacing={2}>
+        <LoadingBackdrop open={isLoading} />
+
+        <Typography variant="h4">Generate checklists from content:</Typography>
+        <Typography variant="body1">
+          Code at <code>docs/src/app/examples/generation/generic/page.tsx</code>
+        </Typography>
+
+        <TextField
+          multiline
+          fullWidth
+          name="content"
           label="Content"
-          description="Content to use for generating the form"
+          helperText="Content to use for generating the form"
           placeholder="Put text or HTML content here..."
-          autosize
           minRows={6}
           value={content}
           onChange={(event) => setContent(event.currentTarget.value)}
-          mb="md"
         />
-        <Textarea
+        <TextField
+          multiline
+          fullWidth
+          name="prompt"
           label="Prompt"
-          description="Prompt to use for generating the form"
+          helperText="Prompt to use for generating the form"
           placeholder="e.g. generate a 5 question exam to ensure the reader learned this content"
           value={prompt}
           onChange={(event) => setPrompt(event.currentTarget.value)}
-          mb="md"
         />
-      </Box>
-      <Button
-        leftSection={isLoading ? <Loader color="blue" size={14} /> : <IconForms size={14} />}
-        variant="outline"
+      </Stack>
+
+      <LoadingButton
+        variant="outlined"
+        loadingPosition="start"
+        loading={isLoading}
+        startIcon={<ListAltOutlinedIcon />}
         onClick={() => {
           setIsLoading(true);
           generateFormSchema(content, prompt).finally(() => setIsLoading(false));
         }}
-        disabled={isLoading}
-        mb="md"
+        sx={{ alignSelf: 'flex-end' }}
       >
         Generate Form
-      </Button>
+      </LoadingButton>
       <SchemaFormDemo formSchema={formSchema} uiSchema={uiSchema} onSubmit={onSubmit} />
-    </>
+    </Stack>
   );
 }

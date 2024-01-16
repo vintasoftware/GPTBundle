@@ -1,11 +1,13 @@
-import { Stack } from '@mantine/core';
+import { Stack } from '@mui/material';
 import { ExampleDocLink } from './ExampleDocLink';
 import { ExampleDataType } from '@/app/examples/examples-data';
 
 export function ExampleLinks({ linksData }: { linksData: ExampleDataType[] }) {
-  return linksData.map((item) => (
-    <Stack>
-      <ExampleDocLink item={item} />
+  return (
+    <Stack spacing={2} paddingBottom={2}>
+      {linksData.map((item) => (
+        <ExampleDocLink item={item} />
+      ))}
     </Stack>
-  ));
+  );
 }

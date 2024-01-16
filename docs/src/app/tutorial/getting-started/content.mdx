@@ -1,5 +1,5 @@
-import { Button, Grid } from '@mantine/core';
-import Link from 'next/link';
+import { Box, Button } from '@mui/material';
+import KeyboardDoubleArrowRightOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowRightOutlined';
 
 # Getting Started
 
@@ -55,11 +55,8 @@ Advanced settings to override prompts, AI models, etc. [are available too](/refe
 - [Form Generation](/tutorial/form-generation/) - generate forms from textual data
 - [Form Assistant](/tutorial/form-assistant/) - add autofill capabilities to forms
 
-<Grid>
-  <Grid.Col span={6}></Grid.Col>
-  <Grid.Col span={6}>
-    <Button fullWidth variant="outline" component={Link} href="/tutorial/form-generation/">
-      Form Generation »
-    </Button>
-  </Grid.Col>
-</Grid>
+<Box display="flex" justifyContent="flex-end">
+  <Button variant="outlined" endIcon={<KeyboardDoubleArrowRightOutlinedIcon />} href="/tutorial/form-generation/">
+    <span>Form Generation</span>
+  </Button>
+</Box>
