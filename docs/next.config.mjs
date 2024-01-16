@@ -29,6 +29,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   experimental: {
+    optimizePackageImports: ['@mui/material', '@mui/icons-material'],
     mdxRs: false,
   },
 };
