@@ -27,6 +27,7 @@ export default function DocsLayout({ children }: Props) {
       fontWeight: 700,
       color: '#E9D5FF',
     },
+    // TODO: Use CodeBlock component instead. Configure it on MDXProviderWrapper.
     code: {
       counterReset: 'line',
       fontSize: '0.8125rem',
