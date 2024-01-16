@@ -1,9 +1,9 @@
 import validator from '@rjsf/validator-ajv8';
 import { RJSFSchema, UiSchema } from '@rjsf/utils';
-import { CodeHighlightTabs } from '@mantine/code-highlight';
 import { FormProps, IChangeEvent } from '@rjsf/core';
 import SchemaForm from '@rjsf/mui';
 import { Stack, Typography } from '@mui/material';
+import SchemaJsonTabs from './SchemaJsonTabs';
 
 export default function SchemaFormDemo({
   formSchema,
@@ -26,21 +26,7 @@ export default function SchemaFormDemo({
 
         <Stack spacing={2} paddingTop={1}>
           <Typography variant="h5">Actual form code:</Typography>
-          <CodeHighlightTabs
-            code={[
-              {
-                fileName: 'JSONSchema.json',
-                code: JSON.stringify(formSchema || {}, null, 2),
-                language: 'json',
-              },
-              {
-                fileName: 'UISchema.json',
-                code: JSON.stringify(uiSchema || {}, null, 2),
-                language: 'json',
-              },
-            ]}
-            mb="md"
-          />
+          <SchemaJsonTabs formSchema={formSchema} uiSchema={uiSchema} />
         </Stack>
       </>
     )

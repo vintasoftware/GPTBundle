@@ -2,6 +2,7 @@
 
 import { ReactNode } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { CssBaseline } from '@mui/material';
 
 const MuiThemeWrapper = ({ children }: { children: ReactNode }) => {
   const theme = createTheme({
@@ -14,10 +15,22 @@ const MuiThemeWrapper = ({ children }: { children: ReactNode }) => {
           },
         },
       },
+      MuiTab: {
+        styleOverrides: {
+          root: {
+            textTransform: 'none', // Disable auto-capitalization of tab text
+          },
+        },
+      },
     },
   });
 
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      {children}
+    </ThemeProvider>
+  );
 };
 
 export default MuiThemeWrapper;

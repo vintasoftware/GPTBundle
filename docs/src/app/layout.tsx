@@ -1,7 +1,5 @@
 import HolyLoader from 'holy-loader';
-import '@mantine/core/styles.css';
 import React, { ReactNode } from 'react';
-import { MantineProvider } from '@mantine/core';
 import { AIFormToolkitConfig } from '@ai-form-toolkit/client';
 import {
   customGenerateGPTFormAutofill,
@@ -45,9 +43,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           generateFormAutofillFn={myGenerateGPTFormAutofill}
           generateFormSchemaFn={myGenerateGPTFormSchema}
         />
-        <MantineProvider>
-          <MuiThemeWrapper>{children}</MuiThemeWrapper>
-        </MantineProvider>
+        <MuiThemeWrapper>{children}</MuiThemeWrapper>
       </body>
     </html>
   );

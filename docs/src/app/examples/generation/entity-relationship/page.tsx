@@ -12,8 +12,6 @@ import { useGeneratedFormSchema } from '@ai-form-toolkit/client';
 import LoadingBackdrop from '@/components/Examples/LoadingBackdrop';
 import SchemaFormDemo from '@/components/Forms/SchemaFormDemo';
 
-import '../styles.css';
-
 export default function ERSchemaGenExample() {
   const defaultContent = dedent`
   erDiagram

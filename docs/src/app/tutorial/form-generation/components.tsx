@@ -3,9 +3,9 @@
 import { useState } from 'react';
 import { RJSFSchema } from '@rjsf/utils';
 import validator from '@rjsf/validator-ajv8';
-import { CodeHighlightTabs } from '@mantine/code-highlight';
 import SchemaForm from '@rjsf/mui';
 import { Button, Paper, Stack, TextField } from '@mui/material';
+import SchemaJsonTabs from '@/components/Forms/SchemaJsonTabs';
 
 export function BasicInputForm() {
   const [content, setContent] = useState('Name: ...\nAge: ...');
@@ -66,21 +66,5 @@ export function BasicGeneratedForm() {
 }
 
 export function BasicGeneratedSchemas() {
-  return (
-    <CodeHighlightTabs
-      code={[
-        {
-          fileName: 'JSONSchema.json',
-          code: JSON.stringify(formSchema || {}, null, 2),
-          language: 'json',
-        },
-        {
-          fileName: 'UISchema.json',
-          code: JSON.stringify(uiSchema || {}, null, 2),
-          language: 'json',
-        },
-      ]}
-      mb="md"
-    />
-  );
+  return <SchemaJsonTabs formSchema={formSchema} uiSchema={uiSchema} />;
 }
