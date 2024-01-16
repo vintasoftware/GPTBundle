@@ -1,8 +1,8 @@
-import { RJSFSchema, UiSchema } from '@rjsf/utils';
-import { Box, Tab } from '@mui/material';
-import { TabContext, TabList, TabPanel } from '@mui/lab';
-import { CopyBlock } from 'react-code-blocks';
 import { SyntheticEvent, useState } from 'react';
+import { Box, Tab } from '@mui/material';
+import { atomOneLight, CopyBlock } from 'react-code-blocks';
+import { RJSFSchema, UiSchema } from '@rjsf/utils';
+import { TabContext, TabList, TabPanel } from '@mui/lab';
 
 enum TabValue {
   form = 'form',
@@ -22,6 +22,9 @@ const SchemaJsonTabs = ({ formSchema, uiSchema }: Props) => {
   };
 
   return (
+    /* INFO: There are warnings in the console about the copied/codeBlock props.
+    This is a known issue with react-code-blocks.
+    See: https://github.com/rajinwonderland/react-code-blocks/issues/138 */
     <Box sx={{ width: '100%', fontFamily: 'monospace', fontSize: '0.8125rem' }}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -36,10 +39,17 @@ const SchemaJsonTabs = ({ formSchema, uiSchema }: Props) => {
             text={JSON.stringify(formSchema || {}, null, 2)}
             language="json"
             showLineNumbers={false}
+            theme={atomOneLight}
           />
         </TabPanel>
         <TabPanel value={TabValue.ui}>
-          <CopyBlock codeBlock text={JSON.stringify(uiSchema || {}, null, 2)} language="json" showLineNumbers={false} />
+          <CopyBlock
+            codeBlock
+            text={JSON.stringify(uiSchema || {}, null, 2)}
+            language="json"
+            showLineNumbers={false}
+            theme={atomOneLight}
+          />
         </TabPanel>
       </TabContext>
     </Box>
