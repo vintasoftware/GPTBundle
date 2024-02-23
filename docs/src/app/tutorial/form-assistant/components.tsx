@@ -17,11 +17,12 @@ export function BasicSingleFieldForm() {
       <Stack spacing={3} paddingX={2} paddingY={3}>
         <TextField
           multiline
+          disabled
           value={formValues.recipe}
           onChange={(e) => setFormValues({ ...formValues, recipe: e.target.value })}
         />
 
-        <Button variant="outlined" sx={{ alignSelf: 'flex-start' }}>
+        <Button variant="outlined" disabled sx={{ alignSelf: 'flex-start' }}>
           Autofill with GPT-4
         </Button>
       </Stack>
@@ -41,22 +42,25 @@ export function BasicMultiFieldForm() {
       <Stack spacing={3} paddingX={2} paddingY={3}>
         <TextField
           multiline
+          disabled
           label="Recipe"
           value={formValues.recipe}
           onChange={(e) => setFormValues({ ...formValues, recipe: e.target.value })}
         />
         <TextField
           label="Duration"
+          disabled
           value={formValues.duration}
           onChange={(e) => setFormValues({ ...formValues, duration: e.target.value })}
         />
         <TextField
           label="Cost"
+          disabled
           value={formValues.cost}
           onChange={(e) => setFormValues({ ...formValues, duration: e.target.value })}
         />
 
-        <Button variant="outlined" sx={{ alignSelf: 'flex-start' }}>
+        <Button variant="outlined" disabled sx={{ alignSelf: 'flex-start' }}>
           Autofill with GPT-4
         </Button>
       </Stack>

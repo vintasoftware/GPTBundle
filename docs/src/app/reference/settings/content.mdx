@@ -1,3 +1,6 @@
+import { Stack, Box, Button } from '@mui/material';
+import KeyboardDoubleArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftOutlined';
+
 # Advanced settings
 
 Use the advanced settings to override prompts, AI models, etc.
@@ -93,3 +96,9 @@ export interface AssistantArgsType {
 ```
 
 Check `packages/server/src/actions/form-assistant.tsx` implementation for more details.
+
+<Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
+  <Button variant="outlined" startIcon={<KeyboardDoubleArrowLeftOutlinedIcon />} href="/">
+    <span>Getting Started</span>
+  </Button>
+</Stack>

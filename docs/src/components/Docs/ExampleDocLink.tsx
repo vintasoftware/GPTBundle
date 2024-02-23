@@ -8,7 +8,7 @@ import { ExampleDataType } from '@/app/examples/examples-data';
 export function ExampleDocLink({ item, iconColor = blue[600] }: { item: ExampleDataType; iconColor?: string }) {
   return (
     <Card key={item.title} elevation={0}>
-      <CardActionArea href={item.href} sx={{ padding: 1 }}>
+      <CardActionArea href={item.href} sx={{ padding: 1, backgroundColor: '#0a061a' }}>
         <Stack direction="row" spacing={2}>
           <Paper
             elevation={0}
@@ -28,7 +28,7 @@ export function ExampleDocLink({ item, iconColor = blue[600] }: { item: ExampleD
 
           <Stack>
             <Typography variant="body2">{item.title}</Typography>
-            <Typography variant="caption" color={grey[600]}>
+            <Typography variant="caption" sx={{ color: '#757575' }}>
               {item.description}
             </Typography>
           </Stack>

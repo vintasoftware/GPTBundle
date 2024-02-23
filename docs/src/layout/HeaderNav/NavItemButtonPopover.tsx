@@ -1,9 +1,10 @@
 import React from 'react';
-import { Button, Divider, Grid, Popover, Stack, Typography } from '@mui/material';
+import { Box, Button, Divider, Grid, Popover, Stack, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { ExampleDataType } from '@/app/examples/examples-data';
 import { ExampleDocLink } from '@/components/Docs/ExampleDocLink';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 export enum PopoverType {
   generation = 'generation',
@@ -13,7 +14,6 @@ export enum PopoverType {
 interface Props {
   name: string;
   examples: ExampleDataType[];
-  tutorialLink: string;
   type: PopoverType;
   open: boolean;
   anchorEl: HTMLElement | null;
@@ -21,18 +21,21 @@ interface Props {
   onPopoverOpen: (event: React.MouseEvent<HTMLElement>, popoverType: PopoverType) => void;
 }
 
-const NavItemButtonPopover = ({
-  name,
-  examples,
-  tutorialLink,
-  type,
-  open,
-  anchorEl,
-  onPopoverClose,
-  onPopoverOpen,
-}: Props) => (
+const NavItemButtonPopover = ({ name, examples, type, open, anchorEl, onPopoverClose, onPopoverOpen }: Props) => (
   <>
-    <Button endIcon={<KeyboardArrowDownIcon />} onClick={(event) => onPopoverOpen(event, type)}>
+    <Button
+      endIcon={<KeyboardArrowDownIcon />}
+      onClick={(event) => onPopoverOpen(event, type)}
+      style={{
+        letterSpacing: '0.01em',
+        fontSize: '16px',
+        fontWeight: 400,
+        lineHeight: '1.111em',
+        textDecoration: 'none',
+        transition: 'color 0.35s',
+        color: 'rgb(255 255 255)',
+      }}
+    >
       {name}
     </Button>
 
@@ -49,8 +52,8 @@ const NavItemButtonPopover = ({
         horizontal: 'center',
       }}
     >
-      <Stack paddingX={2} width={600}>
-        <Typography sx={{ p: 2 }}>{name} Examples</Typography>
+      <Stack paddingX={2} width={600} sx={{ backgroundColor: '#0a061a' }}>
+        <Typography sx={{ p: 2 }}>Explore potential uses of GPTBundle*</Typography>
         <Divider />
         <Grid container paddingY={2}>
           {examples.map((example) => (
@@ -68,16 +71,26 @@ const NavItemButtonPopover = ({
         justifyContent="space-between"
         paddingX={4}
         paddingY={2}
-        sx={{ backgroundColor: grey[100] }}
+        sx={{ backgroundColor: '#1d1a27' }}
       >
         <Stack>
-          <Typography variant="body2">Tutorial</Typography>
+          <Typography variant="body2">OpenAI API key is required*</Typography>
           <Typography variant="caption" color={grey[600]}>
-            Learn how to add {name} to your React app!
+            <Box sx={{ maxWidth: '380px' }}>
+              Please note that a full functionality access requires an OpenAI API key. This demonstration is limited to
+              showing visual examples of the forms.
+            </Box>
           </Typography>
         </Stack>
-        <Button variant="outlined" href={tutorialLink} onClick={onPopoverClose}>
-          Read the docs
+        <Button
+          sx={{ height: '40px' }}
+          startIcon={<GitHubIcon />}
+          variant="outlined"
+          target={'_blank'}
+          href={'https://github.com'}
+          onClick={onPopoverClose}
+        >
+          Visit GitHub
         </Button>
       </Stack>
     </Popover>

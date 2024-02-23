@@ -3,16 +3,16 @@ import KeyboardDoubleArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardDou
 import KeyboardDoubleArrowRightOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowRightOutlined';
 import { BasicInputForm, BasicGeneratedForm, BasicGeneratedSchemas } from './components';
 
-# Form Generation Tutorial
+## AI Form Creators
 
-**AI Form Toolkit** integrates with [OpenAI's GPT models](https://platform.openai.com/docs/guides/text-generation)
+**GPTBundle** integrates with [OpenAI's GPT models](https://platform.openai.com/docs/guides/text-generation)
 to generate JSON schemas, which are then used to generate forms via [react-jsonschema-form](https://rjsf-team.github.io/react-jsonschema-form/docs/).
 
-**AI Form Toolkit** can generate forms from any kind of text content: an article, a task description, a legal contract, a list of topics, etc.
+It can generate forms from any kind of text content: an article, a task description, a legal contract, a list of topics, etc.
 Even if the text is code, like [Mermaid diagrams](https://mermaid.js.org/).
-As long as it's text, and the AI can understand it, **AI Form Toolkit** can generate a form for it.
+As long as it's text, and the AI can understand it, **GPTBundle** can generate a form for it.
 
-## Generating a form
+### Generating a form
 
 The best way to understand the form generation is to see it in action, the code and the generated forms:
 
@@ -64,9 +64,9 @@ from the schemas below. In other words, the AI generated the following schemas t
 
 Note the AI produces a schema for the form logic, and another schema for the form UI, compatible with each other.
 
-## Usage
+### Usage
 
-**AI Form Toolkit** provides a React hook, `useGeneratedFormSchema`, which takes no arguments.
+**GPTBundle** provides a React hook, `useGeneratedFormSchema`, which takes no arguments.
 The hook returns a function `generateFormSchema` and references to the `formSchema` and `uiSchema`:
 
 ```tsx
@@ -88,26 +88,3 @@ In our example, we use the `content` and `prompt` from the user input:
   Generate Form
 </button>
 ```
-
-## Examples
-
-Get creative!
-
-- You can pre-fill the content and prompt and enable the user to edit only part of it.
-- Perhaps fill the content based on the application context, and let the user only set the prompt.
-- Or even set both depending on what your user is doing.
-
-Check [the examples](/examples/#form-generation-examples) for some ideas.
-
-## Advanced settings
-
-Use the [advanced settings](/reference/settings/) to override prompts, AI models, etc.
-
-<Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
-  <Button variant="outlined" startIcon={<KeyboardDoubleArrowLeftOutlinedIcon />} href="/tutorial/getting-started/">
-    <span>Getting Started</span>
-  </Button>
-  <Button variant="outlined" endIcon={<KeyboardDoubleArrowRightOutlinedIcon />} href="/tutorial/form-assistant/">
-    <span>Form Assistant</span>
-  </Button>
-</Stack>

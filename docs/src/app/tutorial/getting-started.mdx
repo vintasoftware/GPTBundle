@@ -1,0 +1,84 @@
+import { Box, Button } from '@mui/material';
+import KeyboardDoubleArrowRightOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowRightOutlined';
+import FormExamples from './../examples/page';
+import diagram from './../../assets/gptbundle-diagram.png';
+import features from './../../assets/gptbundle-features.png';
+
+# GPTBundle Documentation
+
+## What is GPTBundle?
+GPTBundle, a React application toolkit, harnesses AI to convert textual content into structured forms and delivers advanced autofill suggestions. 
+Leveraging GPT-4 from OpenAI's API simplifies form development, accelerating the process and enhancing intuitiveness.
+
+<Box
+  component="img"
+  sx={{
+    width: '100%',
+    border: 'none',
+  }}
+  alt="diagram"
+  src={diagram.src}
+/>
+
+## Community
+- Contributing - GPTBundle is open source because we believe that streamlining AI is based on transparency. If you are interested contributing to GPTBundle, [check out our GitHub page.](https://github.com/vintasoftware/GPTBundle)
+- Reddit - Join the conversation by [checking us out on Reddit]().
+- Support - This project is primarily maintained by Vinta Software. If you require assistance, our team is ready and willing to help. Please feel free to reach out to us via email at [gptbundle@vintasoftware.com.](mailto:gptbundle@vintasoftware.com) 
+
+## Main Features
+**GPTBundle** facilitates adding AI capabilities to forms in React applications. Some of the main GPTBundle features include:
+
+<Box
+  component="img"
+  sx={{
+    width: '100%',
+    border: 'none',
+  }}
+  alt="features"
+  src={features.src}
+  target="_blank"
+/>
+
+You can find [a list of all examples here.](/examples) Feel free to explore all the features and download the source code to examine how it functions deeply.
+
+- [AI Form Creators](/#ai-form-creators) - From existing content: checklists, surveys, exams, data collection, you name it!
+- [AI Form Assistant](/#ai-form-assistant) - Your product forms with AI-powered autofill capabilities.
+- UI Libraries Integration - Effortlessly integrate with MUI, Ant.Design, and more through react-jsonschema-form, ensuring smooth, and consistent UI across your projects.
+
+
+## Getting Started
+### Installation
+
+```bash
+npm install @ai-form-toolkit/client @ai-form-toolkit/server
+```
+
+### Configuration
+
+Set your `OPENAI_API_KEY` in the environment variables (`.env.local` [for Next.js](https://nextjs.org/docs/pages/building-your-application/configuring/environment-variables)).
+If you don't have a key, get one from your [OpenAI account](https://platform.openai.com/account/api-keys):
+
+```txt
+OPENAI_API_KEY=...
+```
+
+Use the `AIFormToolkitConfig` to provide the action functions from server package to the client-side.
+In Next.js, do that in your [root layout](https:/nextjs.org/docs/app/api-reference/file-conventions/layout):
+
+```jsx {8-11}
+import { AIFormToolkitConfig } from '@ai-form-toolkit/client';
+import { generateGPTFormAutofill, generateGPTFormSchema } from '@ai-form-toolkit/server';
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        <AIFormToolkitConfig
+          generateFormAutofillFn={generateGPTFormAutofill}
+          generateFormSchemaFn={generateGPTFormSchema}
+        />
+      </body>
+    </html>
+  );
+}
+```

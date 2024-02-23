@@ -1,8 +1,8 @@
-# AI Form Toolkit
+# GPTBundle
 
 Build and enhance your React forms with Artificial Intelligence. Integrated with Next.js server actions for maximum productivity.
 
-AI Form Toolkit facilitates adding AI capabilities to forms in React applications:
+GPTBundle facilitates adding AI capabilities to forms in React applications:
 
 - For your Product – autogenerate forms from existing content: checklists, surveys, exams, data collection, you name it!
 - For your Users – help users fill your product forms with AI-powered autofill capabilities.
@@ -15,7 +15,7 @@ Note that hosted examples are not interactive. See [Building](#building) below t
 
 ## Project Structure
 
-This is a multipackage monorepo that holds the two NPM projects necessary for AI Form Toolkit:
+This is a multipackage monorepo that holds the two NPM projects necessary for GPTBundle:
 
 - `@ai-form-toolkit/client`
 - `@ai-form-toolkit/server`

@@ -1,6 +1,6 @@
 import { SyntheticEvent, useState } from 'react';
 import { Box, Tab } from '@mui/material';
-import { atomOneLight, CopyBlock } from 'react-code-blocks';
+import { atomOneDark, CopyBlock } from 'react-code-blocks';
 import { RJSFSchema, UiSchema } from '@rjsf/utils';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 
@@ -39,7 +39,7 @@ const SchemaJsonTabs = ({ formSchema, uiSchema }: Props) => {
             text={JSON.stringify(formSchema || {}, null, 2)}
             language="json"
             showLineNumbers={false}
-            theme={atomOneLight}
+            theme={atomOneDark}
           />
         </TabPanel>
         <TabPanel value={TabValue.ui}>
@@ -48,7 +48,7 @@ const SchemaJsonTabs = ({ formSchema, uiSchema }: Props) => {
             text={JSON.stringify(uiSchema || {}, null, 2)}
             language="json"
             showLineNumbers={false}
-            theme={atomOneLight}
+            theme={atomOneDark}
           />
         </TabPanel>
       </TabContext>

@@ -1,14 +1,18 @@
 import { generationLinksData, assistantLinksData } from '@/app/examples/examples-data';
 import { ExampleLinks } from '@/components/Docs/ExampleLinks';
+import { Stack, Box, Button } from '@mui/material';
+import KeyboardDoubleArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftOutlined';
 
 # All Examples
 
 Code for examples is at `docs/src/app/examples`
 
-## Form Generation Examples
+## GPTBundle Features List
 
 <ExampleLinks linksData={generationLinksData} />
 
-## Form Assistant Examples
-
-<ExampleLinks linksData={assistantLinksData} />
+<Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
+  <Button variant="outlined" startIcon={<KeyboardDoubleArrowLeftOutlinedIcon />} href="/">
+    <span>Getting Started</span>
+  </Button>
+</Stack>

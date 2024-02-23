@@ -3,11 +3,11 @@ import KeyboardDoubleArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardDou
 import KeyboardDoubleArrowRightOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowRightOutlined';
 import { BasicSingleFieldForm, BasicMultiFieldForm } from './components';
 
-# Form Assistant Tutorial
+## Ai Form Assistant 
 
-**AI Form Toolkit** has tools to enhance your application's forms with an AI assistant that autofills form fields.
+**GPTBundle** has tools to enhance your application's forms with an AI assistant that autofills form fields.
 
-## Autofill a single field
+### Autofill a single field
 
 Suppose you have a form like this:
 
@@ -48,7 +48,7 @@ After autofilling, the form will look like this:
 
 <BasicSingleFieldForm />
 
-## Fill multiple fields
+### Fill multiple fields
 
 You can also fill multiple fields based on the field names and values,
 and context about the form like page title and form title.
@@ -139,25 +139,18 @@ const { fillFields } = useFormAssistant({
 });
 ```
 
-## Examples
+### Field Assistant Examples
 
-Get creative!
+Get creative! Check [the examples](/examples/assistant/field-assistant/) for some ideas:
 
 - You can add a button next to certain fields to trigger the AI assistant to fill only that field.
 - You can add a button to autofill the whole form based on what's already filled and the form field names.
 - You can offer the autofill if the user is idle for a few seconds or moving the cursor out of the form.
 
-Check [the examples](/examples/#form-assistant-examples) for some ideas.
-
 ## Advanced settings
 
 Use the [advanced settings](/reference/settings/) to override prompts, AI models, etc.
+Pass custom functions to `AIFormToolkitConfig` to override default settings.
 
-<Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
-  <Button variant="outlined" startIcon={<KeyboardDoubleArrowLeftOutlinedIcon />} href="/tutorial/form-generation/">
-    <span>Form Generation</span>
-  </Button>
-  <Button variant="outlined" endIcon={<KeyboardDoubleArrowRightOutlinedIcon />} href="/examples/">
-    <span>All Examples</span>
-  </Button>
-</Stack>
+Supported models are the ones from OpenAI that support JSON input and output.
+[Check all OpenAI models](https://platform.openai.com/docs/models).

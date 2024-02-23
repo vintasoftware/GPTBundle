@@ -10,6 +10,9 @@ const MDXProviderWrapper = ({ children }: { children: ReactNode }) => {
     h2: (props: HTMLAttributes<HTMLElement>) => <Typography component="h2" variant="h5" marginY={2} {...props} />,
     h3: (props: HTMLAttributes<HTMLElement>) => <Typography component="h3" variant="h6" marginY={2} {...props} />,
     p: (props: HTMLAttributes<HTMLElement>) => <Typography component="p" variant="body1" marginY={2} {...props} />,
+    a: (props: HTMLAttributes<HTMLElement>) => (
+      <Typography component="a" variant="body1" marginY={2} style={{ color: '#00f0ff', fontWeight: 600 }} {...props} />
+    ),
   };
 
   return <MDXProvider components={components}>{children}</MDXProvider>;

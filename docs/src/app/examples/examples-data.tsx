@@ -17,54 +17,45 @@ export interface ExampleDataType {
 
 export const generationLinksData: ExampleDataType[] = [
   {
+    icon: TipsAndUpdatesOutlinedIcon,
+    title: 'AI Form Assistant',
+    description:
+      'A GPT-4 companion that automates form filling, generates custom forms via prompts, and polishes text for improved clarity and engagement, all with minimal input.',
+    href: '/examples/assistant/field-assistant',
+  },
+  {
+    icon: RocketLaunchOutlinedIcon,
+    title: 'Dynamic Form Creator',
+    description:
+      'Streamline user data collection with dynamic form generation and AI-powered field prediction, boosting efficiency and accuracy.',
+    href: '/examples/generation/generic',
+  },
+  {
     icon: GavelOutlinedIcon,
-    title: 'Forms for filling contracts',
-    description: 'Generate forms for data collection from existing contracts',
+    title: 'Legal Contracts Creator',
+    description:
+      "Instantly generate and customize legal documents with GPT's AI, ensuring accuracy and compliance without the hassle.",
     href: '/examples/generation/legal',
   },
   {
+    icon: WorkspacePremiumOutlinedIcon,
+    title: 'Exam Creator',
+    description:
+      'Generate a theoretical evaluation form with a list of questions based on subject topics, technical content, or any information provided along with a prompt.',
+    href: '/examples/generation/exam',
+  },
+  {
     icon: ChecklistOutlinedIcon,
-    title: 'Checklists from content',
-    description: 'Generate checklist forms from existing content',
+    title: 'Checklist Creator',
+    description:
+      'Prepare an automatic step-by-step checklist based on any piece of content and fully functional checkmark buttons.',
     href: '/examples/generation/checklist',
   },
   {
     icon: AccountTreeOutlinedIcon,
-    title: 'Forms from ER diagrams',
-    description: 'Generate forms from Mermaid ER diagrams',
+    title: 'ER Diagram-Based Form Creation',
+    description:
+      'Transform complex Mermaid ER diagrams into forms effortlessly, enabling clear input and representation of complex data.',
     href: '/examples/generation/entity-relationship',
-  },
-  {
-    icon: WorkspacePremiumOutlinedIcon,
-    title: 'Exam from topics',
-    description: 'Generate exams from a list of topics or content',
-    href: '/examples/generation/exam',
-  },
-  {
-    icon: RocketLaunchOutlinedIcon,
-    title: 'Forms from any content',
-    description: 'Generate forms from any content with GPT-4',
-    href: '/examples/generation/generic',
-  },
-];
-
-export const assistantLinksData: ExampleDataType[] = [
-  {
-    icon: TipsAndUpdatesOutlinedIcon,
-    title: 'Enhance text Assistant',
-    description: 'Enhance text with GPT-4',
-    href: '/examples/assistant/single-field-assistant',
-  },
-  {
-    icon: PsychologyOutlinedIcon,
-    title: 'Fill form Assistant',
-    description: 'Autofill forms with GPT-4',
-    href: '/examples/assistant/multi-field-assistant',
-  },
-  {
-    icon: FiberSmartRecordOutlinedIcon,
-    title: 'Generate then fill form',
-    description: 'Autofill generated forms with GPT-4',
-    href: '/examples/assistant/gen-with-assistant',
   },
 ];

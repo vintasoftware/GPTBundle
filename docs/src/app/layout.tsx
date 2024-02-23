@@ -11,7 +11,7 @@ import MuiThemeWrapper from '@/MuiThemeWrapper';
 import MDXProviderWrapper from '@/MDXProviderWrapper';
 
 export const metadata = {
-  title: `Build forms like it's ${Math.max(new Date().getFullYear(), 2024)} | AI Form Toolkit`,
+  title: `Build forms like it's ${Math.max(new Date().getFullYear(), 2024)} | GPTBundle`,
   description: 'Toolkit to generate and enhance web forms using AI.',
 };
 
@@ -35,7 +35,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
-        <link rel="shortcut icon" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.webp" />
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no" />
       </head>
       <body>
