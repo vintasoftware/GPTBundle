@@ -17,6 +17,7 @@
     "@mui/icons-material": "^5.15.4",
     "@mui/lab": "^5.0.0-alpha.160",
     "@mui/material": "^5.15.4",
+    "@mui/system": "^5.15.9",
     "@next/bundle-analyzer": "^14.0.4",
     "@next/mdx": "^14.0.4",
     "@rjsf/core": "^5.15.1",

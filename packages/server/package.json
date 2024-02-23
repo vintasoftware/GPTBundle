@@ -26,11 +26,14 @@
     "test:watch": "jest --watch"
   },
   "peerDependencies": {
-    "openai": "^4.24.1",
     "@rjsf/core": "^5.15.1",
-    "@rjsf/utils": "^5.15.1"
+    "@rjsf/utils": "^5.15.1",
+    "openai": "^4.24.1"
   },
   "dependencies": {
     "dedent": "^1.5.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.4"
   }
 }
