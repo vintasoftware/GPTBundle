@@ -7,11 +7,14 @@ import { LoadingButton } from '@mui/lab';
 import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
 import PsychologyOutlinedIcon from '@mui/icons-material/PsychologyOutlined';
 
+import { useRequestDialog } from '../../../requestDialog';
 import { useGeneratedFormSchema, useFormAssistant } from '@ai-form-toolkit/client';
 import LoadingBackdrop from '@/components/Examples/LoadingBackdrop';
 import SchemaFormDemo from '@/components/Forms/SchemaFormDemo';
 
 export default function ExamSchemaGenWithAssistantExample() {
+  const { requestDialog, renderDialog, isLoading } = useRequestDialog();
+
   const defaultContent = dedent`
   Technical Requirements for the job:
   Frontend:
@@ -34,7 +37,6 @@ export default function ExamSchemaGenWithAssistantExample() {
   const [content, setContent] = useState(defaultContent);
   const [prompt, setPrompt] = useState(defaultPrompt);
   const { formSchema, uiSchema, generateFormSchema } = useGeneratedFormSchema();
-  const [isLoading, setIsLoading] = useState(false);
 
   const fieldToFill = Object.keys(formSchema?.properties || {})[0] || null;
   const fieldLabels = Object.entries(formSchema?.properties || {}).reduce((acc, [key, value]) => {
@@ -98,10 +100,7 @@ export default function ExamSchemaGenWithAssistantExample() {
             loadingPosition="start"
             loading={isLoading}
             startIcon={<PsychologyOutlinedIcon />}
-            onClick={() => {
-              setIsLoading(true);
-              fillSingleField(fieldToFill).finally(() => setIsLoading(false));
-            }}
+            onClick={() => requestDialog(() => fillSingleField(fieldToFill))}
           >
             Autofill missing with GPT-4
           </LoadingButton>
@@ -111,10 +110,7 @@ export default function ExamSchemaGenWithAssistantExample() {
           loadingPosition="start"
           loading={isLoading}
           startIcon={<ListAltOutlinedIcon />}
-          onClick={() => {
-            setIsLoading(true);
-            generateFormSchema(content, prompt).finally(() => setIsLoading(false));
-          }}
+          onClick={() => requestDialog(() => generateFormSchema(content, prompt))}
         >
           Generate Form
         </LoadingButton>
@@ -124,11 +120,13 @@ export default function ExamSchemaGenWithAssistantExample() {
         formSchema={formSchema}
         uiSchema={uiSchema}
         onSubmit={onSubmit}
-        // @ts-ignore
+        // @ts-expect-error - code sample
         formData={formValues}
-        // @ts-ignore
+        // @ts-expect-error - code sample
         onChange={(e) => setFormValues(e.formValues)}
       />
+
+      {renderDialog()}
     </Stack>
   );
 }

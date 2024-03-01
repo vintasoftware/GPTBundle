@@ -6,12 +6,14 @@ import { LoadingButton } from '@mui/lab';
 import AutoFixHighOutlinedIcon from '@mui/icons-material/AutoFixHighOutlined';
 import PsychologyOutlinedIcon from '@mui/icons-material/PsychologyOutlined';
 
+import { useRequestDialog } from '../../../requestDialog';
 import { useFormAssistant } from '@ai-form-toolkit/client';
 
 const CATEGORY_CHOICES = ['Bug', 'Feature', 'Improvement'];
 const PRIORITY_CHOICES = ['High', 'Medium', 'Low'];
 
 export default function MultiFieldFormAssistant() {
+  const { requestDialog, renderDialog, isLoading } = useRequestDialog();
   const [formValues, setFormValues] = useState<Record<string, string>>({
     title: 'Fix N+1s in Django codebase',
     description: 'Use prefetch...',
@@ -32,7 +34,7 @@ export default function MultiFieldFormAssistant() {
       priority: PRIORITY_CHOICES,
     },
   });
-  const [isLoading, setIsLoading] = useState(false);
+
   const [isLoadingDescription, setIsLoadingDescription] = useState(false);
 
   const handleInputChange = (name: string, value: string | null) => {
@@ -44,7 +46,6 @@ export default function MultiFieldFormAssistant() {
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    console.log(formValues);
   };
 
   return (
@@ -144,18 +145,18 @@ export default function MultiFieldFormAssistant() {
               startIcon={<PsychologyOutlinedIcon />}
               disabled={isLoading || isLoadingDescription}
               onClick={() => {
-                setIsLoading(true);
-                fillFields().finally(() => setIsLoading(false));
+                requestDialog(() => fillFields());
               }}
             >
               Autofill missing with GPT-4
             </LoadingButton>
-            <Button type="submit" variant="contained">
+            <Button type="submit" variant="contained" disabled={isLoading}>
               Submit
             </Button>
           </Stack>
         </Stack>
       </form>
+      {renderDialog()}
     </Stack>
   );
 }
