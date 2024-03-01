@@ -112,11 +112,11 @@ importers:
   docs:
     dependencies:
       '@ai-form-toolkit/client':
-        specifier: file:../packages/client
-        version: file:packages/client(@rjsf/core@5.16.1)(@rjsf/utils@5.16.1)(react-dom@18.2.0)(react@18.2.0)
+        specifier: workspace:../packages/client
+        version: link:../packages/client
       '@ai-form-toolkit/server':
-        specifier: file:../packages/server
-        version: file:packages/server(@rjsf/core@5.16.1)(@rjsf/utils@5.16.1)(openai@4.24.7)
+        specifier: workspace:../packages/server
+        version: link:../packages/server
       '@emotion/react':
         specifier: ^11.11.3
         version: 11.11.3(@types/react@18.2.45)(react@18.2.0)
@@ -9105,38 +9105,3 @@ packages:
 
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
-
-  file:packages/client(@rjsf/core@5.16.1)(@rjsf/utils@5.16.1)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {directory: packages/client, type: directory}
-    id: file:packages/client
-    name: '@ai-form-toolkit/client'
-    engines: {node: '>=20'}
-    peerDependencies:
-      '@rjsf/core': ^5.15.1
-      '@rjsf/utils': ^5.15.1
-      react: ^18.2.0
-      react-dom: ^18.2.0
-    dependencies:
-      '@rjsf/core': 5.16.1(@rjsf/utils@5.16.1)(react@18.2.0)
-      '@rjsf/utils': 5.16.1(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: false
-
-  file:packages/server(@rjsf/core@5.16.1)(@rjsf/utils@5.16.1)(openai@4.24.7):
-    resolution: {directory: packages/server, type: directory}
-    id: file:packages/server
-    name: '@ai-form-toolkit/server'
-    engines: {node: '>=20'}
-    peerDependencies:
-      '@rjsf/core': ^5.15.1
-      '@rjsf/utils': ^5.15.1
-      openai: ^4.24.1
-    dependencies:
-      '@rjsf/core': 5.16.1(@rjsf/utils@5.16.1)(react@18.2.0)
-      '@rjsf/utils': 5.16.1(react@18.2.0)
-      dedent: 1.5.1
-      openai: 4.24.7
-    transitivePeerDependencies:
-      - babel-plugin-macros
-    dev: false
