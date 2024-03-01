@@ -9,7 +9,7 @@ import { ExampleLinks } from '@/components/Docs/ExampleLinks';
 import { generationLinksData } from '@/app/examples/examples-data';
 import NavItemButtonPopover, { PopoverType } from './NavItemButtonPopover';
 import logo from './../../assets/gptbundle-logo.png';
-import GithubIcon from '@mui/icons-material/Github';
+import GithubIcon from '@mui/icons-material/GitHub';
 
 const buttonStyle = {
   width: '29px',
