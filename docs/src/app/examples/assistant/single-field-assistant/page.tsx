@@ -4,7 +4,7 @@ import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { Button, TextField, Typography, Stack } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import TipsAndUpdatesOutlinedIcon from '@mui/icons-material/TipsAndUpdatesOutlined';
-import { useRequestDialog } from '../../../requestDialog'; // Make sure this path is correct
+import { useRequestDialog } from '../../../requestDialog';
 import { useFormAssistant } from '@ai-form-toolkit/client';
 
 export default function SingleFieldFormAssistant() {

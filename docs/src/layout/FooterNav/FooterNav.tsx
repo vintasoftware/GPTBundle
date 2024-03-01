@@ -1,11 +1,11 @@
 import React from 'react';
 import { Box, Link, IconButton, SvgIcon } from '@mui/material';
 // Import the icons
-import LinkedinIcon from '@mui/icons-material/Linkedin';
+import LinkedinIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import GithubIcon from '@mui/icons-material/Github';
+import GithubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import YoutubeIcon from '@mui/icons-material/Youtube';
+import YoutubeIcon from '@mui/icons-material/YouTube';
 
 const footerContainer = {
   borderTop: '1px solid #302c3f',

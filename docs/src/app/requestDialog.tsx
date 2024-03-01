@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
-import GitHubIcon from '@mui/icons-material/GitHub';
+import GithubIcon from '@mui/icons-material/GitHub';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -66,7 +66,7 @@ export const useRequestDialog = () => {
       <DialogActions>
         <Button
           sx={{ height: '40px', paddingTop: '12px', paddingBottom: '12px', fontWeight: 600 }}
-          startIcon={<GitHubIcon />}
+          startIcon={<GithubIcon />}
           variant="outlined"
           target={'_blank'}
           href={'https://github.com'}
