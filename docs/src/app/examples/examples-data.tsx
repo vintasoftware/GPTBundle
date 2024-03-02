@@ -1,9 +1,7 @@
 import { ElementType } from 'react';
 import AccountTreeOutlinedIcon from '@mui/icons-material/AccountTreeOutlined';
 import ChecklistOutlinedIcon from '@mui/icons-material/ChecklistOutlined';
-import FiberSmartRecordOutlinedIcon from '@mui/icons-material/FiberSmartRecordOutlined';
 import GavelOutlinedIcon from '@mui/icons-material/GavelOutlined';
-import PsychologyOutlinedIcon from '@mui/icons-material/PsychologyOutlined';
 import RocketLaunchOutlinedIcon from '@mui/icons-material/RocketLaunchOutlined';
 import TipsAndUpdatesOutlinedIcon from '@mui/icons-material/TipsAndUpdatesOutlined';
 import WorkspacePremiumOutlinedIcon from '@mui/icons-material/WorkspacePremiumOutlined';
@@ -28,21 +26,21 @@ export const generationLinksData: ExampleDataType[] = [
     title: 'Dynamic Form Creator',
     description:
       'Streamline user data collection with dynamic form generation and AI-powered field prediction, boosting efficiency and accuracy.',
-    href: '/examples/generation/generic',
+    href: '/examples/generation/dynamic-form',
   },
   {
     icon: GavelOutlinedIcon,
-    title: 'Legal Contracts Creator',
+    title: 'Legal Form Creator',
     description:
       "Instantly generate and customize legal documents with GPT's AI, ensuring accuracy and compliance without the hassle.",
-    href: '/examples/generation/legal',
+    href: '/examples/generation/legal-form',
   },
   {
     icon: WorkspacePremiumOutlinedIcon,
-    title: 'Exam Creator',
+    title: 'Exam Form Creator',
     description:
       'Generate a theoretical evaluation form with a list of questions based on subject topics, technical content, or any information provided along with a prompt.',
-    href: '/examples/generation/exam',
+    href: '/examples/generation/exam-form',
   },
   {
     icon: ChecklistOutlinedIcon,
@@ -56,6 +54,6 @@ export const generationLinksData: ExampleDataType[] = [
     title: 'ER Diagram-Based Form Creation',
     description:
       'Transform complex Mermaid ER diagrams into forms effortlessly, enabling clear input and representation of complex data.',
-    href: '/examples/generation/entity-relationship',
+    href: '/examples/generation/entity-relationship-form',
   },
 ];

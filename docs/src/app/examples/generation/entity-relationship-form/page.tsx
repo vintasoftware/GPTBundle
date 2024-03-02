@@ -1,13 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { Link, Stack, TextField, Typography } from '@mui/material';
+import { Link, Stack, TextField, Typography, Snackbar, Alert } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
 import { RJSFSchema } from '@rjsf/utils';
 import { IChangeEvent } from '@rjsf/core';
 import dedent from 'dedent';
 
+import { useRequestDialog } from '../../../requestDialog';
 import { useGeneratedFormSchema } from '@ai-form-toolkit/client';
 import LoadingBackdrop from '@/components/Examples/LoadingBackdrop';
 import SchemaFormDemo from '@/components/Forms/SchemaFormDemo';
@@ -36,7 +37,8 @@ export default function ERSchemaGenExample() {
   const [content, setContent] = useState(defaultContent);
   const [prompt, setPrompt] = useState(defaultPrompt);
   const { formSchema, uiSchema, generateFormSchema } = useGeneratedFormSchema();
-  const [isLoading, setIsLoading] = useState(false);
+  const { requestDialog, renderDialog, isLoading } = useRequestDialog();
+  const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const onSubmit = ({ formData }: IChangeEvent<any, RJSFSchema>) => {
     console.log(formData);
@@ -46,8 +48,8 @@ export default function ERSchemaGenExample() {
     <Stack spacing={2}>
       <Stack spacing={2}>
         <LoadingBackdrop open={isLoading} />
-
-        <Typography variant="h4">
+        <Typography variant="h4">ER Diagram-Based Form Creation:</Typography>
+        <Typography>
           Generate forms from{' '}
           <Link href="https://mermaid.js.org/syntax/entityRelationshipDiagram.html" target="_blank" underline="hover">
             Mermaid ER diagrams
@@ -55,7 +57,7 @@ export default function ERSchemaGenExample() {
           :
         </Typography>
         <Typography variant="body1">
-          Code at <code>docs/src/app/examples/generation/entity-relationship/page.tsx</code>
+          Code at <code>docs/src/app/examples/generation/entity-relationship-form/page.tsx</code>
         </Typography>
 
         <TextField
@@ -85,14 +87,28 @@ export default function ERSchemaGenExample() {
         loading={isLoading}
         startIcon={<ListAltOutlinedIcon />}
         onClick={() => {
-          setIsLoading(true);
-          generateFormSchema(content, prompt).finally(() => setIsLoading(false));
+          if (!content.trim() || !prompt.trim()) {
+            setOpenSnackbar(true);
+          } else {
+            requestDialog(() => generateFormSchema(content, prompt));
+          }
         }}
         sx={{ alignSelf: 'flex-end' }}
       >
         Generate Form
       </LoadingButton>
       <SchemaFormDemo formSchema={formSchema} uiSchema={uiSchema} onSubmit={onSubmit} />
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={6000}
+        onClose={() => setOpenSnackbar(false)}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
+        <Alert severity="warning" variant="filled" sx={{ width: '100%' }}>
+          Please fill in the missing fields.
+        </Alert>
+      </Snackbar>
+      {renderDialog()}
     </Stack>
   );
 }

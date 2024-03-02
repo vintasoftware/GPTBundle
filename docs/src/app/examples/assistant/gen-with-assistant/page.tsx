@@ -125,7 +125,6 @@ export default function ExamSchemaGenWithAssistantExample() {
         // @ts-expect-error - code sample
         onChange={(e) => setFormValues(e.formValues)}
       />
-
       {renderDialog()}
     </Stack>
   );

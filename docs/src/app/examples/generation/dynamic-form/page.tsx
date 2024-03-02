@@ -1,23 +1,23 @@
 'use client';
 
 import { useState } from 'react';
-import { TextField, Typography, Stack, Link } from '@mui/material';
-import { IChangeEvent } from '@rjsf/core';
+import { Stack, TextField, Typography, Snackbar, Alert } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-import { RJSFSchema } from '@rjsf/utils';
 import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
+import { RJSFSchema } from '@rjsf/utils';
+import { IChangeEvent } from '@rjsf/core';
 
+import { useRequestDialog } from '../../../requestDialog';
 import { useGeneratedFormSchema } from '@ai-form-toolkit/client';
 import LoadingBackdrop from '@/components/Examples/LoadingBackdrop';
 import SchemaFormDemo from '@/components/Forms/SchemaFormDemo';
 
-export default function LegalSchemaGenExample() {
-  const defaultPrompt = 'Generate a form for filling the missing fields in this contract';
-
+export default function GenericSchemaGenExample() {
+  const { requestDialog, renderDialog, isLoading } = useRequestDialog();
   const [content, setContent] = useState('');
-  const [prompt, setPrompt] = useState(defaultPrompt);
+  const [prompt, setPrompt] = useState('');
   const { formSchema, uiSchema, generateFormSchema } = useGeneratedFormSchema();
-  const [isLoading, setIsLoading] = useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const onSubmit = ({ formData }: IChangeEvent<any, RJSFSchema>) => {
     console.log(formData);
@@ -28,26 +28,18 @@ export default function LegalSchemaGenExample() {
       <Stack spacing={2}>
         <LoadingBackdrop open={isLoading} />
 
-        <Typography variant="h4">Generate forms for data collection from existing contracts / agreements:</Typography>
+        <Typography variant="h4">Dynamic Form Creator</Typography>
         <Typography variant="body1">
-          Code at <code>docs/src/app/examples/generation/legal/page.tsx</code>
+          Code at <code>docs/src/app/examples/generation/dynamic-form/page.tsx</code>
         </Typography>
 
         <TextField
           multiline
           fullWidth
           name="content"
-          label="Full contract text:"
+          label="Content"
+          helperText="Content to use for generating the form"
           placeholder="Put text or HTML content here..."
-          helperText={
-            <>
-              If you don&apos;t have one, copy this{' '}
-              <Link href="https://www.vertex42.com/WordTemplates/lease-agreement-template.html" target="_blank">
-                doc
-              </Link>{' '}
-              and paste below
-            </>
-          }
           minRows={6}
           value={content}
           onChange={(event) => setContent(event.currentTarget.value)}
@@ -56,8 +48,9 @@ export default function LegalSchemaGenExample() {
           multiline
           fullWidth
           name="prompt"
-          label="Prompt:"
-          placeholder={`e.g. ${defaultPrompt}`}
+          label="Prompt"
+          helperText="Prompt to use for generating the form"
+          placeholder="e.g. generate a 5 question exam to ensure the reader learned this content"
           value={prompt}
           onChange={(event) => setPrompt(event.currentTarget.value)}
         />
@@ -69,14 +62,28 @@ export default function LegalSchemaGenExample() {
         loading={isLoading}
         startIcon={<ListAltOutlinedIcon />}
         onClick={() => {
-          setIsLoading(true);
-          generateFormSchema(content, prompt).finally(() => setIsLoading(false));
+          if (!content.trim() || !prompt.trim()) {
+            setOpenSnackbar(true);
+          } else {
+            requestDialog(() => generateFormSchema(content, prompt));
+          }
         }}
         sx={{ alignSelf: 'flex-end' }}
       >
         Generate Form
       </LoadingButton>
       <SchemaFormDemo formSchema={formSchema} uiSchema={uiSchema} onSubmit={onSubmit} />
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={6000}
+        onClose={() => setOpenSnackbar(false)}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
+        <Alert severity="warning" variant="filled" sx={{ width: '100%' }}>
+          Please fill in the missing fields.
+        </Alert>
+      </Snackbar>
+      {renderDialog()}
     </Stack>
   );
 }

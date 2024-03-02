@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { Stack, TextField, Typography, Snackbar, Alert, Link } from '@mui/material';
 import { IChangeEvent } from '@rjsf/core';
-import { Stack, TextField, Typography, Snackbar, Alert } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import { RJSFSchema } from '@rjsf/utils';
 import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
@@ -12,9 +12,9 @@ import { useGeneratedFormSchema } from '@ai-form-toolkit/client';
 import LoadingBackdrop from '@/components/Examples/LoadingBackdrop';
 import SchemaFormDemo from '@/components/Forms/SchemaFormDemo';
 
-export default function ChecklistSchemaGenExample() {
+export default function LegalSchemaGenExample() {
+  const defaultPrompt = 'Generate a form for filling the missing fields in this contract';
   const { requestDialog, renderDialog, isLoading } = useRequestDialog();
-  const defaultPrompt = 'Generate a detailed checklist with checkmarks.';
 
   const [content, setContent] = useState('');
   const [prompt, setPrompt] = useState(defaultPrompt);
@@ -29,19 +29,27 @@ export default function ChecklistSchemaGenExample() {
     <Stack spacing={2}>
       <Stack spacing={2}>
         <LoadingBackdrop open={isLoading} />
-        <Typography variant="h4">Checklist Creator:</Typography>
-        <Typography>Generate checklists from content:</Typography>
+        <Typography variant="h4">Legal Contracts Creator</Typography>
+        <Typography>Generate forms for data collection from existing contracts:</Typography>
         <Typography variant="body1">
-          Code at <code>docs/src/app/examples/generation/checklist/page.tsx</code>
+          Code at <code>docs/src/app/examples/generation/legal/page.tsx</code>
         </Typography>
 
         <TextField
           multiline
           fullWidth
-          required={true}
           name="content"
-          label="Full content text:"
+          label="Full contract text:"
           placeholder="Put text or HTML content here..."
+          helperText={
+            <>
+              If you don&apos;t have one, copy this{' '}
+              <Link href="https://www.vertex42.com/WordTemplates/lease-agreement-template.html" target="_blank">
+                doc
+              </Link>{' '}
+              and paste below
+            </>
+          }
           minRows={6}
           value={content}
           onChange={(event) => setContent(event.currentTarget.value)}
@@ -49,7 +57,6 @@ export default function ChecklistSchemaGenExample() {
         <TextField
           multiline
           fullWidth
-          required={true}
           name="prompt"
           label="Prompt:"
           placeholder={`e.g. ${defaultPrompt}`}
@@ -72,7 +79,7 @@ export default function ChecklistSchemaGenExample() {
         }}
         sx={{ alignSelf: 'flex-end' }}
       >
-        Generate Checklist
+        Generate Form
       </LoadingButton>
       <SchemaFormDemo formSchema={formSchema} uiSchema={uiSchema} onSubmit={onSubmit} />
       <Snackbar
