@@ -1,5 +1,5 @@
 {
-  "name": "@ai-form-toolkit/server",
+  "name": "@gptbundle/server",
   "version": "0.0.1",
   "type": "module",
   "files": [

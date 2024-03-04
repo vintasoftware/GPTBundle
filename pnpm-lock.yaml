@@ -111,10 +111,10 @@ importers:
 
   docs:
     dependencies:
-      '@ai-form-toolkit/client':
+      '@gptbundle/client':
         specifier: workspace:../packages/client
         version: link:../packages/client
-      '@ai-form-toolkit/server':
+      '@gptbundle/server':
         specifier: workspace:../packages/server
         version: link:../packages/server
       '@emotion/react':

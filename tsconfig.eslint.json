@@ -22,7 +22,7 @@
     "noEmit": true,
     "strict": true,
     "paths": {
-      "@ai-form-toolkit/*": ["./packages/*/src"],
+      "@gptbundle/*": ["./packages/*/src"],
       "@docs/*": ["./docs/src"]
     }
   }

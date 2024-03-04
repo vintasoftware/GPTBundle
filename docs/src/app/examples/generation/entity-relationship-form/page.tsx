@@ -9,7 +9,7 @@ import { IChangeEvent } from '@rjsf/core';
 import dedent from 'dedent';
 
 import { useRequestDialog } from '../../../requestDialog';
-import { useGeneratedFormSchema } from '@ai-form-toolkit/client';
+import { useGeneratedFormSchema } from '@gptbundle/client';
 import LoadingBackdrop from '@/components/Examples/LoadingBackdrop';
 import SchemaFormDemo from '@/components/Forms/SchemaFormDemo';
 

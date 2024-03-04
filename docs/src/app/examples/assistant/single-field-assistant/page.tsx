@@ -5,7 +5,7 @@ import { Button, TextField, Typography, Stack } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import TipsAndUpdatesOutlinedIcon from '@mui/icons-material/TipsAndUpdatesOutlined';
 import { useRequestDialog } from '../../../requestDialog';
-import { useFormAssistant } from '@ai-form-toolkit/client';
+import { useFormAssistant } from '@gptbundle/client';
 import { h2Styles, boxForms } from '../../../../app/examples/formStyles';
 
 export default function SingleFieldFormAssistant() {

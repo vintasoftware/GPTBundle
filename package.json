@@ -1,5 +1,5 @@
 {
-  "name": "ai-form-toolkit",
+  "name": "gptbundle",
   "private": true,
   "engines": {
     "node": ">=20"
@@ -22,8 +22,8 @@
     "test:cov": "jest --coverage",
     "test:watch": "jest --watch",
     "prepare": "husky install",
-    "build": "pnpm -F @ai-form-toolkit/server build && pnpm -F @ai-form-toolkit/client build",
-    "build:watch": "pnpm -F @ai-form-toolkit/server build:watch & pnpm -F @ai-form-toolkit/client build:watch"
+    "build": "pnpm -F @gptbundle/server build && pnpm -F @gptbundle/client build",
+    "build:watch": "pnpm -F @gptbundle/server build:watch & pnpm -F @gptbundle/client build:watch"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
