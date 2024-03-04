@@ -7,7 +7,7 @@ import AutoFixHighOutlinedIcon from '@mui/icons-material/AutoFixHighOutlined';
 import PsychologyOutlinedIcon from '@mui/icons-material/PsychologyOutlined';
 
 import { useRequestDialog } from '../../../requestDialog';
-import { useFormAssistant } from '@ai-form-toolkit/client';
+import { useFormAssistant } from '@gptbundle/client';
 import { h2Styles, boxForms } from '../../../../app/examples/formStyles';
 
 const CATEGORY_CHOICES = ['Bug', 'Feature', 'Improvement'];

@@ -1,12 +1,12 @@
 import HolyLoader from 'holy-loader';
 import React, { ReactNode } from 'react';
-import { AIFormToolkitConfig } from '@ai-form-toolkit/client';
+import { GptBundleConfig } from '@gptbundle/client';
 import {
   customGenerateGPTFormAutofill,
   customGenerateGPTFormSchema,
   AssistantArgsType,
   GeneratorArgsType,
-} from '@ai-form-toolkit/server';
+} from '@gptbundle/server';
 import MuiThemeWrapper from '@/MuiThemeWrapper';
 import MDXProviderWrapper from '@/MDXProviderWrapper';
 
@@ -40,7 +40,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body>
         <HolyLoader />
-        <AIFormToolkitConfig
+        <GptBundleConfig
           generateFormAutofillFn={myGenerateGPTFormAutofill}
           generateFormSchemaFn={myGenerateGPTFormSchema}
         />

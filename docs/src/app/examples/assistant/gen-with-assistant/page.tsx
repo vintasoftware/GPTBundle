@@ -8,7 +8,7 @@ import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
 import PsychologyOutlinedIcon from '@mui/icons-material/PsychologyOutlined';
 
 import { useRequestDialog } from '../../../requestDialog';
-import { useGeneratedFormSchema, useFormAssistant } from '@ai-form-toolkit/client';
+import { useGeneratedFormSchema, useFormAssistant } from '@gptbundle/client';
 import LoadingBackdrop from '@/components/Examples/LoadingBackdrop';
 import SchemaFormDemo from '@/components/Forms/SchemaFormDemo';
 import { h2Styles, boxForms } from '../../../../app/examples/formStyles';
