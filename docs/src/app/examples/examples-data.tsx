@@ -19,7 +19,7 @@ export const generationLinksData: ExampleDataType[] = [
     title: 'AI Form Assistant',
     description:
       'A GPT-4 companion that automates form filling, generates custom forms via prompts, and polishes text for improved clarity and engagement, all with minimal input.',
-    href: '/examples/assistant/field-assistant',
+    href: '/examples/assistant/form-assistant',
   },
   {
     icon: RocketLaunchOutlinedIcon,

@@ -11,6 +11,7 @@ import { useRequestDialog } from '../../../requestDialog';
 import { useGeneratedFormSchema, useFormAssistant } from '@ai-form-toolkit/client';
 import LoadingBackdrop from '@/components/Examples/LoadingBackdrop';
 import SchemaFormDemo from '@/components/Forms/SchemaFormDemo';
+import { h2Styles, boxForms } from '../../../../app/examples/formStyles';
 
 export default function ExamSchemaGenWithAssistantExample() {
   const { requestDialog, renderDialog, isLoading } = useRequestDialog();
@@ -59,11 +60,12 @@ export default function ExamSchemaGenWithAssistantExample() {
   };
 
   return (
-    <Stack spacing={2}>
+    <Stack spacing={2} sx={{ ...boxForms }}>
       <Stack spacing={2}>
         <LoadingBackdrop open={isLoading} />
-
-        <Typography variant="h4">Generate and then autofill form:</Typography>
+        <Typography variant="h2" sx={{ ...h2Styles }}>
+          Generate Form Button + Auto-Fill Form:
+        </Typography>
         <Typography variant="body1">
           Code at <code>docs/src/app/examples/assistant/gen-with-assistant/page.tsx</code>
         </Typography>
@@ -71,7 +73,6 @@ export default function ExamSchemaGenWithAssistantExample() {
           This form combines <code>useGeneratedFormSchema</code> with <code>useFormAssistant</code> hooks to generate a
           form from content + prompt, and then support GPT-4 autofill on it.
         </Typography>
-
         <TextField
           multiline
           fullWidth

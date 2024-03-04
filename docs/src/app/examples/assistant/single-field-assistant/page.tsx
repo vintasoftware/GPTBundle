@@ -6,6 +6,7 @@ import { LoadingButton } from '@mui/lab';
 import TipsAndUpdatesOutlinedIcon from '@mui/icons-material/TipsAndUpdatesOutlined';
 import { useRequestDialog } from '../../../requestDialog';
 import { useFormAssistant } from '@ai-form-toolkit/client';
+import { h2Styles, boxForms } from '../../../../app/examples/formStyles';
 
 export default function SingleFieldFormAssistant() {
   const { requestDialog, renderDialog, isLoading } = useRequestDialog();
@@ -32,8 +33,24 @@ export default function SingleFieldFormAssistant() {
   };
 
   return (
-    <Stack spacing={2}>
-      <Typography variant="h4">GPT-4 form assistant (single field)</Typography>
+    <Stack spacing={2} sx={{ ...boxForms }}>
+      <Typography
+        variant="h1"
+        sx={{
+          fontWeight: 400,
+          fontSize: '2.125rem',
+          lineHeight: 1.235,
+          marginTop: '16px!important',
+        }}
+      >
+        Auto-fill Form Button
+      </Typography>
+      <Typography variant="h2" sx={{ ...h2Styles }}>
+        Single field Form
+      </Typography>
+      <Typography variant="body1">
+        Code at <code>docs/src/app/examples/assistant/single-field-assistant/page.tsx</code>
+      </Typography>
       <form onSubmit={handleSubmit}>
         <Stack spacing={2}>
           <TextField

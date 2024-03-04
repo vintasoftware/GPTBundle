@@ -25,6 +25,22 @@ const MuiThemeWrapper = ({ children }: { children: ReactNode }) => {
       fontFamily: 'DM Sans, sans-serif', // Set default font
     },
     components: {
+      MuiCssBaseline: {
+        styleOverrides: `
+          h1 {
+            margin-bottom: 48px!important; 
+          }
+          h2 {
+            font-weight: 600!important;
+          }
+          h2,h3 {
+            margin-top: 32px!important; 
+          }
+          p, li {
+            line-height: 26.5px!important;
+          }
+        `,
+      },
       MuiButton: {
         styleOverrides: {
           root: {
