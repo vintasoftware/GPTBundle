@@ -111,18 +111,18 @@ importers:
 
   docs:
     dependencies:
-      '@gptbundle/client':
-        specifier: workspace:../packages/client
-        version: link:../packages/client
-      '@gptbundle/server':
-        specifier: workspace:../packages/server
-        version: link:../packages/server
       '@emotion/react':
         specifier: ^11.11.3
         version: 11.11.3(@types/react@18.2.45)(react@18.2.0)
       '@emotion/styled':
         specifier: ^11.11.0
         version: 11.11.0(@emotion/react@11.11.3)(@types/react@18.2.45)(react@18.2.0)
+      '@gptbundle/client':
+        specifier: workspace:../packages/client
+        version: link:../packages/client
+      '@gptbundle/server':
+        specifier: workspace:../packages/server
+        version: link:../packages/server
       '@mdx-js/react':
         specifier: ^3.0.0
         version: 3.0.0(@types/react@18.2.45)(react@18.2.0)

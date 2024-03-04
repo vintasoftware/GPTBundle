@@ -1,6 +1,15 @@
 {
   "name": "gptbundle",
-  "private": true,
+  "version": "0.0.1",
+  "description": "GPTBundle, a React application toolkit, harnesses AI to convert textual content into structured forms and delivers advanced autofill suggestions.",
+  "homepage": "https://github.com/vintasoftware/GPTBundle",
+  "bugs": "https://github.com/vintasoftware/GPTBundle/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vintasoftware/GPTBundle.git"
+  },
+  "license": "MIT",
+  "author": "Vinta Software",
   "engines": {
     "node": ">=20"
   },
