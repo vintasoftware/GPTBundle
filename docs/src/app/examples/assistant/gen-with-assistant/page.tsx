@@ -63,8 +63,8 @@ export default function ExamSchemaGenWithAssistantExample() {
     <Stack spacing={2} sx={{ ...boxForms }}>
       <Stack spacing={2}>
         <LoadingBackdrop open={isLoading} />
-        <Typography variant="h2" sx={{ ...h2Styles }}>
-          Generate Form Button + Auto-Fill Form:
+        <Typography variant="h2" sx={{ ...h2Styles, marginBottom: '0!important' }}>
+          Generate Form Button
         </Typography>
         <Typography variant="body1">
           Code at <code>docs/src/app/examples/assistant/gen-with-assistant/page.tsx</code>

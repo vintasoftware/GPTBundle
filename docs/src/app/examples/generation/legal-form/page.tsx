@@ -29,7 +29,7 @@ export default function LegalSchemaGenExample() {
     <Stack spacing={2}>
       <Stack spacing={2}>
         <LoadingBackdrop open={isLoading} />
-        <Typography variant="h4">Legal Contracts Creator</Typography>
+        <Typography variant="h4">Legal Form Creator</Typography>
         <Typography>Generate forms for data collection from existing contracts:</Typography>
         <Typography variant="body1">
           Code at <code>docs/src/app/examples/generation/legal/page.tsx</code>

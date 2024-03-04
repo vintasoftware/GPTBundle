@@ -8,7 +8,7 @@ import PsychologyOutlinedIcon from '@mui/icons-material/PsychologyOutlined';
 
 import { useRequestDialog } from '../../../requestDialog';
 import { useFormAssistant } from '@gptbundle/client';
-import { h2Styles, boxForms } from '../../../../app/examples/formStyles';
+import { h2Styles, h3Styles, boxForms } from '../../../../app/examples/formStyles';
 
 const CATEGORY_CHOICES = ['Bug', 'Feature', 'Improvement'];
 const PRIORITY_CHOICES = ['High', 'Medium', 'Low'];
@@ -51,8 +51,8 @@ export default function MultiFieldFormAssistant() {
 
   return (
     <Stack spacing={2} sx={{ ...boxForms }}>
-      <Typography variant="h2" sx={{ ...h2Styles }}>
-        Multi field Form
+      <Typography variant="h3" sx={{ ...h3Styles }}>
+        Multi Field Form
       </Typography>
       <Typography variant="body1">
         Code at <code>docs/src/app/examples/assistant/multi-field-assistant/page.tsx</code>

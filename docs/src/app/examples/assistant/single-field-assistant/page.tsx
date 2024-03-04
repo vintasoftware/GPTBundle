@@ -6,7 +6,7 @@ import { LoadingButton } from '@mui/lab';
 import TipsAndUpdatesOutlinedIcon from '@mui/icons-material/TipsAndUpdatesOutlined';
 import { useRequestDialog } from '../../../requestDialog';
 import { useFormAssistant } from '@gptbundle/client';
-import { h2Styles, boxForms } from '../../../../app/examples/formStyles';
+import { h2Styles, h3Styles, boxForms } from '../../../../app/examples/formStyles';
 
 export default function SingleFieldFormAssistant() {
   const { requestDialog, renderDialog, isLoading } = useRequestDialog();
@@ -43,10 +43,13 @@ export default function SingleFieldFormAssistant() {
           marginTop: '16px!important',
         }}
       >
-        Auto-fill Form Button
+        AI Form Assistant
       </Typography>
       <Typography variant="h2" sx={{ ...h2Styles }}>
-        Single field Form
+        Auto Fill Form Button
+      </Typography>
+      <Typography variant="h3" sx={{ ...h3Styles }}>
+        Single Field Form
       </Typography>
       <Typography variant="body1">
         Code at <code>docs/src/app/examples/assistant/single-field-assistant/page.tsx</code>
