@@ -49,7 +49,7 @@ You can find [a list of all examples here.](/examples) Feel free to explore all 
 ### Installation
 
 ```bash
-npm install @ai-form-toolkit/client @ai-form-toolkit/server
+npm install @gptbundle/client @gptbundle/server
 ```
 
 ### Configuration
@@ -61,18 +61,18 @@ If you don't have a key, get one from your [OpenAI account](https://platform.ope
 OPENAI_API_KEY=...
 ```
 
-Use the `AIFormToolkitConfig` to provide the action functions from server package to the client-side.
+Use the `GptBundleConfig` to provide the action functions from server package to the client-side.
 In Next.js, do that in your [root layout](https:/nextjs.org/docs/app/api-reference/file-conventions/layout):
 
 ```jsx {8-11}
-import { AIFormToolkitConfig } from '@ai-form-toolkit/client';
-import { generateGPTFormAutofill, generateGPTFormSchema } from '@ai-form-toolkit/server';
+import { GptBundleConfig } from '@gptbundle/client';
+import { generateGPTFormAutofill, generateGPTFormSchema } from '@gptbundle/server';
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <AIFormToolkitConfig
+        <GptBundleConfig
           generateFormAutofillFn={generateGPTFormAutofill}
           generateFormSchemaFn={generateGPTFormSchema}
         />

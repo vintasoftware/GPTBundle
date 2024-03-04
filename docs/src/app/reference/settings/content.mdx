@@ -4,7 +4,7 @@ import KeyboardDoubleArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardDou
 # Advanced settings
 
 Use the advanced settings to override prompts, AI models, etc.
-Pass custom functions to `AIFormToolkitConfig` to override default settings.
+Pass custom functions to `GptBundleConfig` to override default settings.
 
 Supported models are the ones from OpenAI that support JSON input and output.
 [Check all OpenAI models](https://platform.openai.com/docs/models).
@@ -12,8 +12,8 @@ Supported models are the ones from OpenAI that support JSON input and output.
 ## Form Generation
 
 ```tsx {4}
-import { AIFormToolkitConfig } from '@ai-form-toolkit/client';
-import { customGenerateGPTFormSchema, GeneratorArgsType } from '@ai-form-toolkit/server';
+import { GptBundleConfig } from '@gptbundle/client';
+import { customGenerateGPTFormSchema, GeneratorArgsType } from '@gptbundle/server';
 
 async function myGenerateGPTFormSchema(args: GeneratorArgsType) {
   'use server'; // necessary!
@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <AIFormToolkitConfig generateFormSchemaFn={myGenerateGPTFormSchema} />
+        <GptBundleConfig generateFormSchemaFn={myGenerateGPTFormSchema} />
       </body>
     </html>
   );
@@ -54,8 +54,8 @@ Check `packages/server/src/actions/form-gen.tsx` implementation for more details
 ## Form Assistant
 
 ```tsx {4}
-import { AIFormToolkitConfig } from '@ai-form-toolkit/client';
-import { customGenerateGPTFormAutofill, AssistantArgsType } from '@ai-form-toolkit/server';
+import { GptBundleConfig } from '@gptbundle/client';
+import { customGenerateGPTFormAutofill, AssistantArgsType } from '@gptbundle/server';
 
 async function myGenerateGPTFormAutofill(args: AssistantArgsType) {
   'use server'; // necessary!
@@ -75,7 +75,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <AIFormToolkitConfig generateFormAutofillFn={myGenerateGPTFormAutofill} />
+        <GptBundleConfig generateFormAutofillFn={myGenerateGPTFormAutofill} />
       </body>
     </html>
   );

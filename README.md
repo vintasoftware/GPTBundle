@@ -17,8 +17,8 @@ Note that hosted examples are not interactive. See [Building](#building) below t
 
 This is a multipackage monorepo that holds the two NPM projects necessary for GPTBundle:
 
-- `@ai-form-toolkit/client`
-- `@ai-form-toolkit/server`
+- `@gptbundle/client`
+- `@gptbundle/server`
 
 Both are stored at `packages/` directory.
 
@@ -50,7 +50,7 @@ OPENAI_API_KEY=sk-...
 Run the docs project:
 
 ```bash
-pnpm -F ai-form-toolkit-docs run dev
+pnpm -F @gptbundle/docs run dev
 ```
 
 Then open `http://localhost:3000` in your browser.
