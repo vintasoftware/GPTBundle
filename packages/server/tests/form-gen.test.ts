@@ -119,9 +119,7 @@ describe('Form Generation', () => {
     await expect(customGenerateGPTFormSchema(baseGeneratorArgs, {})).rejects.toThrow(
       'OpenAI returned an empty response. Please try again.',
     );
-    await expect(generateGPTFormSchema(baseGeneratorArgs)).rejects.toThrow(
-      'Failed to communicate with OpenAI. Please try again.',
-    );
+    await expect(generateGPTFormSchema(baseGeneratorArgs)).rejects.toThrow('Failed to communicate with OpenAI.');
   });
 
   it('should throw an error when OpenAI returns an empty JSON Schema', async () => {
@@ -136,9 +134,7 @@ describe('Form Generation', () => {
       await expect(customGenerateGPTFormSchema(baseGeneratorArgs, {})).rejects.toThrow(
         'OpenAI returned an empty JSON Schema. Please try again.',
       );
-      await expect(generateGPTFormSchema(baseGeneratorArgs)).rejects.toThrow(
-        'Failed to communicate with OpenAI. Please try again.',
-      );
+      await expect(generateGPTFormSchema(baseGeneratorArgs)).rejects.toThrow('Failed to communicate with OpenAI.');
     };
 
     await testEmptyJSONSchema(null);
@@ -159,9 +155,7 @@ describe('Form Generation', () => {
       await expect(customGenerateGPTFormSchema(baseGeneratorArgs, {})).rejects.toThrow(
         'OpenAI returned an empty UI Schema. Please try again.',
       );
-      await expect(generateGPTFormSchema(baseGeneratorArgs)).rejects.toThrow(
-        'Failed to communicate with OpenAI. Please try again.',
-      );
+      await expect(generateGPTFormSchema(baseGeneratorArgs)).rejects.toThrow('Failed to communicate with OpenAI.');
     };
 
     await testEmptyUISchema(null);
@@ -178,9 +172,7 @@ describe('Form Generation', () => {
     await expect(customGenerateGPTFormSchema(baseGeneratorArgs, {})).rejects.toThrow(
       'OpenAI API request exceeded rate limit',
     );
-    await expect(generateGPTFormSchema(baseGeneratorArgs)).rejects.toThrow(
-      'Failed to communicate with OpenAI. Please try again.',
-    );
+    await expect(generateGPTFormSchema(baseGeneratorArgs)).rejects.toThrow('Failed to communicate with OpenAI.');
   });
 
   it('should return a valid JSON Schema and UI Schema', async () => {
