@@ -147,6 +147,6 @@ export async function generateGPTFormSchema(args: GeneratorArgsType) {
   try {
     return await customGenerateGPTFormSchema(args, {});
   } catch (e) {
-    throw new Error('Failed to communicate with OpenAI. Please try again.');
+    throw new Error('Failed to communicate with OpenAI.', { cause: e });
   }
 }

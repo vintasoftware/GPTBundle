@@ -126,6 +126,6 @@ export async function generateGPTFormAutofill(args: AssistantArgsType) {
   try {
     return await customGenerateGPTFormAutofill(args, {});
   } catch (e) {
-    throw new Error('Failed to communicate with OpenAI. Please try again.');
+    throw new Error('Failed to communicate with OpenAI.', { cause: e });
   }
 }
