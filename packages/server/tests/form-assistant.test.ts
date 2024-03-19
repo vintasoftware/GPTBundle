@@ -193,9 +193,7 @@ describe('Form Assistant', () => {
     await expect(customGenerateGPTFormAutofill(baseAssistantArgs, {})).rejects.toThrow(
       'OpenAI returned an empty response. Please try again.',
     );
-    await expect(generateGPTFormAutofill(baseAssistantArgs)).rejects.toThrow(
-      'Failed to communicate with OpenAI. Please try again.',
-    );
+    await expect(generateGPTFormAutofill(baseAssistantArgs)).rejects.toThrow('Failed to communicate with OpenAI.');
   });
 
   it('should throw an error when OpenAI returns an empty Autofill Fields', async () => {
@@ -209,9 +207,7 @@ describe('Form Assistant', () => {
       await expect(customGenerateGPTFormAutofill(baseAssistantArgs, {})).rejects.toThrow(
         'OpenAI returned an empty Autofill Fields. Please try again.',
       );
-      await expect(generateGPTFormAutofill(baseAssistantArgs)).rejects.toThrow(
-        'Failed to communicate with OpenAI. Please try again.',
-      );
+      await expect(generateGPTFormAutofill(baseAssistantArgs)).rejects.toThrow('Failed to communicate with OpenAI.');
     };
 
     await testEmptyAutofillFields(null);
@@ -227,9 +223,7 @@ describe('Form Assistant', () => {
     await expect(customGenerateGPTFormAutofill(baseAssistantArgs, {})).rejects.toThrow(
       'OpenAI API request exceeded rate limit',
     );
-    await expect(generateGPTFormAutofill(baseAssistantArgs)).rejects.toThrow(
-      'Failed to communicate with OpenAI. Please try again.',
-    );
+    await expect(generateGPTFormAutofill(baseAssistantArgs)).rejects.toThrow('Failed to communicate with OpenAI.');
   });
 
   it('should return a valid Autofill Fields (multi field)', async () => {
