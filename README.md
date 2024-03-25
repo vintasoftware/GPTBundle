@@ -1,15 +1,51 @@
-# GPTBundle
+<a href="https://gptbundle.ai/">
+  <img alt="Boost your Next.js projects with AI." src="https://uploads-ssl.webflow.com/65f07558bcb66f1b91b0ee63/6601d7b32eae5f9e01c66452_gptbundle%20-%20github%20cover.png">
+  <h1 align="center">GPTBundle</h1>
+</a>
 
-Build and enhance your React forms with Artificial Intelligence. Integrated with Next.js server actions for maximum productivity.
+This product is currently in **open alpha phase**, feedback is welcomed but usage for commercial applications is not yet advised.
 
-GPTBundle facilitates adding AI capabilities to forms in React applications:
+**GPTBundle** is an open-source library designed to empower Next.JS web developers by integrating cutting-edge GPT-4 capabilities into their next launches.
 
-- For your Product – autogenerate forms from existing content: checklists, surveys, exams, data collection, you name it!
-- For your Users – help users fill your product forms with AI-powered autofill capabilities.
+Leveraging the power of [LLM](https://en.wikipedia.org/wiki/Large_language_model) models (used by [ChatGPT](https://chat.openai.com/)) through [OpenAI's public API](https://platform.openai.com/docs/api-reference), GPTBundle offers developers a range of templates built using [Vercel](https://vercel.com/)'s [Next.js](https://github.com/vercel/next.js) and [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form). Our ultimate goal is to help the development community to create AI-powered web features easily.
+
+---
+
+<p align="center">
+  <a href="#key-features"><strong>Key Features</strong></a> ·
+  <a href="#documentation"><strong>Documentation</strong></a> ·
+  <a href="#project-structure"><strong>Project Structure
+</strong></a> ·
+  <a href="#contributing"><strong>Contributing</strong></a> ·
+
+## Key Features
+
+### AI Assistant Button
+GPTBundle offers AI buttons that auto-fill and improve the user-provided data in multiple text fields. They are flexible to fit in any form and in can use them to help users create data such as bios based on avaiable profile info, task descriptions based on the context provided, and much more.
+
+### AI Form Creator Templates
+Choose from a variety of templates tailored for common formats of web features, such as creating a filling form for legal contracts, creating exams based on technical articles, creating a shopping checklist based on a cooking recipe, text enhancement for marketing content, and more.
+
+### Compatible with Major UI Libraries
+By implementing react-jsonschema-form's versatility, GPTBundle is compatible with major UI libraries used in many renowned web products:
+[Ant Design](https://github.com/rjsf-team/react-jsonschema-form/tree/main/packages/antd)
+— [Bootstrap 3](https://github.com/rjsf-team/react-jsonschema-form/tree/main/packages/core)
+— [Bootstrap 4](https://github.com/rjsf-team/react-jsonschema-form/tree/main/packages/bootstrap-4)
+— [Chakra UI](https://github.com/rjsf-team/react-jsonschema-form/tree/main/packages/chakra-ui)
+— [Fluent UI](https://github.com/rjsf-team/react-jsonschema-form/tree/main/packages/fluent-ui)
+— [Fluent UI 9](https://github.com/rjsf-team/react-jsonschema-form/tree/main/packages/fluentui-rc)
+— [Material UI 4](https://github.com/rjsf-team/react-jsonschema-form/tree/main/packages/material-ui)
+— [Material UI 5](https://github.com/rjsf-team/react-jsonschema-form/tree/main/packages/mui)
+— [Semantic UI](https://github.com/rjsf-team/react-jsonschema-form/tree/main/packages/semantic-ui)
+
+### Open Source
+GPTBundle is developed by Vinta and maintained by the community, ensuring transparency, reliability, and continuous improvement. It will always be open to feedback and suggestions.
 
 ## Documentation
 
-Check documentation for installation instructions, tutorial and examples: TODO: PUT LINK HERE.
+**Alpha Stage Documentation:** [https://gptbundle-alpha.vinta.dev/](https://gptbundle-alpha.vinta.dev/)
+
+In our public documentation, you'll find installation instructions, tutorials, and examples. Note that hosted examples are not interactive since they need an OpenAI API Key to work. 
 
 Note that hosted examples are not interactive. See [Building](#building) below to learn how to build the interactive docs.
 
@@ -65,3 +101,7 @@ There are three available commands for running tests:
 
 NOTE: Running these commands in the root directory will trigger all tests from all packages.
 However, if you run them within a specific package directory, only the tests associated with that package will be executed.
+
+---
+
+This library is created and maintaned by [Vinta Software](https://vinta.software) — by developers, and for developers.
