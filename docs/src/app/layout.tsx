@@ -11,8 +11,13 @@ import MuiThemeWrapper from '@/MuiThemeWrapper';
 import MDXProviderWrapper from '@/MDXProviderWrapper';
 
 export const metadata = {
-  title: `Build forms like it's ${Math.max(new Date().getFullYear(), 2024)} | GPTBundle`,
-  description: 'Toolkit to generate and enhance web forms using AI.',
+  title: 'GPTBundle Docs - Power Up Your Projects with the best GPT-4 Next.js Feature Kit',
+  description:
+    'Introducing GPTBundle, the ultimate GPT-4 open-source feature pack for tech founders, web developers, and CTOs in 2024. Seamlessly integrate AI capabilities into your projects with our free toolkit designed for dynamic form generation, AI-assisted filling, and more. Get your AI feature up and running right now!',
+  openGraph: {
+    images:
+      'https://assets-global.website-files.com/65d37820cd9751ef4350eeab/65e227c42db6345bbe8977be_newsletter_thumbnail%20(2).webp',
+  },
 };
 
 async function myGenerateGPTFormAutofill(args: AssistantArgsType) {
