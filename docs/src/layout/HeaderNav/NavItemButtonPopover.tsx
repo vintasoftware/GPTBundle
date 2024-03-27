@@ -87,7 +87,7 @@ const NavItemButtonPopover = ({ name, examples, type, open, anchorEl, onPopoverC
           startIcon={<GitHubIcon />}
           variant="outlined"
           target={'_blank'}
-          href={'https://github.com'}
+          href={'https://github.com/vintasoftware/GPTBundle/'}
           onClick={onPopoverClose}
         >
           Visit GitHub

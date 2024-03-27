@@ -69,7 +69,7 @@ export const useRequestDialog = () => {
           startIcon={<GithubIcon />}
           variant="outlined"
           target={'_blank'}
-          href={'https://github.com'}
+          href={'https://github.com/vintasoftware/GPTBundle/'}
         >
           Visit GitHub
         </Button>
