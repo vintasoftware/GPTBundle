@@ -3,8 +3,6 @@
   <h1 align="center">GPTBundle</h1>
 </a>
 
-This product is currently in **open alpha phase**, feedback is welcomed but usage for commercial applications is not yet advised.
-
 **GPTBundle** is an open-source library designed to empower Next.JS web developers by integrating cutting-edge GPT-4 capabilities into their next launches.
 
 Leveraging the power of [LLM](https://en.wikipedia.org/wiki/Large_language_model) models (used by [ChatGPT](https://chat.openai.com/)) through [OpenAI's public API](https://platform.openai.com/docs/api-reference), GPTBundle offers developers a range of templates built using [Vercel](https://vercel.com/)'s [Next.js](https://github.com/vercel/next.js) and [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form). Our ultimate goal is to help the development community to create AI-powered web features easily.
@@ -43,7 +41,7 @@ GPTBundle is developed by Vinta and maintained by the community, ensuring transp
 
 ## Documentation
 
-**Alpha Stage Documentation:** [https://gptbundle-alpha.vinta.dev/](https://gptbundle-alpha.vinta.dev/)
+**Documentation:** [https://docs.gptbundle.ai/](https://docs.gptbundle.ai/)
 
 In our public documentation, you'll find installation instructions, tutorials, and examples. Note that hosted examples are not interactive since they need an OpenAI API Key to work. 
 
