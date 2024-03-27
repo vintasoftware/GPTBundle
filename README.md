@@ -106,4 +106,4 @@ However, if you run them within a specific package directory, only the tests ass
 
 This library is created and maintaned by [Vinta Software](https://vinta.software) — by developers, and for developers. 
 
-For questions, feedback, and partnerships don't hesitate to reach us at <a href="mailto:gptbundle@vinta.software">gptbundle@vinta.software</a>
+For questions, feedback, and partnerships don't hesitate to reach us at <a href="mailto:gptbundle@vintasoftware.com">gptbundle@vintasoftware.com</a>
